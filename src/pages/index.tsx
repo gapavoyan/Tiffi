@@ -5,7 +5,6 @@ import NewCollection from "@/components/newCollection/newCollection";
 import GenderWrapper from "@/components/gender-wrapper/gender-wrapper";
 import { genderData } from "@/components/dataBase/data-gender";
 import { useRouter } from "next/router";
-
 export default function Home() {
   const push = useRouter().push;
   return (
