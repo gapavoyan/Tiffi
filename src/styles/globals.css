@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Lora;
+  src: url("/fonts/Lora-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: Railway;
+  src: url("/public/fonts/Raleway-Italic-VariableFont_wght.ttf");
+}
