@@ -10,3 +10,7 @@
   font-family: Railway;
   src: url("/public/fonts/Raleway-Italic-VariableFont_wght.ttf");
 }
+
+.mobile-header-open {
+  height: 100px !important;
+}

@@ -4,7 +4,7 @@ import React from "react";
 function Navbar() {
   return (
     <div>
-      <ul className="flex gap-[64px] text-sm font-railway text-customBlack ">
+      <ul className="flex max-md:flex-col max-md:items-center max-md:gap-[64px] gap-[64px] max-lg:gap-[32px] text-sm font-railway text-customBlack px-10 py-6">
         <li>
           {" "}
           <Link href="/" className="hover:text-customGreen">
