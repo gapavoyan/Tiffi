@@ -7,7 +7,7 @@ function Layouts({ children }: LayoutProps) {
   return (
     <>
       <Header />
-      <div>{children}</div>
+      {children}
     </>
   );
 }

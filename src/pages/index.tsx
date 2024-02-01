@@ -3,7 +3,7 @@ import WelcomePart from "@/components/welcomePart/welcome-part";
 
 export default function Home() {
   return (
-    <div>
+    <div className="">
       <WelcomePart />
     </div>
   );

@@ -2,8 +2,8 @@ import React from "react";
 
 function WelcomePart() {
   return (
-    <div>
-      <p>jhgjkhgkjhg</p>
+    <div className=" bg-cyan-200">
+      <p>Welcomepart</p>
     </div>
   );
 }
