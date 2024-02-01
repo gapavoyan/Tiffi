@@ -1,3 +1,10 @@
-import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
-export default function Home() {}
+import React from "react";
+import WelcomePart from "@/components/welcomePart/welcome-part";
+
+export default function Home() {
+  return (
+    <div>
+      <WelcomePart />
+    </div>
+  );
+}

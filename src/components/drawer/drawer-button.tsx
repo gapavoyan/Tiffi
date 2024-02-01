@@ -1,23 +1,18 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 interface Props {
   onClick: () => void;
-  isDrawerMenuOpen: Boolean;
+  isDrawerMenuOpen: boolean;
 }
 
 function DrawerButton({ onClick, isDrawerMenuOpen }: Props) {
   return (
-    <div
+    <button
       className="hidden max-lg:block border-customBlack border-[1px] rounded-[100px] px-[12px] py-[12px] cursor-pointer"
       onClick={onClick}
     >
-      <Image
-        src={`/icon/${isDrawerMenuOpen ? "iconMin" : "icon"}.svg`}
-        alt=""
-        width={15}
-        height={15}
-      />
-    </div>
+      <Image src={`/icon/${isDrawerMenuOpen ? "iconMin" : "icon"}.svg`} alt="" width={15} height={15} />
+    </button>
   );
 }
 

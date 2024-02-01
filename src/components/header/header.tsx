@@ -4,13 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../navbar/navbar";
 import Search from "../search/search";
-import DrawerButton from "../drawer/drawerButton";
+import DrawerButton from "../drawer/drawer-button";
 import { useToggle } from "@/hooks/use-toggle";
 import AccordionContent from "../drawer/accordion";
 
 function Header() {
   const [isDrawerMenuOpen, onToggleDrawer] = useToggle();
-  const mobileContainerRef = useRef<HTMLDivElement | null>(null);
+  const _mobileContainerRef = useRef<HTMLDivElement | null>(null);
   const onDrawerToggle = () => {
     onToggleDrawer();
   };
@@ -26,18 +26,13 @@ function Header() {
             <div className=" max-lg:hidden max-lg:gap-[]">
               <Navbar />
             </div>
-            <DrawerButton
-              onClick={onDrawerToggle}
-              isDrawerMenuOpen={isDrawerMenuOpen}
-            />
+            <DrawerButton onClick={onDrawerToggle} isDrawerMenuOpen={isDrawerMenuOpen} />
           </div>
           <div className="flex ml-[180px] max-xl:ml-[120px] max-mij:ml-[30px] max-lg:ml-[12px] max-sm:ml-0 items-center ">
             <Search />
           </div>
         </div>
-        <div
-          className={`border-t-[1px] border-customBlack flex flex-col justify-center max-md:flex-col items-center`}
-        >
+        <div className={`border-t-[1px] border-customBlack flex flex-col justify-center max-md:flex-col items-center`}>
           <AccordionContent isOpen={isDrawerMenuOpen} className="w-full">
             <div className="w-full flex justify-center items-center">
               <Navbar />

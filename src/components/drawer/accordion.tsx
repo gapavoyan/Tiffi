@@ -16,7 +16,7 @@ function AccordionContent({ children, isOpen, className }: Props) {
         className={className}
         style={{
           height: isOpen ? contentRef.current!.scrollHeight : "0",
-          transition: "height 0.1s ease-in-out",
+          transition: "height 0.1s ease-in-out"
         }}
       >
         {children}
