@@ -15,5 +15,4 @@ function DrawerButton({ onClick, isDrawerMenuOpen }: Props) {
     </button>
   );
 }
-
 export default DrawerButton;

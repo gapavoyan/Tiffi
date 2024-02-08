@@ -8,7 +8,6 @@ interface Props {
 
 function AccordionContent({ children, isOpen, className }: Props) {
   const contentRef = useRef<HTMLDivElement | null>(null);
-
   return (
     <div className="w-full overflow-hidden">
       <div
@@ -16,7 +15,7 @@ function AccordionContent({ children, isOpen, className }: Props) {
         className={className}
         style={{
           height: isOpen ? contentRef.current!.scrollHeight : "0",
-          transition: "height 0.1s ease-in-out"
+          transition: "height 0.2s ease-in-out"
         }}
       >
         {children}
