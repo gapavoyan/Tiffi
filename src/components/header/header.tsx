@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -8,9 +8,19 @@ import DrawerButton from "../drawer/drawer-button";
 import { useToggle } from "@/hooks/use-toggle";
 import AccordionContent from "../drawer/accordion";
 import Category from "../dataCatrgory/category";
+import datasubMenu from "../dataBase/dataSubMenu";
+interface SubMenuItem {
+  id: number;
+  title: string;
+  gender: string;
+}
+
 function Header() {
   const [isDrawerMenuOpen, onToggleDrawer] = useToggle();
   const [activeGenderId, setActiveGenderId] = useState<null | number>(null);
+  // const _mobileContainerRef = useRef<HTMLDivElement | null>(null);
+  const filteredSubMenuRef = useRef<SubMenuItem[]>([]);
+
   const onSubmenuOpen = useCallback(
     (id: number) =>
       setActiveGenderId(prevId => {
@@ -20,11 +30,21 @@ function Header() {
     []
   );
 
-  const _mobileContainerRef = useRef<HTMLDivElement | null>(null);
   const onDrawerToggle = () => {
     onToggleDrawer();
   };
+
   const isOpenSubmenu = !!activeGenderId;
+
+  useMemo(() => {
+    const filteredSubMenu = datasubMenu.filter(item => {
+      if (activeGenderId === 2) return item.gender === "man";
+      else if (activeGenderId === 3) return item.gender === "woman";
+      else return true;
+    });
+    filteredSubMenuRef.current = filteredSubMenu; // Update the ref with filtered submenu data
+  }, [activeGenderId]);
+
   return (
     <header>
       <div className=" w-full fixed top-0 z-20">
@@ -49,9 +69,18 @@ function Header() {
             </div>
           </AccordionContent>
         </div>
-        <div>
+        <div className="bg-white mx-[252px] mt-20">
           <AccordionContent isOpen={isOpenSubmenu}>
-            <p>aram</p>
+            {filteredSubMenuRef.current.map(el => (
+              <div key={el.id} className=" flex gap-8">
+                <div className="w-[50%]">
+                  <div className="my-2 border-b border-customBlack py-4">
+                    <p>{el.title}</p>
+                  </div>
+                </div>
+                <div className=" bg-black w-full"></div>
+              </div>
+            ))}
           </AccordionContent>
         </div>
       </div>
