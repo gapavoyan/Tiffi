@@ -1,4 +1,6 @@
-const datasubMenu = [
+import type { Category } from "../header/header";
+
+const datasubMenu: Category[] = [
   {
     id: 1,
     title: "Одежда",

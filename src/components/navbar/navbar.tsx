@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React from "react";
 import dataHeader from "../dataBase/dataHeader";
+import { Gender } from "../header/header";
 interface Props {
-  onSubmenuOpen: (id: number) => void;
+  onSubmenuOpen: (gender: Gender) => void;
 }
 
 function Navbar({ onSubmenuOpen }: Props) {
@@ -13,7 +14,7 @@ function Navbar({ onSubmenuOpen }: Props) {
           <li
             onClick={() => {
               if (el.id === 2 || el.id === 3) {
-                onSubmenuOpen(el.id);
+                onSubmenuOpen(el.id === 2 ? "man" : "woman");
               }
             }}
             key={`title-${el.id}`}

@@ -9,41 +9,53 @@ import { useToggle } from "@/hooks/use-toggle";
 import AccordionContent from "../drawer/accordion";
 import Category from "../dataCatrgory/category";
 import datasubMenu from "../dataBase/dataSubMenu";
-interface SubMenuItem {
+export type Gender = "man" | "woman";
+export interface Category {
   id: number;
   title: string;
-  gender: string;
+  parent_id: number | null;
+  gender: Gender;
+  img: null | string;
+  subcategories: Category[];
+}
+interface CacheRef {
+  man: Category[] | null;
+  woman: Category[] | null;
 }
 
-function Header() {
+function useHeaderInfo() {
   const [isDrawerMenuOpen, onToggleDrawer] = useToggle();
-  const [activeGenderId, setActiveGenderId] = useState<null | number>(null);
-  // const _mobileContainerRef = useRef<HTMLDivElement | null>(null);
-  const filteredSubMenuRef = useRef<SubMenuItem[]>([]);
 
-  const onSubmenuOpen = useCallback(
-    (id: number) =>
-      setActiveGenderId(prevId => {
-        if (prevId === id) return null;
-        else return id;
-      }),
-    []
-  );
+  const [loading, setLoading] = useState(false);
+  const [activeGender, setActiveGender] = useState<Gender | null>(null);
+  const [submenuData, setSubmenuData] = useState<Category[] | null>(null);
+  const cachedInfo = useRef<Record<Gender, Category[] | null>>({ man: null, woman: null });
+  const onSubmenuOpen = (gender: Gender) => {
+    setActiveGender(activeGender === gender ? null : gender);
+    if (cachedInfo.current[gender]) {
+      setSubmenuData(cachedInfo.current[gender]);
+    } else {
+      setLoading(true);
+      const submenuData = datasubMenu.filter(item => item.gender === gender);
+      setSubmenuData(submenuData);
+      cachedInfo.current[gender] = submenuData;
+      setLoading(false);
+    }
 
-  const onDrawerToggle = () => {
-    onToggleDrawer();
+    const onDrawerToggle = () => {
+      const milles = 0.1 * 1.5 * 1000;
+      if (activeGender) setActiveGender(null);
+      setTimeout(() => {
+        onToggleDrawer();
+      }, milles);
+    };
   };
 
-  const isOpenSubmenu = !!activeGenderId;
-
-  useMemo(() => {
-    const filteredSubMenu = datasubMenu.filter(item => {
-      if (activeGenderId === 2) return item.gender === "man";
-      else if (activeGenderId === 3) return item.gender === "woman";
-      else return true;
-    });
-    filteredSubMenuRef.current = filteredSubMenu; // Update the ref with filtered submenu data
-  }, [activeGenderId]);
+  return { onSubmenuOpen, submenuData, loading, isOpen: !!activeGender, onToggleDrawer, isDrawerMenuOpen };
+}
+function Header() {
+  const { loading, onSubmenuOpen, submenuData, isOpen, onToggleDrawer, isDrawerMenuOpen } = useHeaderInfo();
+  // const _mobileContainerRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <header>
@@ -56,7 +68,7 @@ function Header() {
             <div className=" max-lg:hidden">
               <Navbar onSubmenuOpen={onSubmenuOpen} />
             </div>
-            <DrawerButton onClick={onDrawerToggle} isDrawerMenuOpen={isDrawerMenuOpen} />
+            <DrawerButton onClick={onToggleDrawer} isDrawerMenuOpen={isDrawerMenuOpen} />
           </div>
           <div className="flex ml-[90px] max-xl:ml-[100px] max-mij:ml-[10px] max-lg:ml-3 max-sm:ml-0 items-center ">
             <Search />
@@ -70,8 +82,8 @@ function Header() {
           </AccordionContent>
         </div>
         <div className="bg-white mx-[252px] mt-20">
-          <AccordionContent isOpen={isOpenSubmenu}>
-            {filteredSubMenuRef.current.map(el => (
+          <AccordionContent isOpen={isOpen}>
+            {submenuData?.map(el => (
               <div key={el.id} className=" flex gap-8">
                 <div className="w-[50%]">
                   <div className="my-2 border-b border-customBlack py-4">
