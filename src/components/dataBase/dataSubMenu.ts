@@ -1,4 +1,4 @@
-import type { Category } from "../header/header";
+import type { Category } from "@/hooks/useHeaderInfo";
 
 const datasubMenu: Category[] = [
   {

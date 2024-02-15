@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import dataHeader from "../dataBase/dataHeader";
-import { Gender } from "../header/header";
+import { Gender } from "@/hooks/useHeaderInfo";
 interface Props {
   onSubmenuOpen: (gender: Gender) => void;
 }

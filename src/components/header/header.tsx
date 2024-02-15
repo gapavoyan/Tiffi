@@ -4,60 +4,19 @@ import Link from "next/link";
 import Navbar from "../navbar/navbar";
 import Search from "../search/search";
 import DrawerButton from "../drawer/drawer-button";
-import { useToggle } from "@/hooks/use-toggle";
 import AccordionContent from "../drawer/accordion";
-import Category from "../dataCatrgory/category";
-import datasubMenu from "../dataBase/dataSubMenu";
-
-export type Gender = "man" | "woman";
-
-export interface Category {
-  id: number;
-  title: string;
-  parent_id: number | null;
-  gender: Gender;
-  img: null | string;
-  subcategories: Category[];
-}
-
-interface CacheRef {
-  man: Category[] | null;
-  woman: Category[] | null;
-}
-
-function useHeaderInfo() {
-  const [isDrawerMenuOpen, onToggleDrawer] = useToggle();
-  const [loading, setLoading] = useState(false);
-  const [activeGender, setActiveGender] = useState<Gender | null>(null);
-  const [submenuData, setSubmenuData] = useState<Category[] | null>(null);
-  const cachedInfo = useRef<CacheRef>({ man: null, woman: null });
-
-  const onSubmenuOpen = (gender: Gender) => {
-    setActiveGender(activeGender === gender ? null : gender);
-    if (cachedInfo.current[gender]) {
-      setSubmenuData(cachedInfo.current[gender]);
-    } else {
-      setLoading(true);
-      const submenuData = datasubMenu.filter(item => item.gender === gender);
-      setSubmenuData(submenuData);
-      cachedInfo.current[gender] = submenuData;
-      setLoading(false);
-    }
-  };
-
-  const onDrawerToggle = () => {
-    const milliseconds = 0.1 * 1.5 * 1000;
-    if (activeGender) setActiveGender(null);
-    setTimeout(() => {
-      onToggleDrawer();
-    }, milliseconds);
-  };
-
-  return { onSubmenuOpen, submenuData, loading, isOpen: !!activeGender, onDrawerToggle, isDrawerMenuOpen };
-}
-
+import { useHeaderInfo } from "@/hooks/useHeaderInfo";
 function Header() {
   const { loading, onSubmenuOpen, submenuData, isOpen, onDrawerToggle, isDrawerMenuOpen } = useHeaderInfo();
+  const [activArrow, setActivArrow] = useState<number | null>(null);
+
+  const onMouseEnter = (id: number) => {
+    setActivArrow(id);
+  };
+
+  const onMouseLeave = () => {
+    setActivArrow(null);
+  };
 
   return (
     <header>
@@ -87,9 +46,14 @@ function Header() {
           <AccordionContent isOpen={isOpen}>
             {submenuData?.map(el => (
               <div key={el.id} className="flex gap-8">
-                <div className="w-[50%]">
-                  <div className="my-2 border-b border-customBlack py-4">
+                <div className="w-[30%]">
+                  <div
+                    className="flex justify-between my-2 border-b border-customBlack py-4"
+                    onMouseEnter={() => onMouseEnter(el.id)}
+                    onMouseLeave={onMouseLeave}
+                  >
                     <p>{el.title}</p>
+                    <Image src="icon/Vector.svg" width={10} height={10} alt="" className={activArrow === el.id ? "" : "hidden"} />
                   </div>
                 </div>
                 <div className="bg-black w-full"></div>
