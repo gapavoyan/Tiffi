@@ -14,3 +14,24 @@
 .mobile-header-open {
   height: 100px !important;
 }
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background-color: black;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgb(160, 150, 150);
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

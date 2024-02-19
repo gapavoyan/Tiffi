@@ -14,7 +14,7 @@ function Navbar({ onSubmenuOpen }: Props) {
           <li
             onClick={() => {
               if (el.id === 2 || el.id === 3) {
-                onSubmenuOpen(el.id === 2 ? "man" : "woman");
+                onSubmenuOpen(el.id === 3 ? "man" : "woman");
               }
             }}
             key={`title-${el.id}`}
