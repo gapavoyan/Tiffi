@@ -18,7 +18,7 @@ function Navbar({ onSubmenuOpen }: Props) {
               }
             }}
             key={`title-${el.id}`}
-            className="text-sm mafont-railway text-customBlack px-10 py-6 max-lg:px-6"
+            className="text-sm mafont-railway text-customBlack px-10 py-6 max-lg:px-6 hover:text-customGreen"
           >
             <Link href={el.link}>{el.title}</Link>
           </li>
