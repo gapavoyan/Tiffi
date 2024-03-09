@@ -8,7 +8,6 @@ interface Props {
 }
 import { Pagination } from "swiper/modules";
 import "swiper/css";
-// import "../../styles/globals.css";
 export default function Slider({ hoveredSubcategories }: Props) {
   const swiperRef = useRef<SwiperRef>(null);
   function onSlideNext() {
@@ -20,15 +19,7 @@ export default function Slider({ hoveredSubcategories }: Props) {
 
   return (
     <>
-      <Swiper
-        slidesPerView={3}
-        ref={swiperRef}
-        // pagination={{
-        //   clickable: true
-        // }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
+      <Swiper slidesPerView={3} ref={swiperRef} modules={[Pagination]} className="mySwiper">
         {hoveredSubcategories.map(el => {
           return (
             <div key={el.id}>
@@ -42,11 +33,12 @@ export default function Slider({ hoveredSubcategories }: Props) {
           );
         })}
       </Swiper>
-      {hoveredSubcategories.length > 3 && (
+
+      {hoveredSubcategories.length >= 3 && (
         <div className="relative  top-72 right-52 mt-3">
           <div className="flex justify-end items-end">
             <button onClick={onSlidePrev}>
-              <div style={{ width: "54px", height: "60px" }}>
+              <div style={{ width: "50px", height: "60px" }}>
                 <Image src="icon/leftArrow.svg" width={60} height={60} alt="" />
               </div>
             </button>
