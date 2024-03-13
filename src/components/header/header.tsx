@@ -1,5 +1,4 @@
-// Header.js
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../navbar/navbar";
@@ -41,10 +40,12 @@ function Header() {
         <div className="max-m:hidden">
           <DesktopHeader isOpen={isOpen} submenuData={submenuData} />
         </div>
-        <div className="hidden max-m:block fixed top-0">
-          {isDrawerMenuOpen && isMobile && (
-            <MobileHeader isOpen={isOpen} submenuData={submenuData} onClose={onCloseMobileModal} />
-          )}
+        <div className="hidden max-m:block h-full">
+          <div className="">
+            {isDrawerMenuOpen && isMobile && (
+              <MobileHeader isOpen={isOpen} submenuData={submenuData} onClose={onCloseMobileModal} />
+            )}
+          </div>
         </div>
       </div>
     </header>
