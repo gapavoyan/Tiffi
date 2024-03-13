@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useToggle } from "./use-toggle";
 import datasubMenu from "@/components/dataBase/dataSubMenu";
+import { useMediaQuery } from "./use-media-query";
 
 export type Gender = "man" | "woman";
 
@@ -11,6 +12,7 @@ export interface Category {
   gender: Gender;
   img: null | string;
   subcategories: Category[];
+  datasubMenu: [];
 }
 
 export interface CacheRef {
@@ -18,6 +20,8 @@ export interface CacheRef {
   woman: Category[] | null;
 }
 export function useHeaderInfo() {
+  const isMobile = useMediaQuery("(max-width : 1200px)");
+
   const [isDrawerMenuOpen, onToggleDrawer] = useToggle();
   const [loading, setLoading] = useState(false);
   const [activeGender, setActiveGender] = useState<Gender | null>(null);
@@ -45,5 +49,18 @@ export function useHeaderInfo() {
     }, milliseconds);
   };
 
-  return { onSubmenuOpen, submenuData, loading, isOpen: !!activeGender, onDrawerToggle, isDrawerMenuOpen };
+  const onCloseMobileModal = () => {
+    setActiveGender(null);
+  };
+
+  return {
+    onSubmenuOpen,
+    submenuData,
+    loading,
+    isOpen: !!activeGender,
+    onDrawerToggle,
+    isDrawerMenuOpen,
+    isMobile,
+    onCloseMobileModal
+  };
 }
