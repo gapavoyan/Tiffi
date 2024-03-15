@@ -1,4 +1,3 @@
-// navbar.js
 import React from "react";
 import Link from "next/link";
 import dataHeader from "../dataBase/dataHeader";

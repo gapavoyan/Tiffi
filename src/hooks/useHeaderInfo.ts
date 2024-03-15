@@ -12,7 +12,6 @@ export interface Category {
   gender: Gender;
   img: null | string;
   subcategories: Category[];
-  datasubMenu: [];
 }
 
 export interface CacheRef {

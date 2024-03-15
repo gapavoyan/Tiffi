@@ -29,7 +29,6 @@ function Header() {
             <Search />
           </div>
         </div>
-
         <div className={`border-t border-customBlack flex flex-col justify-center max-md:flex-col items-center`}>
           <AccordionContent isOpen={isDrawerMenuOpen} className="w-full">
             <div className="w-full flex justify-center bg-white max-md:h-screen">
