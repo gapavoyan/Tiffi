@@ -15,6 +15,8 @@ export default function MobileHeader({ isOpen, submenuData, onClose }: Props) {
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<null | number>(null);
   const [selectedGender, setSelectedGender] = useState<Gender | null>(null);
   const [brandsOpen, setBrandsOpen] = useState<boolean>(false);
+
+  // Set selected gender when submenuData changes
   useEffect(() => {
     if (submenuData && submenuData.length > 0) {
       setSelectedGender(submenuData[0].gender);
@@ -53,13 +55,13 @@ export default function MobileHeader({ isOpen, submenuData, onClose }: Props) {
                         width={10}
                         height={10}
                         alt="arrow-down"
-                        className={`${activeSubcategoryId === el.id && el.subcategories.length > 0 ? "" : "hidden"} mr-4`}
+                        className={`${activeSubcategoryId === el.id && el.subcategories && el.subcategories.length > 0 ? "" : "hidden"} mr-4`}
                       />
                     </div>
                     <div>
                       <AccordionContent isOpen={activeSubcategoryId === el.id}>
                         <div className={`w-full flex`}>
-                          {el.subcategories.length > 0 && (
+                          {el.subcategories && el.subcategories.length > 0 && (
                             <div className="w-[90vw] h-[200px]">
                               <Slider hoveredSubcategories={el.subcategories} />
                             </div>
