@@ -34,7 +34,7 @@ export default function DesktopHeader({ isOpen, submenuData }: Props) {
   };
 
   return (
-    <div className="px-[252px] mt-20 ">
+    <div className="px-[252px]">
       <div className="w-full">
         <AccordionContent isOpen={isOpen}>
           <div className="flex">

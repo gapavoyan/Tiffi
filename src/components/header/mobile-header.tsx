@@ -15,8 +15,6 @@ export default function MobileHeader({ isOpen, submenuData, onClose }: Props) {
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<null | number>(null);
   const [selectedGender, setSelectedGender] = useState<Gender | null>(null);
   const [brandsOpen, setBrandsOpen] = useState<boolean>(false);
-
-  // Set selected gender when submenuData changes
   useEffect(() => {
     if (submenuData && submenuData.length > 0) {
       setSelectedGender(submenuData[0].gender);
@@ -35,8 +33,8 @@ export default function MobileHeader({ isOpen, submenuData, onClose }: Props) {
   };
 
   return (
-    <div className="">
-      <div className="w-full flex justify-center  overflow-y-auto">
+    <div className="w-full">
+      <div className="w-full flex justify-center">
         {isOpen && (
           <div className="fixed bg-white top-[110px] h-screen max-sm:top-[170px] px-[250px]">
             <div>

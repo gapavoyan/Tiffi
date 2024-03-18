@@ -13,9 +13,9 @@ function Header() {
   const { onSubmenuOpen, onDrawerToggle, isDrawerMenuOpen, submenuData, isOpen, isMobile, onCloseMobileModal } = useHeaderInfo();
 
   return (
-    <header>
-      <div className="w-full fixed top-0 z-20">
-        <div className="max-sm:gap-4 mx-[252px] my-6 max-xl:mx-[110px] max-mij:ml-[120px] max-lg:mx-[130px] max-md:mx-[72px] max-sm:mx-4 flex justify-between max-sm:flex-col ">
+    <header className="h-[120px] max-lg:h-[90px] max-md:h-[145px]">
+      <div className="fixed top-0 z-20 w-full ">
+        <div className="max-sm:gap-4 px-[252px] py-6 max-xl:px-[110px] max-mij:pl-[120px] max-lg:px-[130px] max-md:px-[72px] max-sm:px-4 flex justify-between max-sm:flex-col ">
           <div className="flex justify-between items-center w-full">
             <Link href="/">
               <Image src="logo.svg" alt="" width={106} height={24} />
@@ -36,7 +36,7 @@ function Header() {
             </div>
           </AccordionContent>
         </div>
-        <div className="max-m:hidden">
+        <div className="max-m:hidden bg-white">
           <DesktopHeader isOpen={isOpen} submenuData={submenuData} />
         </div>
         <div className="hidden max-m:block h-full">
