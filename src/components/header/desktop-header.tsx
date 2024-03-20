@@ -47,7 +47,7 @@ export default function DesktopHeader({ isOpen, submenuData }: Props) {
                 >
                   <div className="w-full">
                     <div className={`flex justify-between my-2 border-b py-4 w-[200px] border-customBlack`}>
-                      <p>{el.title}</p>
+                      <p className="font-railway">{el.title}</p>
                       <Image
                         src="/icon/Vector.svg"
                         width={10}
@@ -63,7 +63,7 @@ export default function DesktopHeader({ isOpen, submenuData }: Props) {
                 className="flex justify-between my-2 border-b border-customBlack py-4 w-[200px]"
                 onMouseEnter={onBrandsMouseEnter}
               >
-                <p>Бренды</p>
+                <p className="font-railway">Бренды</p>
                 <Image src="/icon/Vector.svg" width={10} height={10} alt="" className={showBrands ? "" : "hidden"} />
               </div>
             </div>
@@ -75,7 +75,10 @@ export default function DesktopHeader({ isOpen, submenuData }: Props) {
                 dataBrands
                   .filter(brand => brand.gender === brandGender)
                   .map(brand => (
-                    <button className="px-8 py-3 ml-4 mt-4 border border-solid border-customBlack" key={brand.id}>
+                    <button
+                      className="px-8 py-3 ml-4 mt-4 border border-solid border-customBlack font-railway"
+                      key={`brands-header${brand.id}`}
+                    >
                       {brand.title}
                     </button>
                   ))}

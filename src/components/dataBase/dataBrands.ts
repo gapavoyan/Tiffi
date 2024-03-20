@@ -1,4 +1,10 @@
-export const dataBrands = [
+export interface T_Brand {
+  id: number;
+  title: string;
+  gender: string;
+}
+
+export const dataBrands: T_Brand[] = [
   {
     id: 1,
     title: "ROCHAS",

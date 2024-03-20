@@ -1,53 +1,69 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Slider from "../slider/slider";
-import { Category, Gender } from "@/hooks/useHeaderInfo";
+import { Category } from "@/hooks/useHeaderInfo";
 import AccordionContent from "../drawer/accordion";
 import { dataBrands } from "../dataBase/dataBrands";
+import BrandsButton from "../brands/brandsButton";
 
 interface Props {
-  isOpen: boolean;
-  submenuData: Category[] | null;
+  submenuData: Category[];
   onClose: () => void;
 }
 
-export default function MobileHeader({ isOpen, submenuData, onClose }: Props) {
+export default function MobileHeader({ submenuData, onClose }: Props) {
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<null | number>(null);
-  const [selectedGender, setSelectedGender] = useState<Gender | null>(null);
-  const [brandsOpen, setBrandsOpen] = useState<boolean>(false);
-  useEffect(() => {
-    if (submenuData && submenuData.length > 0) {
-      setSelectedGender(submenuData[0].gender);
-    }
-  }, [submenuData]);
-
-  const onTitleClick = (id: number, gender: Gender) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const onTitleClick = (id: number) => {
     setActiveSubcategoryId(activeSubcategoryId === id ? null : id);
-    setSelectedGender(gender);
-    setBrandsOpen(false);
   };
 
-  const toggleBrandsAccordion = () => {
-    setBrandsOpen(!brandsOpen);
-    setActiveSubcategoryId(null);
-  };
+  const currentGenderBrandsData = {
+    id: -1,
+    title: "brand",
+    gender: submenuData[0].gender,
+    img: null,
+    parent_id: null,
+    subcategories: dataBrands
+      .filter(brand => brand.gender === submenuData[0].gender)
+      .map(item => ({
+        id: item.id,
+        title: item.title,
+        gender: item.gender,
+        img: null,
+        parent_id: null,
+        subcategories: []
+      }))
+  } as unknown as Category;
+  const fullSubmenuData = [...submenuData, currentGenderBrandsData];
 
   return (
     <div className="w-full">
       <div className="w-full flex justify-center">
-        {isOpen && (
-          <div className="fixed bg-white top-[110px] h-screen max-sm:top-[170px] px-[250px]">
+        <div className="fixed bg-white top-[110px] max-sm:top-[170px] px-[250px] overflow-scroll">
+          <div
+            ref={scrollRef}
+            className="overflow-auto"
+            style={{
+              minHeight: "800px",
+              maxHeight: scrollRef.current?.scrollHeight
+            }}
+          >
             <div>
               <button onClick={onClose}>
                 <Image src="/icon/modalArrow.svg" width={25} height={25} alt="Close" />
               </button>
             </div>
             <div>
-              {submenuData?.map(el => (
-                <div key={el.id} className="flex gap-8 w-full" onClick={() => onTitleClick(el.id, el.gender)}>
-                  <div className="w-full">
-                    <div className="flex justify-between my-2 border-b border-customBlack py-4 px-4 w-[90vw]">
-                      <p>{el.title}</p>
+              {fullSubmenuData?.map(el => (
+                <div
+                  key={`fullSubmenuData${el.id}`}
+                  className="flex gap-8 w-full overflow-auto"
+                  onClick={() => onTitleClick(el.id)}
+                >
+                  <div className="w-full overflow-auto">
+                    <div className="flex justify-between overflow-auto my-2 border-b border-customBlack py-4 px-4 w-[90vw]">
+                      <p className="font-railway">{el.title}</p>
                       <Image
                         src="/icon/arrow_down.svg"
                         width={10}
@@ -58,10 +74,18 @@ export default function MobileHeader({ isOpen, submenuData, onClose }: Props) {
                     </div>
                     <div>
                       <AccordionContent isOpen={activeSubcategoryId === el.id}>
-                        <div className={`w-full flex`}>
-                          {el.subcategories && el.subcategories.length > 0 && (
-                            <div className="w-[90vw] h-[200px]">
-                              <Slider hoveredSubcategories={el.subcategories} />
+                        <div className="w-full flex">
+                          {el.id === -1 ? (
+                            <div className="flex flex-wrap">
+                              <BrandsButton subcategory={el.subcategories} />
+                            </div>
+                          ) : (
+                            <div>
+                              {el?.subcategories.length > 0 && (
+                                <div className="w-[90vw] h-[200px]">
+                                  <Slider hoveredSubcategories={el.subcategories} />
+                                </div>
+                              )}
                             </div>
                           )}
                         </div>
@@ -71,32 +95,8 @@ export default function MobileHeader({ isOpen, submenuData, onClose }: Props) {
                 </div>
               ))}
             </div>
-
-            <div onClick={toggleBrandsAccordion}>
-              <div className="flex justify-between my-2 border-b border-customBlack py-4 px-4 w-[90vw]">
-                <p>Бренды</p>
-                <Image
-                  src="/icon/arrow_down.svg"
-                  width={10}
-                  height={10}
-                  alt="arrow-down"
-                  className={brandsOpen ? "" : "hidden"}
-                />
-              </div>
-              <AccordionContent isOpen={brandsOpen}>
-                <div className="flex flex-wrap">
-                  {dataBrands
-                    .filter(brand => selectedGender === null || brand.gender === selectedGender)
-                    .map(brand => (
-                      <button className="px-8 py-3 ml-4 mt-4 border border-solid border-customBlack" key={brand.id}>
-                        {brand.title}
-                      </button>
-                    ))}
-                </div>
-              </AccordionContent>
-            </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

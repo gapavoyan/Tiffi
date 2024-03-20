@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useToggle } from "./use-toggle";
 import datasubMenu from "@/components/dataBase/dataSubMenu";
 import { useMediaQuery } from "./use-media-query";
-
+import useWindowResize from "./useWindowResize";
 export type Gender = "man" | "woman";
 
 export interface Category {
@@ -20,7 +20,6 @@ export interface CacheRef {
 }
 export function useHeaderInfo() {
   const isMobile = useMediaQuery("(max-width : 1200px)");
-
   const [isDrawerMenuOpen, onToggleDrawer] = useToggle();
   const [loading, setLoading] = useState(false);
   const [activeGender, setActiveGender] = useState<Gender | null>(null);
@@ -39,9 +38,9 @@ export function useHeaderInfo() {
       setLoading(false);
     }
   };
-
   const onDrawerToggle = () => {
     const milliseconds = 0.1 * 1.5 * 1000;
+    document.body.style.overflow = !isDrawerMenuOpen ? "hidden" : "auto";
     if (activeGender) setActiveGender(null);
     setTimeout(() => {
       onToggleDrawer();
@@ -51,6 +50,15 @@ export function useHeaderInfo() {
   const onCloseMobileModal = () => {
     setActiveGender(null);
   };
+  useWindowResize(() => {
+    // close Drawer when change screen size
+    if (isDrawerMenuOpen) {
+      onToggleDrawer();
+    }
+    if (activeGender) {
+      onCloseMobileModal();
+    }
+  });
 
   return {
     onSubmenuOpen,
