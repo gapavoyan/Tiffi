@@ -9,7 +9,7 @@ interface Props {
 
 function Navbar({ onSubmenuOpen }: Props) {
   return (
-    <ul className="flex max-m:flex-col items-center">
+    <ul className="flex max-m:flex-col items-center overflow-auto">
       {dataHeader.map(el => (
         <li
           onClick={() => {

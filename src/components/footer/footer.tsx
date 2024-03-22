@@ -3,7 +3,7 @@ import Image from "next/image";
 function Footer() {
   return (
     <>
-      <div className="bg-customBlack px-[252px] max-m:px-[150px] max-md:px-[72px] max-sm:px-4 py-[40px]   flex flex-col gap-[40px]">
+      <div className="bg-customBlack px-[252px] max-m:px-[150px] max-md:px-[72px] max-sm:px-4 py-[40px]   flex flex-col gap-[40px] font-railway ">
         <div className="flex justify-center items-center gap-[48px]">
           <div className="h-[1px] bg-white w-full"></div>
           <div>
@@ -13,8 +13,8 @@ function Footer() {
         </div>
         <div className="flex justify-between max-sm:flex-col gap-4">
           <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-2">
-              <p className="text-white">Телефонный Номер</p>
+            <div className="flex flex-col gap-2 ">
+              <p className="text-white ">Телефонный Номер</p>
               <p className="text-white">+7(547)766992265</p>
             </div>
             <div className="flex-col gap-2">

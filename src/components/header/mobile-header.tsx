@@ -20,7 +20,7 @@ export default function MobileHeader({ submenuData, onClose }: Props) {
 
   const currentGenderBrandsData = {
     id: -1,
-    title: "brand",
+    title: "Бренды",
     gender: submenuData[0].gender,
     img: null,
     parent_id: null,
@@ -40,12 +40,12 @@ export default function MobileHeader({ submenuData, onClose }: Props) {
   return (
     <div className="w-full">
       <div className="w-full flex justify-center">
-        <div className="fixed bg-white top-[110px] max-sm:top-[170px] px-[250px] overflow-scroll">
+        <div className="fixed bg-white top-[110px] h-screen  max-sm:top-[170px] px-[250px] overflow-scroll">
           <div
             ref={scrollRef}
             className="overflow-auto"
             style={{
-              minHeight: "800px",
+              // minHeight: "100%",
               maxHeight: scrollRef.current?.scrollHeight
             }}
           >
