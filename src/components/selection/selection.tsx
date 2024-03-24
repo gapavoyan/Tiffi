@@ -1,6 +1,6 @@
 import React from "react";
 import SliderCollection from "../slider/sliderCollection/sliderCollection";
-function Collection() {
+function Selection() {
   return (
     <div className="py-[120px] pl-[372px] max-mij:pl-[142px] max-md:pl-[73px] max-sm:pl-[16px] flex flex-col  gap-[64px]">
       <div className="pr-[252px] max-mij:pr-[178px4] max-md:pr-[73px] max-sm:pr-[16px]  flex justify-between items-center">
@@ -17,4 +17,4 @@ function Collection() {
   );
 }
 
-export default Collection;
+export default Selection;
