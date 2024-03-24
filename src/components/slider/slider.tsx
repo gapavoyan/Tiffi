@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css/pagination";
 interface Props {
@@ -9,12 +9,11 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import { Category } from "@/hooks/useHeaderInfo";
 export default function Slider({ hoveredSubcategories }: Props) {
-  const swiperRef = useRef<SwiperRef>(null);
   return (
     <>
-      <Swiper slidesPerView={3} ref={swiperRef} modules={[Pagination]} className="mySwiper">
+      <Swiper slidesPerView={3} modules={[Pagination]} className="mySwiper divHeaderSlider">
         {hoveredSubcategories?.map(el => (
-          <div key={`swiperSlide${el.id}`}>
+          <div key={`swiperSlide${el.id}`} className="swiper-slide">
             <SwiperSlide>
               <div>
                 <p className="text-white max-m:text-sm">{el.title}</p>

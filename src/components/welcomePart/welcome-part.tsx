@@ -4,7 +4,6 @@ import CollectionButton from "../buttons/collectionButton";
 import { useRouter } from "next/router";
 function WelcomePart() {
   const push = useRouter().push;
-
   return (
     <div className=" bg-white pl-[252px]  max-mij:pl-[142px] max-md:pl-[73px] max-sm:pl-[16px] flex max-md:flex-col">
       <div className="w-[50%] max-md:w-full h-full  ">
@@ -19,8 +18,8 @@ function WelcomePart() {
           <CollectionButton onClick={() => push("/")} />
         </div>
       </div>
-      <div className="w-[50%] max-md:w-full relative">
-        <Image src="/images/welcome-part.png" fill alt="" objectFit="cover" />
+      <div className="w-[50%] max-md:w-full relative max-md:h-[400px]">
+        <Image src="/images/welcome-part.png" fill alt="" className="w-full h-full" objectFit="cover" />
       </div>
     </div>
   );
