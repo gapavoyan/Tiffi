@@ -6,7 +6,7 @@ import CollectionButton from "../buttons/collectionButton";
 import { Url } from "next/dist/shared/lib/router/router";
 function NewCollection() {
   const router = useRouter();
-  const push2 = (route: Url) => router.push(route);
+  const push = (route: Url) => router.push(route);
   return (
     <div className="px-[252px] pb-[120px] max-xl:px-[144px] max-mij:px-[142px]  max-md:px-[73px] max-sm:px-[16px] flex flex-col gap-[64px]">
       <div>
@@ -42,8 +42,8 @@ function NewCollection() {
           </div>
         </div>
       </div>
-      <div className="flex justify-end max-sm:pr-[30px]">
-        <CollectionButton onClick={() => push2("/")} />
+      <div className="flex justify-end max-sm:pr-[25px]">
+        <CollectionButton onClick={() => push("/")} />
       </div>
     </div>
   );
