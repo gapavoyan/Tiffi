@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { dataCollection } from "@/components/dataBase/dataCollection";
+import { dataSelection } from "@/components/dataBase/dataSelection";
 import "swiper/css";
 import Image from "next/image";
 function SliderCollection() {
@@ -32,12 +32,12 @@ function SliderCollection() {
         }}
         className="mySwiper divSwipeSlide"
       >
-        {dataCollection.map(item => {
+        {dataSelection.map(item => {
           return (
             <div key={item.id} className="flex flex-col">
               <SwiperSlide>
                 <div className="flex flex-col items-start w-full">
-                  <Image src={item.img} width={1000} height={100} alt="collectionImage" />
+                  <Image src={item.img} width={100} height={100} alt="collectionImage" />
                   <span className="text-customBlack max-md:text-sm font-railway">{item.description}</span>
                   <span className="text-customGreen font-railway">{item.price}</span>
                 </div>
