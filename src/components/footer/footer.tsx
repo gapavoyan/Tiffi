@@ -28,8 +28,8 @@ function Footer() {
             <div>
               <ul className="text-white flex flex-col">
                 <li>Главная</li>
-                <Link href="/product/woman">для Женщин</Link>
-                <Link href="/product/man">для Мужчин</Link>
+                <Link href="/products/woman">для Женщин</Link>
+                <Link href="/products/man">для Мужчин</Link>
               </ul>
             </div>
             <div>

@@ -9,7 +9,6 @@ interface GenderWrapperProps {
 }
 function GenderWrapper({ title, data }: GenderWrapperProps) {
   const push = useRouter().push;
-
   return (
     <div className="flex flex-col gap-[64px] max-md:gap-[40px] pb-[120px]">
       <div className="px-[252px] max-xl:px-[144px] max-mij:px-[142px]  max-md:px-[73px] max-sm:px-[16px]">

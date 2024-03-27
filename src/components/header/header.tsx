@@ -17,7 +17,7 @@ function Header() {
         <div className=" bg-white max-sm:gap-4 px-[252px] py-6 max-xl:px-[110px] max-mij:pl-[120px] max-lg:px-[130px] max-md:px-[72px] max-sm:px-4 flex justify-between max-sm:flex-col">
           <div className="flex justify-between items-center w-full">
             <Link href="/">
-              <Image src="logo.svg" alt="" width={106} height={24} />
+              <Image src="/logo.svg" alt="" width={106} height={24} />
             </Link>
             <div className="max-lg:hidden">
               <Navbar onSubmenuOpen={onSubmenuOpen} />
