@@ -20,7 +20,13 @@ function Navbar({ onSubmenuOpen }: Props) {
           key={`title-${el.id}`}
           className="text-sm font-railway text-customBlack px-10 py-6 max-lg:px-6 hover:text-customGreen"
         >
-          <Link href={el.link}>{el.title}</Link>
+          {el.link ? (
+            <Link href={el.link}>
+              <span>{el.title}</span>
+            </Link>
+          ) : (
+            <span>{el.title}</span>
+          )}
         </li>
       ))}
     </ul>

@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 function Footer() {
+  function handleNavigation() {}
   return (
     <>
       <div className="bg-customBlack px-[252px] max-m:px-[150px] max-md:px-[72px] max-sm:px-4 py-[40px]   flex flex-col gap-[40px] font-railway ">
@@ -24,10 +26,10 @@ function Footer() {
           </div>
           <div className="flex gap-[64px] max-m:hidden">
             <div>
-              <ul className="text-white">
+              <ul className="text-white flex flex-col">
                 <li>Главная</li>
-                <li>для Женщин</li>
-                <li>для Мужчин</li>
+                <Link href="/product/woman">для Женщин</Link>
+                <Link href="/product/man">для Мужчин</Link>
               </ul>
             </div>
             <div>

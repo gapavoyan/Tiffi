@@ -6,28 +6,26 @@ const dataHeader = [
   },
   {
     id: 2,
-    title: "для Женщин",
-    link: "/"
+    title: "для Женщин"
   },
   {
     id: 3,
-    title: "для Мужчин",
-    link: "/"
+    title: "для Мужчин"
   },
   {
     id: 4,
     title: "Новинки",
-    link: "/"
+    link: ""
   },
   {
     id: 5,
     title: "Скидки",
-    link: "/"
+    link: ""
   },
   {
     id: 6,
     title: "Контакты",
-    link: "/"
+    link: ""
   }
 ];
 export default dataHeader;
