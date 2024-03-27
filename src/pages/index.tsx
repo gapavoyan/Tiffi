@@ -2,8 +2,8 @@ import React from "react";
 import WelcomePart from "@/components/welcomePart/welcome-part";
 import Selection from "@/components/selection/selection";
 import NewCollection from "@/components/newCollection/newCollection";
-import ForWoman from "@/components/for-woman/for-woman";
-import ForMan from "@/components/for-man/for-man";
+import GenderWrapper from "@/components/gender-wrapper/gender-wrapper";
+import { genderData } from "@/components/dataBase/data-gender";
 
 export default function Home() {
   return (
@@ -11,8 +11,8 @@ export default function Home() {
       <WelcomePart />
       <Selection />
       <NewCollection />
-      <ForWoman />
-      <ForMan />
+      <GenderWrapper title="для Женщин" data={genderData} />
+      <GenderWrapper title="для Мужчин" data={genderData} />
     </div>
   );
 }

@@ -1,10 +1,10 @@
-export interface selectionProps {
+export interface Gender {
   id: number;
   description: string;
   price: string | number;
   img: string;
 }
-export const dataSelection: selectionProps[] = [
+export const genderData: Gender[] = [
   {
     id: 1,
     description: "Мягкая облачная рубашка",
