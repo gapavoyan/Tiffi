@@ -1,3 +1,4 @@
+import GenderPages from "@/components/gender-page";
 import { Category } from "@/hooks/useHeaderInfo";
 interface Gender {
   gender: string;
@@ -6,7 +7,7 @@ interface Gender {
 const GenderPage = ({ gender, categories }: Gender) => {
   return (
     <div>
-      <GenderPage categories={categories} gender={gender} />
+      <GenderPages gender={""} categories={[]} />
     </div>
   );
 };

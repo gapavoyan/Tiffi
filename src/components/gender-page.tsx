@@ -8,7 +8,7 @@ interface GenderPageProps {
   gender: string;
   categories: Category[];
 }
-function GenderPage({ categories, gender }: GenderPageProps) {
+function GenderPages({ categories, gender }: GenderPageProps) {
   const push = useRouter().push;
   const isGenderEqualsMan = gender === "man";
   return (
@@ -42,4 +42,4 @@ function GenderPage({ categories, gender }: GenderPageProps) {
   );
 }
 
-export default GenderPage;
+export default GenderPages;
