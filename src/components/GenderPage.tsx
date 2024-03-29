@@ -10,10 +10,7 @@ interface GenderPageProps {
 }
 function GenderPage({ categories, gender }: GenderPageProps) {
   const push = useRouter().push;
-  console.log(categories);
-
   const isGenderEqualsMan = gender === "man";
-
   return (
     <>
       <div className="px-[252px] max-xl:px-[144px] max-m:px-0 pt-[40px] flex flex-col gap-[40px] ">
@@ -29,7 +26,7 @@ function GenderPage({ categories, gender }: GenderPageProps) {
       <div className="my-[120px]">
         <GenderWrapper title="Одежда" data={genderData} onNavigate={() => push("/")} />
       </div>
-      {/* <div>
+      <div>
         <GenderWrapper title="Обувь" data={genderData} onNavigate={() => push("/")} />
       </div>
       <div className="relative h-[600px]">
@@ -40,7 +37,7 @@ function GenderPage({ categories, gender }: GenderPageProps) {
       </div>
       <div>
         <GenderWrapper title="Аксессуары" data={genderData} onNavigate={() => push("/")} />
-      </div> */}
+      </div>
     </>
   );
 }

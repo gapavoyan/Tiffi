@@ -1,4 +1,3 @@
-import ForWomen from "./for-woman";
 import ForMen from "../../components/GenderPage";
 import { Category } from "@/hooks/useHeaderInfo";
 interface Gender {
