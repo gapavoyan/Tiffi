@@ -1,14 +1,13 @@
 import React from "react";
 import CollectionButton from "../buttons/collectionButton";
-import { useRouter } from "next/router";
 import GenderSlider from "../slider/gender-slider/gender-slider";
 import type { Gender } from "../dataBase/data-gender";
 interface GenderWrapperProps {
   title: string;
   data: Gender[];
+  onNavigate: () => void;
 }
-function GenderWrapper({ title, data }: GenderWrapperProps) {
-  const push = useRouter().push;
+function GenderWrapper({ title, data, onNavigate }: GenderWrapperProps) {
   return (
     <div className="flex flex-col gap-[64px] max-md:gap-[40px] pb-[120px]">
       <div className="px-[252px] max-xl:px-[144px] max-mij:px-[142px]  max-md:px-[73px] max-sm:px-[16px]">
@@ -18,7 +17,7 @@ function GenderWrapper({ title, data }: GenderWrapperProps) {
         <GenderSlider data={data} />
       </div>
       <div className="px-[252px] max-xl:px-[144px] max-mij:px-[142px]  max-md:px-[73px] max-sm:px-[16px] flex justify-end">
-        <CollectionButton onClick={() => push("/")} />
+        <CollectionButton onClick={onNavigate} />
       </div>
     </div>
   );
