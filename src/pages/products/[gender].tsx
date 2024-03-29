@@ -1,4 +1,3 @@
-import ForMen from "../../components/GenderPage";
 import { Category } from "@/hooks/useHeaderInfo";
 interface Gender {
   gender: string;
@@ -7,7 +6,7 @@ interface Gender {
 const GenderPage = ({ gender, categories }: Gender) => {
   return (
     <div>
-      <ForMen categories={categories} gender={gender} />
+      <GenderPage categories={categories} gender={gender} />
     </div>
   );
 };
@@ -20,7 +19,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
   const { gender } = params;
-
   const rspJson = await fetch(`https://api.tiffi.store/categories/tree?gender=${gender}`);
   const rsp = await rspJson.json();
 
@@ -31,4 +29,5 @@ export async function getStaticProps({ params }: any) {
     }
   };
 }
+
 export default GenderPage;
