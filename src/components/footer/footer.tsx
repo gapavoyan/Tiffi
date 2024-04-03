@@ -1,7 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 function Footer() {
+  const push = useRouter().push;
   return (
     <>
       <div className="bg-customBlack px-[252px] max-m:px-[150px] max-md:px-[72px] max-sm:px-4 py-[40px]   flex flex-col gap-[40px] font-railway ">
@@ -16,23 +18,31 @@ function Footer() {
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-2 ">
               <p className="text-white ">Телефонный Номер</p>
-              <p className="text-white">+7(547)766992265</p>
+              <p className="text-white">
+                <Link href="tel:+7(547)766992265"> +7(547)766992265</Link>
+              </p>
             </div>
             <div className="flex-col gap-2">
               <p className="text-white">Адрес</p>
-              <p className="text-white">Зубово-Полянский район</p>
+              <p className="text-white">
+                <Link href="https://www.google.com/maps/@44.719622,37.777527,17z?hl=en&entry=ttu" target="blank">
+                  Зубово-Полянский район
+                </Link>
+              </p>
             </div>
           </div>
           <div className="flex gap-[64px] max-m:hidden">
             <div>
               <ul className="text-white flex flex-col">
-                <li>Главная</li>
-                <Link href="/products/[gender]" as="/products/woman">
-                  для Женщин
-                </Link>
-                <Link href="/products/[gender]" as="/products/man">
-                  для Мужчин
-                </Link>
+                <li>
+                  <Link href="/">Главная</Link>
+                </li>
+                <li>
+                  <Link href="/products/woman">для Женщин</Link>
+                </li>
+                <li>
+                  <Link href="/products/man">для Мужчин</Link>
+                </li>
               </ul>
             </div>
             <div>
@@ -45,18 +55,24 @@ function Footer() {
           </div>
           <div className="flex flex-col gap-4">
             <p className="text-white ">Мы в социальных сетях</p>
-            <div className="flex gap-8">
-              <div className="px-3 py-3 border-white border-2 rounded-full">
-                <Image src="/icon/instagram.svg" width={30} height={30} className="" alt="Instagram Icon" />
+            <div className="flex gap-8 ">
+              <div className="px-3 py-3 border-white border-2 rounded-full cursor-pointer">
+                <Link href="https://www.instagram.com/tiffi_nvrsk/?igshid=NTc4MTIwNjQ2YQ%3D%3D" target="blank">
+                  <Image src="/icon/instagram.svg" width={30} height={30} className="" alt="Instagram Icon" />
+                </Link>
               </div>
               <div>
-                <div className="px-3 py-3 border-white border-2 rounded-full">
-                  <Image src="/icon/facebook.svg" width={30} height={30} className="" alt="Instagram Icon" />
+                <div className="px-3 py-3 border-white border-2 rounded-full cursor-pointer">
+                  <Link href="https://www.facebook.com/italshoesnvr" target="blank">
+                    <Image src="/icon/facebook.svg" width={30} height={30} className="" alt="Facebook Icon" />
+                  </Link>
                 </div>
               </div>
               <div>
-                <div className="px-3 py-3 border-white border-2 rounded-full">
-                  <Image src="/icon/send.svg" width={30} height={30} className="" alt="Instagram Icon" />
+                <div className="px-3 py-3 border-white border-2 rounded-full cursor-pointer">
+                  <Link href="https://t.me/tiffinvrsk" target="blank">
+                    <Image src="/icon/send.svg" width={30} height={30} className="" alt="Telegram Icon" />
+                  </Link>
                 </div>
               </div>
             </div>

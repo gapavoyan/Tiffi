@@ -11,7 +11,6 @@ interface Props {
 const GenderPage = ({ gender }: Props) => {
   const push = useRouter().push;
   const isGenderEqualsMan = gender === "man";
-
   return (
     <>
       <div className="px-[252px] max-xl:px-[144px] max-m:px-0 pt-[40px] flex flex-col gap-[40px] ">
