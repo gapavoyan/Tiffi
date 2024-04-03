@@ -13,8 +13,10 @@ export default function Home() {
       <WelcomePart />
       <Selection />
       <NewCollection />
-      <GenderWrapper title="для Женщин" data={genderData} onNavigate={() => push("/")} />
-      <GenderWrapper title="для Мужчин" data={genderData} onNavigate={() => push("/")} />
+      <div className="flex flex-col gap-[24px] mb-6">
+        <GenderWrapper title="для Женщин" data={genderData} onNavigate={() => push("/")} />
+        <GenderWrapper title="для Мужчин" data={genderData} onNavigate={() => push("/")} />
+      </div>
     </div>
   );
 }
