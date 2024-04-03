@@ -1,44 +1,52 @@
-export interface Gender {
-  id: number;
-  description: string;
-  price: string | number;
-  img: string;
-}
-export const genderData: Gender[] = [
+import { Product } from "./data-categories";
+
+export const genderData: Product[] = [
   {
     id: 1,
-    description: "Мягкая облачная рубашка",
-    price: "2,500 Руб.",
+    title: "Мягкая облачная рубашка",
+    description: "Описание товара",
+    discount: 0,
+    price: 2500,
     img: "/images/sliderImg.png"
   },
   {
     id: 2,
-    description: "Мягкая облачная рубашка",
-    price: "2,500 Руб.",
+    title: "Мягкая облачная рубашка",
+    description: "Описание товара",
+    discount: 0,
+    price: 2500,
     img: "/images/sliderImg2.png"
   },
   {
     id: 3,
-    description: "Мягкая облачная рубашка",
-    price: "2,500 Руб.",
+    title: "Мягкая облачная рубашка",
+    description: "Описание товара",
+    discount: 0,
+    price: 2500,
     img: "/images/sliderImg3.png"
   },
   {
     id: 4,
-    description: "Мягкая облачная рубашка",
-    price: "2,500 Руб.",
+    title: "Мягкая облачная рубашка",
+    description: "Описание товара",
+    discount: 0,
+    price: 2500,
     img: "/images/sliderImg.png"
   },
   {
     id: 5,
-    description: "Мягкая облачная рубашка",
-    price: "2,500 Руб.",
+    title: "Мягкая облачная рубашка",
+    description: "Описание товара",
+    discount: 0,
+    price: 2500,
     img: "/images/sliderImg2.png"
   },
   {
     id: 6,
-    description: "Мягкая облачная рубашка",
-    price: "2,500 Руб.",
+    title: "Мягкая облачная рубашка",
+    description: "Описание товара",
+    discount: 0,
+    price: 2500,
     img: "/images/sliderImg3.png"
   }
 ];

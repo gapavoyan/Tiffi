@@ -1,34 +1,55 @@
-import GenderPages from "@/components/gender-page";
-import { Category } from "@/hooks/useHeaderInfo";
-interface Gender {
-  gender: string;
-  categories: Category[];
+//there is a problem with data , pass this time , will fix when start working with API
+
+import { dataCategories } from "@/components/dataBase/data-categories";
+import GenderWrapper from "@/components/gender-wrapper/gender-wrapper";
+import { Gender } from "@/hooks/useHeaderInfo";
+import Image from "next/image";
+import { useRouter } from "next/router";
+interface Props {
+  gender: Gender;
 }
-const GenderPage = ({ gender, categories }: Gender) => {
+const GenderPage = ({ gender }: Props) => {
+  const push = useRouter().push;
+  const isGenderEqualsMan = gender === "man";
+
   return (
-    <div>
-      <GenderPages gender={""} categories={[]} />
-    </div>
+    <>
+      <div className="px-[252px] max-xl:px-[144px] max-m:px-0 pt-[40px] flex flex-col gap-[40px] ">
+        <div className="flex justify-center">
+          <h1 className="text-lg max-xl:text-[44px] max-m:text-[36px] max-sm:text-[24px] font-railway">
+            {isGenderEqualsMan ? "для Мужчин" : "для Женщин"}
+          </h1>
+        </div>
+        <div className="relative h-[600px]">
+          <Image src={`/images/${isGenderEqualsMan ? "man" : "woman"}Img.png`} fill alt="manImage" objectFit="cover" />
+        </div>
+      </div>
+      <div className="my-[120px]">
+        {dataCategories.map((item, i) => (
+          <div key={`product-by-id-${item.id}`}>
+            {i == 2 ? (
+              <div>
+                <div className="relative h-[600px]">
+                  <Image src="/images/gender.png" fill alt="gender-background" objectFit="cover" />
+                </div>
+                <GenderWrapper
+                  title={item.title}
+                  data={item.products.map(product => ({ ...product, img: `https://api.tiffi.store/${product.img}` }))}
+                  onNavigate={() => push("/")}
+                />
+              </div>
+            ) : (
+              <GenderWrapper
+                title={item.title}
+                data={item.products.map(product => ({ ...product, img: `https://api.tiffi.store/${product.img}` }))}
+                onNavigate={() => push("/")}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
-export async function getStaticPaths() {
-  return {
-    paths: [{ params: { gender: "woman" } }, { params: { gender: "man" } }],
-    fallback: false
-  };
-}
-
-export async function getStaticProps({ params }: any) {
-  const { gender } = params;
-  const rspJson = await fetch(`https://api.tiffi.store/categories/tree?gender=${gender}`);
-  const rsp = await rspJson.json();
-
-  return {
-    props: {
-      gender,
-      categories: rsp.data.items
-    }
-  };
-}
 
 export default GenderPage;
