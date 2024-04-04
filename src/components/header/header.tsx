@@ -15,7 +15,7 @@ function Header() {
     <header className="h-[118px] max-m:h-[90px] max-lg:h-[90px] max-md:h-[90px] max-sm:h-[148px] bg-white">
       <div className="fixed top-0 z-20 w-full ">
         <div className=" bg-white max-sm:gap-4 px-[252px] py-6 max-xl:px-[110px] max-mij:pl-[120px] max-lg:px-[130px] max-md:px-[72px] max-sm:px-4 flex justify-between max-sm:flex-col">
-          <div className="flex justify-between items-center w-full">
+          <div className="flex justify-around max-lg:justify-between items-center w-full">
             <Link href="/">
               <Image src="/logo.svg" alt="" width={106} height={24} />
             </Link>

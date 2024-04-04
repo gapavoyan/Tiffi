@@ -5,12 +5,15 @@ import { Category, Gender } from "@/hooks/useHeaderInfo";
 import { useState } from "react";
 import datasubMenu from "../dataBase/dataSubMenu";
 import { dataBrands } from "../dataBase/dataBrands";
+import { useRouter } from "next/navigation";
 
 interface Props {
   submenuData: Category[] | null;
   isOpen: boolean;
 }
 export default function DesktopHeader({ isOpen, submenuData }: Props) {
+  const router = useRouter();
+
   const [activeArrow, setActiveArrow] = useState<number | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [hoveredSubcategories, setHoveredSubcategories] = useState<Category[]>([]);
@@ -33,8 +36,13 @@ export default function DesktopHeader({ isOpen, submenuData }: Props) {
     setShowBrands(true);
   };
 
+  // const onSubCategoryItemClick = () => {
+  //   const activeCategory = submenuData?.find(el => el.id === selectedId);
+  //   router.push(`/page?category=${activeCategory}`);
+  // };
+
   return (
-    <div className="px-[252px]">
+    <div className="px-[252px] mt-[20px]">
       <div className="w-full">
         <AccordionContent isOpen={isOpen}>
           <div className="flex">
@@ -70,7 +78,7 @@ export default function DesktopHeader({ isOpen, submenuData }: Props) {
             <div className={`w-full overflow-hidden ${selectedId !== null && !showBrands ? "flex" : "hidden"}`}>
               <Slider hoveredSubcategories={hoveredSubcategories} />
             </div>
-            <div className={`w-full overflow-hidden `}>
+            <div className={`w-full flex-wrap  overflow-hidden ${showBrands ? "flex" : "hidden"}`}>
               {showBrands &&
                 dataBrands
                   .filter(brand => brand.gender === brandGender)

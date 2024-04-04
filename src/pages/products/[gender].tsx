@@ -1,16 +1,15 @@
 //there is a problem with data , pass this time , will fix when start working with API
-
 import { dataCategories } from "@/components/dataBase/data-categories";
 import GenderWrapper from "@/components/gender-wrapper/gender-wrapper";
-import { Gender } from "@/hooks/useHeaderInfo";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
-interface Props {
-  gender: Gender;
-}
-const GenderPage = ({ gender }: Props) => {
+
+const GenderPage = () => {
   const push = useRouter().push;
+  const gender = useParams()?.gender;
   const isGenderEqualsMan = gender === "man";
+
   return (
     <>
       <div className="px-[252px] max-xl:px-[144px] max-m:px-0 pt-[40px] flex flex-col gap-[40px] ">
@@ -23,7 +22,7 @@ const GenderPage = ({ gender }: Props) => {
           <Image src={`/images/${isGenderEqualsMan ? "man" : "woman"}Img.png`} fill alt="manImage" objectFit="cover" />
         </div>
       </div>
-      <div className="my-[120px]">
+      <div className="flex flex-col my-[120px] gap-[120px] max-lg:gap-[80px]">
         {dataCategories.map((item, i) => (
           <div key={`product-by-id-${item.id}`}>
             {i == 2 ? (

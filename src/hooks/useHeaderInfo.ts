@@ -47,7 +47,7 @@ export function useHeaderInfo() {
   };
   const onDrawerToggle = () => {
     const milliseconds = 0.1 * 1.5 * 1000;
-    document.body.style.overflow = !isDrawerMenuOpen ? "hidden" : "auto";
+    // document.body.style.overflow = !isDrawerMenuOpen ? "hidden" : "auto";
     if (activeGender) setActiveGender(null);
     setTimeout(() => {
       onToggleDrawer();

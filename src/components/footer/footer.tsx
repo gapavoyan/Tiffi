@@ -1,9 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 function Footer() {
-  const push = useRouter().push;
   return (
     <>
       <div className="bg-customBlack px-[252px] max-m:px-[150px] max-md:px-[72px] max-sm:px-4 py-[40px]   flex flex-col gap-[40px] font-railway ">
