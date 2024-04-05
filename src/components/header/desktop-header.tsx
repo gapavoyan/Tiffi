@@ -36,10 +36,10 @@ export default function DesktopHeader({ isOpen, submenuData }: Props) {
     setShowBrands(true);
   };
 
-  // const onSubCategoryItemClick = () => {
-  //   const activeCategory = submenuData?.find(el => el.id === selectedId);
-  //   router.push(`/page?category=${activeCategory}`);
-  // };
+  const onSubCategoryItemClick = () => {
+    const activeCategory = submenuData?.find(el => el.id === selectedId);
+    router.push(`/page?category=${activeCategory}`);
+  };
 
   return (
     <div className="px-[252px] mt-[20px]">
