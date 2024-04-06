@@ -43,7 +43,7 @@ function GenderSlider({ data }: Props) {
                 <div className="w-full  relative aspect-[4/4]">
                   <Image src={item.img} fill alt="collectionImage" objectFit="cover" />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col items-start">
                   <span className="text-customBlack max-md:text-sm font-railway">{item.title}</span>
                   <span className="text-customGreen font-railway">{item.price + " Руб."}</span>
                 </div>

@@ -32,6 +32,9 @@ const config: Config = {
       fontFamily: {
         lora: "Lora",
         railway: "railway"
+      },
+      height: {
+        "max-content": "max-content"
       }
     }
   },

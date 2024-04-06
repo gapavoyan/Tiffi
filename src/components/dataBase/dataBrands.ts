@@ -12,7 +12,7 @@ export const dataBrands: T_Brand[] = [
   },
   {
     id: 2,
-    title: "MANOLO BLAHNIK",
+    title: "MANOLOBLAHNIK",
     gender: "woman"
   },
   {

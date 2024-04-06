@@ -35,17 +35,15 @@ export default function DesktopHeader({ isOpen, submenuData }: Props) {
   const onBrandsMouseEnter = () => {
     setShowBrands(true);
   };
-
-  const onSubCategoryItemClick = () => {
-    const activeCategory = submenuData?.find(el => el.id === selectedId);
-    router.push(`/page?category=${activeCategory}`);
-  };
+  function onSubCategoryItemClick(id: number, parent_id: number | null, gender: Gender) {
+    router.push(`/category?/${parent_id}/subcategories/${id}?gender=${gender}`);
+  }
 
   return (
     <div className="px-[252px] mt-[20px]">
       <div className="w-full">
         <AccordionContent isOpen={isOpen}>
-          <div className="flex">
+          <div className="flex gap-8">
             <div>
               {submenuData?.map(el => (
                 <div
@@ -54,13 +52,13 @@ export default function DesktopHeader({ isOpen, submenuData }: Props) {
                   onMouseEnter={() => onMouseEnter(el.id, el.gender)}
                 >
                   <div className="w-full">
-                    <div className={`flex justify-between my-2 border-b py-4 w-[200px] border-customBlack`}>
+                    <div className={`flex justify-between my-2 border-b py-4 w-[20vw] border-customBlack`}>
                       <p className="font-railway">{el.title}</p>
                       <Image
                         src="/icon/Vector.svg"
                         width={10}
                         height={10}
-                        alt=""
+                        alt="arrow.img"
                         className={activeArrow === el.id && !showBrands ? "" : "hidden"}
                       />
                     </div>
@@ -68,23 +66,25 @@ export default function DesktopHeader({ isOpen, submenuData }: Props) {
                 </div>
               ))}
               <div
-                className="flex justify-between my-2 border-b border-customBlack py-4 w-[200px]"
+                className="flex justify-between my-2 border-b border-customBlack py-4 w-[20vw]"
                 onMouseEnter={onBrandsMouseEnter}
               >
                 <p className="font-railway">Бренды</p>
-                <Image src="/icon/Vector.svg" width={10} height={10} alt="" className={showBrands ? "" : "hidden"} />
+
+                <Image src="/icon/Vector.svg" width={10} height={10} alt="arrow-image" className={showBrands ? "" : "hidden"} />
               </div>
             </div>
+
             <div className={`w-full overflow-hidden ${selectedId !== null && !showBrands ? "flex" : "hidden"}`}>
-              <Slider hoveredSubcategories={hoveredSubcategories} />
+              <Slider hoveredSubcategories={hoveredSubcategories} onSubCategoryItemClick={onSubCategoryItemClick} />
             </div>
-            <div className={`w-full flex-wrap  overflow-hidden ${showBrands ? "flex" : "hidden"}`}>
+            <div className={`w-full flex-wrap content-start gap-4 overflow-hidden ${showBrands ? "flex" : "hidden"}`}>
               {showBrands &&
                 dataBrands
                   .filter(brand => brand.gender === brandGender)
                   .map(brand => (
                     <button
-                      className="px-8 py-3 ml-4 mt-4 border border-solid border-customBlack font-railway"
+                      className="px-8 py-3 w-max h-max border border-solid border-customBlack hover:bg-customBlack hover:text-white font-railway"
                       key={`brands-header${brand.id}`}
                     >
                       {brand.title}

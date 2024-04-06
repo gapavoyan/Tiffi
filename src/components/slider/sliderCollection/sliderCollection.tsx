@@ -38,8 +38,10 @@ function SliderCollection() {
               <SwiperSlide>
                 <div className="flex flex-col items-start w-full cursor-pointer aspect-[4/4]">
                   <Image src={item.img} width={100} height={100} alt="collectionImage" objectFit="cover" />
-                  <span className="text-customBlack max-md:text-sm font-railway">{item.title}</span>
-                  <span className="text-customGreen font-railway">{`${item.price} Руб.`}</span>
+                  <div className="flex flex-col items-start">
+                    <span className="text-customBlack max-md:text-sm font-railway">{item.title}</span>
+                    <span className="text-customGreen font-railway">{`${item.price} Руб.`}</span>
+                  </div>
                 </div>
               </SwiperSlide>
             </div>
