@@ -24,8 +24,8 @@ function NewCollection() {
             <span className="text-customGreen font-railway">{dataNewCollection[0].price}</span>
           </div>
         </div>
-        <div className=" flex flex-col items-start w-[800px] max-xl:h-[700px]  max-xl:w-[440px] max-m:w-[450px] max-md:w-[300px] max-smImage:w-[500px] max-sm:w-[350px] max-msm:w-[280px] ">
-          <div className="relative w-full max-xl:w-[440px] max-m:w-[360px] h-[700px] max-md:w-[300px] max-md:h-[500px] max-smImage:w-[500px] max-sm:w-[350px] max-msm:w-[280px]">
+        <div className=" flex flex-col items-start w-[800px] max-xl:h-[700px]  max-xl:w-[440px] max-m:w-[450px] max-md:w-[300px] max-sm:w-[350px] ">
+          <div className="relative w-full max-xl:w-[440px] max-m:w-[360px] h-[700px] max-md:w-[300px] max-md:h-[500px]  max-sm:w-[350px] ">
             <Image src="/images/sliderImg3.png" fill alt="sliderImage" objectFit="cover" />
           </div>
           <span className="mb-[8px] font-railway">Мягкая облачная рубашка</span>
@@ -35,8 +35,8 @@ function NewCollection() {
           </p>
         </div>
         <div key={dataNewCollection[1].id}>
-          <div className="flex flex-col items-start max-smImage:hidden">
-            <div className="relative w-[23vw] max-xl:w-[20vw] max-m:w-[40vw] h-[600px] max-xl:h-[500px] max-md:h-[350px] ">
+          <div className="flex flex-col items-start max-sm:hidden">
+            <div className="relative w-[23vw] max-xl:w-[20vw] max-m:w-[35vw] h-[600px] max-xl:h-[500px] max-md:h-[350px] ">
               <Image src={dataNewCollection[1].img} fill alt="liderImage" objectFit="cover" />
             </div>
             <span className="text-customBlack max-md:text-sm font-railway">{dataNewCollection[1].description}</span>

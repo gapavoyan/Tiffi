@@ -6,15 +6,15 @@ import useWindowResize from "./useWindowResize";
 export type Gender = "man" | "woman";
 
 export interface Category {
-  category: number;
-  productArrayTop: any;
-  price: ReactNode;
-  description: ReactNode;
-  discount: number;
-  data: string;
-  sizes: string;
+  category?: number;
+  productArrayTop?: any;
+  price?: ReactNode;
+  description?: ReactNode;
+  discount?: number;
+  data?: string;
+  sizes?: string;
   id: number;
-  title: string;
+  title: string | null;
   parent_id: number | null;
   gender: Gender;
   img: null | string;
@@ -75,6 +75,7 @@ export function useHeaderInfo() {
     onDrawerToggle,
     isDrawerMenuOpen,
     isMobile,
-    onCloseMobileModal
+    onCloseMobileModal,
+    setActiveGender
   };
 }
