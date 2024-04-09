@@ -5,7 +5,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import { Category, Gender } from "@/hooks/useHeaderInfo";
 interface Props {
-  hoveredSubcategories?: Category[];
+  hoveredSubcategories: Category[];
   onSubCategoryItemClick: (id: number, parent_id: number | null, gender: Gender) => void;
 }
 export default function Slider({ hoveredSubcategories, onSubCategoryItemClick }: Props) {

@@ -1,15 +1,34 @@
 import { dataCategory } from "@/components/dataBase/data-category";
 import { useState } from "react";
+import { dataProducts } from "@/components/dataBase/data-product";
+
+export interface Products {
+  id: number;
+  title: string;
+  description: string;
+  discount: number;
+  price: number;
+  sizes: string;
+  type: string;
+  brand_id: number;
+  category_id: number;
+  date: string | null;
+  img: string | null;
+}
 
 function useCategoryInfo() {
-  const [activeSubcategory, setActiveSubcategory] = useState<null | number>(null);
-  function onSubcategoryClick(id: number) {
-    setActiveSubcategory(id);
+  const [activeSubcategoryId, setActiveSubcategoryId] = useState<null | number>(null);
+
+  function onSubcategoryClick(id: number | null) {
+    setActiveSubcategoryId(id);
   }
+  const filteredProducts = activeSubcategoryId ? dataProducts.filter(el => el.category_id === activeSubcategoryId) : dataProducts;
+
   return {
     subcategories: dataCategory.subcategories,
-    onSubcategoryClick: onSubcategoryClick,
-    activeSubcategory
+    onSubcategoryClick,
+    activeSubcategoryId,
+    products: filteredProducts
   };
 }
 

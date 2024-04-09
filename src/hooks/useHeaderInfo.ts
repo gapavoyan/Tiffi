@@ -1,4 +1,4 @@
-import { ReactNode, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useToggle } from "./use-toggle";
 import datasubMenu from "@/components/dataBase/dataSubMenu";
 import { useMediaQuery } from "./use-media-query";
@@ -6,13 +6,6 @@ import useWindowResize from "./useWindowResize";
 export type Gender = "man" | "woman";
 
 export interface Category {
-  category?: number;
-  productArrayTop?: any;
-  price?: ReactNode;
-  description?: ReactNode;
-  discount?: number;
-  data?: string;
-  sizes?: string;
   id: number;
   title: string | null;
   parent_id: number | null;

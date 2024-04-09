@@ -83,7 +83,12 @@ export default function MobileHeader({ submenuData, onClose }: Props) {
                             <div>
                               {el?.subcategories.length > 0 && (
                                 <div className="w-[90vw] h-[200px]">
-                                  <Slider hoveredSubcategories={el.subcategories} />
+                                  <Slider
+                                    hoveredSubcategories={el.subcategories}
+                                    onSubCategoryItemClick={function (): void {
+                                      throw new Error("Function not implemented.");
+                                    }}
+                                  ></Slider>
                                 </div>
                               )}
                             </div>

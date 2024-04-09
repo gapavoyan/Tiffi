@@ -3,7 +3,7 @@ import { dataCategory } from "@/components/dataBase/data-category";
 import SliderCategory from "@/components/slider/slider/slider-category";
 import useCategoryInfo from "@/hooks/useCategoryInfo";
 function Category() {
-  const { activeSubcategory, subcategories, onSubcategoryClick } = useCategoryInfo();
+  const { activeSubcategoryId, subcategories, onSubcategoryClick, products } = useCategoryInfo();
   return (
     <div className="px-[252px] max-lg:px-[142px] max-md:px-[73px] max-sm:px-[16px] flex flex-col items-center">
       <div>
@@ -11,11 +11,20 @@ function Category() {
       </div>
       <div className="w-full">
         <SliderCategory
-          activeSubcategory={activeSubcategory}
+          activeSubcategoryId={activeSubcategoryId}
           subcategories={subcategories}
           onSubcategoryClick={onSubcategoryClick}
         />
       </div>
+      {products.length > 0 ? (
+        products.map(item => (
+          <div key={item.id}>
+            <p>{item.title}</p>
+          </div>
+        ))
+      ) : (
+        <div>chka</div>
+      )}
     </div>
   );
 }
