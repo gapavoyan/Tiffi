@@ -9,8 +9,16 @@ import { useHeaderInfo } from "@/hooks/useHeaderInfo";
 import DesktopHeader from "./desktop-header";
 import MobileHeader from "./mobile-header";
 function Header() {
-  const { onSubmenuOpen, onDrawerToggle, isDrawerMenuOpen, submenuData, isOpen, isMobile, onCloseMobileModal, setActiveGender } =
-    useHeaderInfo();
+  const {
+    onSubmenuOpen,
+    onDrawerToggle,
+    isDrawerMenuOpen,
+    submenuData,
+    isOpen,
+    isMobile,
+    onCloseMobileModal,
+    onSubCategoryItemClick
+  } = useHeaderInfo();
 
   return (
     <header className="h-[118px] max-m:h-[90px] max-lg:h-[90px] max-md:h-[90px] max-sm:h-[148px] bg-white">
@@ -37,11 +45,17 @@ function Header() {
           </AccordionContent>
         </div>
         <div className="max-m:hidden bg-white">
-          <DesktopHeader isOpen={isOpen} submenuData={submenuData} setActiveGender={setActiveGender} />
+          <DesktopHeader isOpen={isOpen} submenuData={submenuData} onSubCategoryItemClick={onSubCategoryItemClick} />
         </div>
         <div className="hidden max-m:block h-full">
           <div>
-            {isOpen && isMobile && submenuData && <MobileHeader submenuData={submenuData} onClose={onCloseMobileModal} />}
+            {isOpen && isMobile && submenuData && (
+              <MobileHeader
+                submenuData={submenuData}
+                onClose={onCloseMobileModal}
+                onSubCategoryItemClick={onSubCategoryItemClick}
+              />
+            )}
           </div>
         </div>
       </div>

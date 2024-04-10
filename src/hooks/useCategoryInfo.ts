@@ -13,7 +13,7 @@ export interface Products {
   brand_id: number;
   category_id: number;
   date: string | null;
-  img: string | null;
+  img: string;
 }
 
 function useCategoryInfo() {

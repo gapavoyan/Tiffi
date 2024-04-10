@@ -1,17 +1,17 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Slider from "../slider/slider";
-import { Category } from "@/hooks/useHeaderInfo";
+import { Category, Gender } from "@/hooks/useHeaderInfo";
 import AccordionContent from "../drawer/accordion";
 import { dataBrands } from "../dataBase/dataBrands";
 import BrandsButton from "../brands/brandsButton";
-
 interface Props {
   submenuData: Category[];
   onClose: () => void;
+  onSubCategoryItemClick: (id: number, parent_id: number | null, gender: Gender) => void;
 }
 
-export default function MobileHeader({ submenuData, onClose }: Props) {
+export default function MobileHeader({ submenuData, onClose, onSubCategoryItemClick }: Props) {
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<null | number>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const onTitleClick = (id: number) => {
@@ -85,9 +85,7 @@ export default function MobileHeader({ submenuData, onClose }: Props) {
                                 <div className="w-[90vw] h-[200px]">
                                   <Slider
                                     hoveredSubcategories={el.subcategories}
-                                    onSubCategoryItemClick={function (): void {
-                                      throw new Error("Function not implemented.");
-                                    }}
+                                    onSubCategoryItemClick={onSubCategoryItemClick}
                                   ></Slider>
                                 </div>
                               )}

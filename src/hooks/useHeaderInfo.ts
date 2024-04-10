@@ -3,6 +3,7 @@ import { useToggle } from "./use-toggle";
 import datasubMenu from "@/components/dataBase/dataSubMenu";
 import { useMediaQuery } from "./use-media-query";
 import useWindowResize from "./useWindowResize";
+import { useRouter } from "next/router";
 export type Gender = "man" | "woman";
 
 export interface Category {
@@ -25,6 +26,7 @@ export function useHeaderInfo() {
   const [activeGender, setActiveGender] = useState<Gender | null>(null);
   const [submenuData, setSubmenuData] = useState<Category[] | null>(null);
   const cachedInfo = useRef<CacheRef>({ man: null, woman: null });
+  const router = useRouter();
 
   const onSubmenuOpen = (gender: Gender) => {
     setActiveGender(activeGender === gender ? null : gender);
@@ -60,6 +62,15 @@ export function useHeaderInfo() {
     }
   });
 
+  //routing to category page
+  function onSubCategoryItemClick(id: number, parent_id: number | null, gender: Gender) {
+    router.push(`/category/${parent_id}/subcategories/${id}?gender=${gender}`);
+    if (isMobile) {
+      onDrawerToggle(); // Close the drawer only if mobile
+    }
+    setActiveGender(null);
+  }
+
   return {
     onSubmenuOpen,
     submenuData,
@@ -69,6 +80,7 @@ export function useHeaderInfo() {
     isDrawerMenuOpen,
     isMobile,
     onCloseMobileModal,
-    setActiveGender
+    setActiveGender,
+    onSubCategoryItemClick
   };
 }

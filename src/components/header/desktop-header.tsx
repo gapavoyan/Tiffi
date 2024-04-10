@@ -2,19 +2,16 @@ import Image from "next/image";
 import AccordionContent from "../drawer/accordion";
 import Slider from "../slider/slider";
 import { Category, Gender } from "@/hooks/useHeaderInfo";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import datasubMenu from "../dataBase/dataSubMenu";
 import { dataBrands } from "../dataBase/dataBrands";
-import { useRouter } from "next/navigation";
 
 interface Props {
   submenuData: Category[] | null;
   isOpen: boolean;
-  setActiveGender: Dispatch<SetStateAction<Gender | null>>;
+  onSubCategoryItemClick: (id: number, parent_id: number | null, gender: Gender) => void;
 }
-export default function DesktopHeader({ isOpen, submenuData, setActiveGender }: Props) {
-  const router = useRouter();
-
+export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemClick }: Props) {
   const [activeArrow, setActiveArrow] = useState<number | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [hoveredSubcategories, setHoveredSubcategories] = useState<Category[]>([]);
@@ -36,10 +33,6 @@ export default function DesktopHeader({ isOpen, submenuData, setActiveGender }: 
   const onBrandsMouseEnter = () => {
     setShowBrands(true);
   };
-  function onSubCategoryItemClick(id: number, parent_id: number | null, gender: Gender) {
-    router.push(`/category?/${parent_id}/subcategories/${id}?gender=${gender}`);
-    setActiveGender(null);
-  }
 
   return (
     <div className="px-[252px] mt-[20px]">
