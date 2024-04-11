@@ -3,7 +3,7 @@ import Image from "next/image";
 import Slider from "../slider/slider";
 import { Category, Gender } from "@/hooks/useHeaderInfo";
 import AccordionContent from "../drawer/accordion";
-import { dataBrands } from "../dataBase/dataBrands";
+import { dataBrands } from "../../dataBase/dataBrands";
 import BrandsButton from "../brands/brandsButton";
 interface Props {
   submenuData: Category[];

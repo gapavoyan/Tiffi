@@ -3,8 +3,8 @@ import { Category } from "@/hooks/useHeaderInfo";
 export const dataCategory: Category = {
   id: 1,
   title: "Одежда",
-  parent_id: null,
   gender: "woman",
+  parent_id: null,
   img: null,
   subcategories: [
     {

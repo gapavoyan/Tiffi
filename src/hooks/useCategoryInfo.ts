@@ -1,8 +1,9 @@
-import { dataCategory } from "@/components/dataBase/data-category";
-import { useState } from "react";
-import { dataProducts } from "@/components/dataBase/data-product";
+import { dataCategory } from "@/dataBase/data-category";
+import { useEffect, useRef, useState } from "react";
+import { dataProducts } from "@/dataBase/data-product";
+import { useRouter } from "next/router";
 
-export interface Products {
+export interface Product {
   id: number;
   title: string;
   description: string;
@@ -17,18 +18,46 @@ export interface Products {
 }
 
 function useCategoryInfo() {
-  const [activeSubcategoryId, setActiveSubcategoryId] = useState<null | number>(null);
+  const { parent_id: category_id, id: subcategory_id, gender } = useRouter().query;
+  const [activeSubcategoryId, setActiveSubcategoryId] = useState<number>(+subcategory_id!);
+  const [loading, setLoading] = useState(false);
+  const cachedInfo = useRef<Record<number, Product[]>>({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPage = 5;
+  const [products, setProducts] = useState<null | Product[]>(null);
 
-  function onSubcategoryClick(id: number | null) {
+  function onChangeSubcategory(id: number) {
     setActiveSubcategoryId(id);
   }
-  const filteredProducts = activeSubcategoryId ? dataProducts.filter(el => el.category_id === activeSubcategoryId) : dataProducts;
+
+  useEffect(() => {
+    setLoading(true);
+    if (cachedInfo.current && activeSubcategoryId in cachedInfo.current) {
+      setProducts(cachedInfo.current[activeSubcategoryId]);
+    } else {
+      setTimeout(() => {
+        // get request for products
+        const products = dataProducts.filter(prod => prod.category_id === activeSubcategoryId);
+        setProducts(products);
+        cachedInfo.current[activeSubcategoryId] = products;
+      }, 1000);
+      setLoading(false);
+    }
+  }, [activeSubcategoryId]);
+
+  const onPageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   return {
     subcategories: dataCategory.subcategories,
-    onSubcategoryClick,
+    onChangeSubcategory,
     activeSubcategoryId,
-    products: filteredProducts
+    products,
+    loading,
+    currentPage,
+    totalPage,
+    onPageChange
   };
 }
 

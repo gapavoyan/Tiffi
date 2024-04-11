@@ -3,8 +3,8 @@ import AccordionContent from "../drawer/accordion";
 import Slider from "../slider/slider";
 import { Category, Gender } from "@/hooks/useHeaderInfo";
 import { useState } from "react";
-import datasubMenu from "../dataBase/dataSubMenu";
-import { dataBrands } from "../dataBase/dataBrands";
+import datasubMenu from "../../dataBase/dataSubMenu";
+import { dataBrands } from "../../dataBase/dataBrands";
 
 interface Props {
   submenuData: Category[] | null;

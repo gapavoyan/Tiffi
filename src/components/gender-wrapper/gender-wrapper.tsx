@@ -1,7 +1,7 @@
 import React from "react";
 import CollectionButton from "../buttons/collectionButton";
 import GenderSlider from "../slider/gender-slider/gender-slider";
-import { Product } from "../dataBase/data-categories";
+import { Product } from "../../dataBase/data-categories";
 interface GenderWrapperProps {
   title: string;
   data: Product[];

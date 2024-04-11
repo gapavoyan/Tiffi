@@ -1,6 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { genderData } from "@/components/dataBase/data-gender";
+import { genderData } from "@/dataBase/data-gender";
 import "swiper/css";
 import Image from "next/image";
 function SliderCollection() {

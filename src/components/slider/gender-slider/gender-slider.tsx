@@ -2,7 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
-import { Product } from "@/components/dataBase/data-categories";
+import { Product } from "@/dataBase/data-categories";
 
 interface Props {
   data: Product[];

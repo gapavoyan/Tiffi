@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import dataHeader from "../dataBase/dataHeader";
+import dataHeader from "../../dataBase/dataHeader";
 import { Gender } from "@/hooks/useHeaderInfo";
 
 interface Props {

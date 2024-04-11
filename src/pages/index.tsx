@@ -3,7 +3,7 @@ import WelcomePart from "@/components/welcomePart/welcome-part";
 import Selection from "@/components/selection/selection";
 import NewCollection from "@/components/newCollection/newCollection";
 import GenderWrapper from "@/components/gender-wrapper/gender-wrapper";
-import { genderData } from "@/components/dataBase/data-gender";
+import { genderData } from "@/dataBase/data-gender";
 import { useRouter } from "next/router";
 
 export default function Home() {

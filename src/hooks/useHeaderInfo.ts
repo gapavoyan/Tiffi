@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useToggle } from "./use-toggle";
-import datasubMenu from "@/components/dataBase/dataSubMenu";
+import datasubMenu from "@/dataBase/dataSubMenu";
 import { useMediaQuery } from "./use-media-query";
 import useWindowResize from "./useWindowResize";
 import { useRouter } from "next/router";
@@ -8,8 +8,8 @@ export type Gender = "man" | "woman";
 
 export interface Category {
   id: number;
-  title: string | null;
-  parent_id: number | null;
+  title: string;
+  parent_id?: number | null;
   gender: Gender;
   img: null | string;
   subcategories: Category[];

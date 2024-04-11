@@ -1,5 +1,5 @@
-import { Products } from "@/hooks/useCategoryInfo";
-export const dataProducts: Products[] = [
+import { Product } from "@/hooks/useCategoryInfo";
+export const dataProducts: Product[] = [
   {
     id: 107,
     title: "Брюки PANICALE",

@@ -1,5 +1,5 @@
 //there is a problem with data , pass this time , will fix when start working with API
-import { dataCategories } from "@/components/dataBase/data-categories";
+import { dataCategories } from "@/dataBase/data-categories";
 import GenderWrapper from "@/components/gender-wrapper/gender-wrapper";
 import Image from "next/image";
 import { useParams } from "next/navigation";
