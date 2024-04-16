@@ -25,7 +25,7 @@ function NewCollection() {
           </div>
         </div>
         <div className=" flex flex-col items-start w-[800px] max-xl:h-[700px]  max-xl:w-[440px] max-m:w-[450px] max-md:w-[300px] max-sm:w-[350px] ">
-          <div className="relative w-full max-xl:w-[440px] max-m:w-[360px] h-[700px] max-md:w-[300px] max-md:h-[500px]  max-sm:w-[350px] ">
+          <div className="relative w-full max-xl:w-[440px] max-m:w-[360px] h-[700px] max-md:w-[300px] max-md:h-[500px]  max-sm:w-[80vw] ">
             <Image src="/images/sliderImg3.png" fill alt="sliderImage" objectFit="cover" />
           </div>
           <span className="mb-[8px] font-railway">Мягкая облачная рубашка</span>

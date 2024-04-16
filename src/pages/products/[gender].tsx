@@ -4,12 +4,10 @@ import GenderWrapper from "@/components/gender-wrapper/gender-wrapper";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
-
 const GenderPage = () => {
   const push = useRouter().push;
   const gender = useParams()?.gender;
   const isGenderEqualsMan = gender === "man";
-
   return (
     <>
       <div className="px-[252px] max-xl:px-[144px] max-m:px-0 pt-[40px] flex flex-col gap-[40px] ">
@@ -32,14 +30,14 @@ const GenderPage = () => {
                 </div>
                 <GenderWrapper
                   title={item.title}
-                  data={item.products.map(product => ({ ...product, img: `https://api.tiffi.store/${product.img}` }))}
+                  data={item.products.map(product => ({ ...product }))}
                   onNavigate={() => push("/")}
                 />
               </div>
             ) : (
               <GenderWrapper
                 title={item.title}
-                data={item.products.map(product => ({ ...product, img: `https://api.tiffi.store/${product.img}` }))}
+                data={item.products.map(product => ({ ...product }))}
                 onNavigate={() => push("/")}
               />
             )}

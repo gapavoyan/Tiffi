@@ -1,7 +1,7 @@
-import { dataCategory } from "@/dataBase/data-category";
 import { useEffect, useRef, useState } from "react";
-import { dataProducts } from "@/dataBase/data-product";
 import { useRouter } from "next/router";
+import { dataProducts } from "@/dataBase/data-product";
+import { dataCategory } from "@/dataBase/data-category";
 
 export interface Product {
   id: number;
@@ -18,32 +18,35 @@ export interface Product {
 }
 
 function useCategoryInfo() {
-  const { parent_id: category_id, id: subcategory_id, gender } = useRouter().query;
-  const [activeSubcategoryId, setActiveSubcategoryId] = useState<number>(+subcategory_id!);
+  const router = useRouter();
+  const { parent_id: category_id, id: subcategory_id, gender } = router.query;
+  const [activeSubcategoryId, setActiveSubcategoryId] = useState<number | null>(+subcategory_id!);
   const [loading, setLoading] = useState(false);
   const cachedInfo = useRef<Record<number, Product[]>>({});
   const [currentPage, setCurrentPage] = useState(1);
   const totalPage = 5;
-  const [products, setProducts] = useState<null | Product[]>(null);
-
-  function onChangeSubcategory(id: number) {
-    setActiveSubcategoryId(id);
-  }
+  const [products, setProducts] = useState<Product[] | null>(null);
 
   useEffect(() => {
     setLoading(true);
-    if (cachedInfo.current && activeSubcategoryId in cachedInfo.current) {
-      setProducts(cachedInfo.current[activeSubcategoryId]);
+    if (activeSubcategoryId !== null) {
+      setTimeout(() => {
+        const filteredProducts = dataProducts.filter(prod => prod.category_id === activeSubcategoryId);
+        setProducts(filteredProducts);
+        cachedInfo.current[activeSubcategoryId] = filteredProducts;
+        setLoading(false);
+      }, 1000);
     } else {
       setTimeout(() => {
-        // get request for products
-        const products = dataProducts.filter(prod => prod.category_id === activeSubcategoryId);
-        setProducts(products);
-        cachedInfo.current[activeSubcategoryId] = products;
+        setProducts(dataProducts);
+        setLoading(false);
       }, 1000);
-      setLoading(false);
     }
   }, [activeSubcategoryId]);
+
+  const onChangeSubcategory = (id: number | null) => {
+    setActiveSubcategoryId(id);
+  };
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
@@ -51,8 +54,8 @@ function useCategoryInfo() {
 
   return {
     subcategories: dataCategory.subcategories,
-    onChangeSubcategory,
     activeSubcategoryId,
+    onChangeSubcategory,
     products,
     loading,
     currentPage,

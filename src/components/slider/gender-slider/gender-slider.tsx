@@ -1,8 +1,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import Image from "next/image";
 import { Product } from "@/dataBase/data-categories";
+import ProductCard from "@/components/product-card/product-card";
 
 interface Props {
   data: Product[];
@@ -37,17 +37,9 @@ function GenderSlider({ data }: Props) {
         className="mySwiper divSwipeSlide"
       >
         {data.map(item => (
-          <div key={item.id} className="flex flex-col w-full h-full">
+          <div key={`product-slider${item.id}`} className="flex flex-col w-full h-full">
             <SwiperSlide>
-              <div className="flex flex-col items-start gap-6 w-full cursor-pointer">
-                <div className="w-full  relative aspect-[4/4]">
-                  <Image src={item.img} fill alt="collectionImage" objectFit="cover" />
-                </div>
-                <div className="flex flex-col items-start">
-                  <span className="text-customBlack max-md:text-sm font-railway">{item.title}</span>
-                  <span className="text-customGreen font-railway">{item.price + " Руб."}</span>
-                </div>
-              </div>
+              <ProductCard product={item} onClick={() => {}} />
             </SwiperSlide>
           </div>
         ))}

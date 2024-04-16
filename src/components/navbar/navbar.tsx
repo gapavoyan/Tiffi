@@ -22,10 +22,10 @@ function Navbar({ onSubmenuOpen }: Props) {
         >
           {el.link ? (
             <Link href={el.link}>
-              <span>{el.title}</span>
+              <span className="cursor-pointer">{el.title}</span>
             </Link>
           ) : (
-            <span>{el.title}</span>
+            <span className="cursor-pointer">{el.title}</span>
           )}
         </li>
       ))}

@@ -11,7 +11,7 @@ interface Props {
   id: number;
   title: string;
   gender: Gender;
-  price?: number | string;
+  price?: number;
   img?: string;
   products: Product[];
 }
