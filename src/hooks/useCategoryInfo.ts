@@ -24,8 +24,6 @@ function useCategoryInfo() {
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<number | null>(+subcategory_id!);
   const [loading, setLoading] = useState(false);
   const cachedInfo = useRef<Record<number, Product[]>>({});
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPage = 5;
   const [products, setProducts] = useState<Product[] | null>(null);
 
   useEffect(() => {
@@ -49,19 +47,12 @@ function useCategoryInfo() {
     setActiveSubcategoryId(id);
   };
 
-  const onPageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
   return {
     subcategories: dataCategory.subcategories,
     activeSubcategoryId,
     products,
     loading,
-    currentPage,
-    totalPage,
     parentId: +(category_id ?? 0),
-    onPageChange,
     onChangeSubcategory,
     gender: gender as Gender
   };

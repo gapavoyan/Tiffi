@@ -50,7 +50,7 @@ export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemCl
                     <div className={`flex justify-between my-2 border-b py-4 w-[20vw] border-customBlack`}>
                       <p className="font-railway">{el.title}</p>
                       <Image
-                        src="/icon/Vector.svg"
+                        src="/icons/Vector.svg"
                         width={10}
                         height={10}
                         alt="arrow.img"
@@ -66,7 +66,7 @@ export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemCl
               >
                 <p className="font-railway">Бренды</p>
 
-                <Image src="/icon/Vector.svg" width={10} height={10} alt="arrow-image" className={showBrands ? "" : "hidden"} />
+                <Image src="/icons/Vector.svg" width={10} height={10} alt="arrow-image" className={showBrands ? "" : "hidden"} />
               </div>
             </div>
 

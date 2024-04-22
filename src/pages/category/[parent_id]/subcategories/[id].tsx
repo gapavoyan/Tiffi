@@ -4,9 +4,14 @@ import CategoryProduct from "@/components/category-product/category-product";
 import { dataCategory } from "@/dataBase/data-category";
 import useCategoryInfo from "@/hooks/useCategoryInfo";
 import { Category } from "@/hooks/useHeaderInfo";
+
 interface Props {
-  data: Category;
+  data: {
+    title: string;
+    subcategories: Category[];
+  };
 }
+
 function CategoryComponent({ data }: Props) {
   const { products, loading, parentId, gender, activeSubcategoryId, onChangeSubcategory } = useCategoryInfo();
 
@@ -24,10 +29,11 @@ function CategoryComponent({ data }: Props) {
           gender={gender}
         />
       </div>
-      <CategoryProduct products={products} loading={loading} />
+      <CategoryProduct products={products} loading={loading} activeSubcategoryId={activeSubcategoryId} />
     </div>
   );
 }
+
 export function getServerSideProps() {
   return {
     props: {
@@ -35,4 +41,5 @@ export function getServerSideProps() {
     }
   };
 }
+
 export default CategoryComponent;

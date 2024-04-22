@@ -17,12 +17,15 @@ function Button({ children, activeSubcategoryId, onChangeSubcategory, item, pare
     onChangeSubcategory(item ?? null);
     router.push(`/category/${parent_id}/subcategories/${item ?? parent_id}?gender=${gender}`);
   };
+  const allButton = children === "Все";
 
   return (
     <div>
       <button
         className={`px-8 py-3 rounded-[8px] transition-all text-sm w-max h-max border border-solid border-customBlack hover:bg-customBlack hover:text-white font-railway ${
-          activeSubcategoryId === item ? "bg-black text-white" : "bg-white text-black"
+          activeSubcategoryId === item || (allButton && activeSubcategoryId === null)
+            ? "bg-black text-white"
+            : "bg-white text-black"
         }`}
         onClick={onSubCategoryItemClick}
       >

@@ -9,7 +9,7 @@ function CollectionButton({ onClick }: PropsNavigate) {
       <button onClick={onClick}>
         <div className="flex items-center gap-3">
           <p className="text-sm font-lora">Коллекция</p>
-          <Image src="/icon/hrefArrowLeft.svg" width={40} height={40} alt="hrefArrowImage" />
+          <Image src="/icons/hrefArrowLeft.svg" width={40} height={40} alt="hrefArrowImage" />
         </div>
       </button>
     </div>

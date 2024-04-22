@@ -51,7 +51,7 @@ export default function MobileHeader({ submenuData, onClose, onSubCategoryItemCl
           >
             <div>
               <button onClick={onClose}>
-                <Image src="/icon/modalArrow.svg" width={25} height={25} alt="Close" />
+                <Image src="/icons/modalArrow.svg" width={25} height={25} alt="Close" />
               </button>
             </div>
             <div>
@@ -65,7 +65,7 @@ export default function MobileHeader({ submenuData, onClose, onSubCategoryItemCl
                     <div className="flex justify-between overflow-auto my-2 border-b border-customBlack py-4 px-4 w-[90vw]">
                       <p className="font-railway">{el.title}</p>
                       <Image
-                        src="/icon/arrow_down.svg"
+                        src="/icons/arrow_down.svg"
                         width={10}
                         height={10}
                         alt="arrow-down"

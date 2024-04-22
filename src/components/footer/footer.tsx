@@ -8,7 +8,7 @@ function Footer() {
         <div className="flex justify-center items-center gap-[48px]">
           <div className="h-[1px] bg-white w-full"></div>
           <div>
-            <Image src="/icon/logoWhite.svg" width={300} height={60} alt="logoTiffi" />
+            <Image src="/icons/logoWhite.svg" width={300} height={60} alt="logoTiffi" />
           </div>
           <div className="h-[1px] bg-white w-full"></div>
         </div>
@@ -56,20 +56,20 @@ function Footer() {
             <div className="flex gap-8 ">
               <div className="px-3 py-3 border-white border-2 rounded-full cursor-pointer">
                 <Link href="https://www.instagram.com/tiffi_nvrsk/?igshid=NTc4MTIwNjQ2YQ%3D%3D" target="blank">
-                  <Image src="/icon/instagram.svg" width={30} height={30} className="" alt="Instagram Icon" />
+                  <Image src="/icons/instagram.svg" width={30} height={30} className="" alt="Instagram Icon" />
                 </Link>
               </div>
               <div>
                 <div className="px-3 py-3 border-white border-2 rounded-full cursor-pointer">
                   <Link href="https://www.facebook.com/italshoesnvr" target="blank">
-                    <Image src="/icon/facebook.svg" width={30} height={30} className="" alt="Facebook Icon" />
+                    <Image src="/icons/facebook.svg" width={30} height={30} className="" alt="Facebook Icon" />
                   </Link>
                 </div>
               </div>
               <div>
                 <div className="px-3 py-3 border-white border-2 rounded-full cursor-pointer">
                   <Link href="https://t.me/tiffinvrsk" target="blank">
-                    <Image src="/icon/send.svg" width={30} height={30} className="" alt="Telegram Icon" />
+                    <Image src="/icons/send.svg" width={30} height={30} className="" alt="Telegram Icon" />
                   </Link>
                 </div>
               </div>
