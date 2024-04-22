@@ -18,7 +18,7 @@ export default function Slider({ hoveredSubcategories, onSubCategoryItemClick }:
               <div>
                 <button
                   className="text-white max-m:text-sm"
-                  onClick={() => onSubCategoryItemClick(el.id, el.parent_id, el.gender)}
+                  onClick={() => onSubCategoryItemClick(el.id, el.parent_id!, el.gender)}
                 >
                   {el.title}
                 </button>

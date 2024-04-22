@@ -1,3 +1,4 @@
+import { Gender } from "@/hooks/useHeaderInfo";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { dataProducts } from "@/dataBase/data-product";
@@ -19,7 +20,7 @@ export interface Product {
 
 function useCategoryInfo() {
   const router = useRouter();
-  const { parent_id: category_id, id: subcategory_id, gender } = router.query;
+  const { parent_id: category_id, gender: gender, id: subcategory_id } = router.query;
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<number | null>(+subcategory_id!);
   const [loading, setLoading] = useState(false);
   const cachedInfo = useRef<Record<number, Product[]>>({});
@@ -55,12 +56,14 @@ function useCategoryInfo() {
   return {
     subcategories: dataCategory.subcategories,
     activeSubcategoryId,
-    onChangeSubcategory,
     products,
     loading,
     currentPage,
     totalPage,
-    onPageChange
+    parentId: +(category_id ?? 0),
+    onPageChange,
+    onChangeSubcategory,
+    gender: gender as Gender
   };
 }
 
