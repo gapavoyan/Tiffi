@@ -22,10 +22,25 @@ function useCategoryInfo() {
   const router = useRouter();
   const { parent_id: category_id, gender: gender, id: subcategory_id } = router.query;
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<number | null>(+subcategory_id!);
-  const [loading, setLoading] = useState(false);
   const cachedInfo = useRef<Record<number, Product[]>>({});
   const [products, setProducts] = useState<Product[] | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
+  const itemsPage = 5;
+  const onPageChange = (page: number) => {
+    setLoading(true);
+    setCurrentPage(page);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeSubcategoryId]);
+
+  //cashed products
   useEffect(() => {
     setLoading(true);
     if (activeSubcategoryId !== null) {
@@ -54,7 +69,11 @@ function useCategoryInfo() {
     loading,
     parentId: +(category_id ?? 0),
     onChangeSubcategory,
-    gender: gender as Gender
+    gender: gender as Gender,
+    //for pagination
+    currentPage,
+    itemsPage,
+    onPageChange
   };
 }
 

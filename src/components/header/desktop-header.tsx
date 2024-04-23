@@ -35,7 +35,7 @@ export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemCl
   };
 
   return (
-    <div className="px-[252px] mt-[20px]">
+    <div className="px-[252px]">
       <div className="w-full">
         <AccordionContent isOpen={isOpen}>
           <div className="flex gap-8">
@@ -69,11 +69,10 @@ export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemCl
                 <Image src="/icons/Vector.svg" width={10} height={10} alt="arrow-image" className={showBrands ? "" : "hidden"} />
               </div>
             </div>
-
             <div className={`w-full overflow-hidden ${selectedId !== null && !showBrands ? "flex" : "hidden"}`}>
               <Slider hoveredSubcategories={hoveredSubcategories} onSubCategoryItemClick={onSubCategoryItemClick} />
             </div>
-            <div className={`w-full flex-wrap content-start gap-4 overflow-hidden ${showBrands ? "flex" : "hidden"}`}>
+            <div className={`w-full flex-wrap mt-[20px] content-start gap-4 overflow-hidden ${showBrands ? "flex" : "hidden"}`}>
               {showBrands &&
                 dataBrands
                   .filter(brand => brand.gender === brandGender)

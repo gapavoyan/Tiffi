@@ -7,10 +7,9 @@ interface Props {
   totalPosts: number;
   onPageChange: (pageNumber: number) => void;
   currentPage: number;
-  currentProducts: Product[];
 }
 
-function Pagination({ itemsPage, currentPage, onPageChange, totalPosts, currentProducts }: Props) {
+function Pagination({ itemsPage, currentPage, onPageChange, totalPosts }: Props) {
   const totalPages = Math.ceil(totalPosts / itemsPage);
 
   const onPageClick = (pageNumber: number) => {
@@ -24,7 +23,7 @@ function Pagination({ itemsPage, currentPage, onPageChange, totalPosts, currentP
   }
   return (
     <div>
-      {currentProducts.length > 1 && (
+      {totalPages > 1 && (
         <div className="flex items-center justify-center gap-4 ">
           <button onClick={onPrevButtonClick} disabled={currentPage === 1}>
             <Image src="/icons/pagination-prev.svg" width={20} height={20} alt="prev-arrow" />

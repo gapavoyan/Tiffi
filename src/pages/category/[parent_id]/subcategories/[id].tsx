@@ -13,7 +13,8 @@ interface Props {
 }
 
 function CategoryComponent({ data }: Props) {
-  const { products, loading, parentId, gender, activeSubcategoryId, onChangeSubcategory } = useCategoryInfo();
+  const { products, loading, parentId, gender, activeSubcategoryId, onChangeSubcategory, currentPage, itemsPage, onPageChange } =
+    useCategoryInfo();
 
   return (
     <div className="px-[252px] gap-10 max-sm:gap-6 mt-10  max-sm:mt-6 mb-10  max-lg:px-[142px] max-md:px-[73px] max-sm:px-[16px] flex flex-col items-center">
@@ -29,11 +30,17 @@ function CategoryComponent({ data }: Props) {
           gender={gender}
         />
       </div>
-      <CategoryProduct products={products} loading={loading} activeSubcategoryId={activeSubcategoryId} />
+      <CategoryProduct
+        products={products}
+        loading={loading}
+        activeSubcategoryId={activeSubcategoryId}
+        currentPage={currentPage}
+        itemsPage={itemsPage}
+        onPageChange={onPageChange}
+      />
     </div>
   );
 }
-
 export function getServerSideProps() {
   return {
     props: {
@@ -41,5 +48,4 @@ export function getServerSideProps() {
     }
   };
 }
-
 export default CategoryComponent;

@@ -1,10 +1,8 @@
 import React from "react";
 import { Category } from "@/hooks/useHeaderInfo";
-
 interface BrandsProps {
   subcategory: Category[];
 }
-
 function BrandsButton({ subcategory }: BrandsProps) {
   return (
     <div>
