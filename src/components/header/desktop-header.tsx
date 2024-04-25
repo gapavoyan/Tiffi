@@ -69,7 +69,7 @@ export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemCl
                 <Image src="/icons/Vector.svg" width={10} height={10} alt="arrow-image" className={showBrands ? "" : "hidden"} />
               </div>
             </div>
-            <div className={`w-full overflow-hidden ${selectedId !== null && !showBrands ? "flex" : "hidden"}`}>
+            <div className={`w-full flex-col gap-4 overflow-hidden ${selectedId !== null && !showBrands ? "flex" : "hidden"}`}>
               <Slider hoveredSubcategories={hoveredSubcategories} onSubCategoryItemClick={onSubCategoryItemClick} />
             </div>
             <div

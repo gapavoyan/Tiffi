@@ -1,0 +1,4 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="-0.5" y="-0.5" width="39" height="39" rx="19.5" transform="matrix(0 -1 -1 0 39 39)" stroke="#1B1B1B"/>
+<path d="M14 20L26 20M26 20C24.75 20.6667 22 22 22 23.5M26 20C24.75 19.3333 22 18 22 16.5" stroke="#1B1B1B" stroke-linejoin="round"/>
+</svg>
