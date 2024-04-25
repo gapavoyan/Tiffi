@@ -72,7 +72,10 @@ export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemCl
             <div className={`w-full overflow-hidden ${selectedId !== null && !showBrands ? "flex" : "hidden"}`}>
               <Slider hoveredSubcategories={hoveredSubcategories} onSubCategoryItemClick={onSubCategoryItemClick} />
             </div>
-            <div className={`w-full flex-wrap mt-[20px] content-start gap-4 overflow-hidden ${showBrands ? "flex" : "hidden"}`}>
+            <div
+              className={`w-full flex-wrap mt-[20px] content-start gap-4  ${showBrands ? "flex" : "hidden"}`}
+              style={{ maxHeight: "300px", overflowY: "auto" }}
+            >
               {showBrands &&
                 dataBrands
                   .filter(brand => brand.gender === brandGender)
