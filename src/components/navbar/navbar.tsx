@@ -17,7 +17,7 @@ function Navbar({ onSubmenuOpen }: Props) {
               onSubmenuOpen(el.id === 3 ? "man" : "woman");
             }
           }}
-          key={`title-${el.id}`}
+          key={`title-navbar${el.id}`}
           className="text-sm font-railway text-customBlack px-10 py-6 max-lg:px-6 hover:text-customGreen"
         >
           {el.link ? (

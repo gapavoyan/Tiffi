@@ -28,7 +28,7 @@ export default function SliderSubCategory({ activeSubcategoryId, parentId, onCha
         </Button>
       </SwiperSlide>
       {subcategories.map(item => (
-        <SwiperSlide key={item.id} className="swiper-slide">
+        <SwiperSlide key={`subcategory-button${item.id}`} className="swiper-slide">
           <Button onClick={() => onSubCategoryItemClick(item.id)} isActive={item.id === activeSubcategoryId}>
             {item.title}
           </Button>

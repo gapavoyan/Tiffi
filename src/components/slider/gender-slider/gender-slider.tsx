@@ -7,6 +7,7 @@ import ProductCard from "@/components/product-card/product-card";
 interface Props {
   data: Product[];
 }
+
 function GenderSlider({ data }: Props) {
   return (
     <div className="collection-swipeDiv">
@@ -37,11 +38,9 @@ function GenderSlider({ data }: Props) {
         className="mySwiper divSwipeSlide"
       >
         {data.map(item => (
-          <div key={`product-slider${item.id}`} className="flex flex-col w-full h-full">
-            <SwiperSlide>
-              <ProductCard product={item} onClick={() => {}} />
-            </SwiperSlide>
-          </div>
+          <SwiperSlide key={`product-slider${item.id}`}>
+            <ProductCard product={item} onClick={() => {}} />
+          </SwiperSlide>
         ))}
       </Swiper>
     </div>

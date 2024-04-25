@@ -21,8 +21,8 @@ function CategoryProduct({ products, loading, currentPage, totalPages, onPageCha
         ) : loading ? (
           <div>Loading...</div>
         ) : products?.length ? (
-          products.map((item: Product) => (
-            <div key={item.id}>
+          products.map(item => (
+            <div key={`category-product${item.id}`}>
               <ProductCard product={item} onClick={() => {}} />
             </div>
           ))

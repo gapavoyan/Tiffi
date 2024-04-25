@@ -9,7 +9,7 @@ function BrandsButton({ subcategory }: BrandsProps) {
       {subcategory.map(brand => (
         <button
           className="px-8 py-3 ml-4 mt-4 border border-solid border-customBlack hover:bg-customBlack hover:text-white font-railway"
-          key={`brandsButton${brand.id}`}
+          key={`brands-button${brand.id}`}
         >
           {brand.title}
         </button>

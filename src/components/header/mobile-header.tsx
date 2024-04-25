@@ -57,7 +57,7 @@ export default function MobileHeader({ submenuData, onClose, onSubCategoryItemCl
             <div>
               {fullSubmenuData?.map(el => (
                 <div
-                  key={`fullSubmenuData${el.id}`}
+                  key={`full-submenuData${el.id}`}
                   className="flex gap-8 w-full overflow-auto"
                   onClick={() => onTitleClick(el.id)}
                 >
