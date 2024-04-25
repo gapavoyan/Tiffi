@@ -13,7 +13,7 @@ interface Props {
 }
 
 function CategoryComponent({ data }: Props) {
-  const { products, loading, parentId, gender, activeSubcategoryId, onChangeSubcategory, currentPage, itemsPage, onPageChange } =
+  const { products, loading, parentId, gender, activeSubcategoryId, onChangeSubcategory, currentPage, totalPages, onPageChange } =
     useCategoryInfo();
 
   return (
@@ -35,7 +35,7 @@ function CategoryComponent({ data }: Props) {
         loading={loading}
         activeSubcategoryId={activeSubcategoryId}
         currentPage={currentPage}
-        itemsPage={itemsPage}
+        totalPages={totalPages}
         onPageChange={onPageChange}
       />
     </div>

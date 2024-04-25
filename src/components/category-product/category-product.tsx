@@ -7,16 +7,12 @@ interface Props {
   products: Product[] | null;
   loading: boolean;
   activeSubcategoryId: number | null;
+  totalPages: number;
   currentPage: number;
-  itemsPage: number;
   onPageChange: (pageNumber: number) => void;
 }
 
-function CategoryProduct({ products, loading, currentPage, itemsPage, onPageChange }: Props) {
-  const totalProducts = products?.length || 0;
-  const lastPostIndex = currentPage * itemsPage;
-  const firstPostIndex = lastPostIndex - itemsPage;
-  const currentProducts = products?.slice(firstPostIndex, lastPostIndex) || [];
+function CategoryProduct({ products, loading, currentPage, totalPages, onPageChange }: Props) {
   return (
     <>
       <div className="grid grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-6 mt-[80px] max-sm:mt-10 w-full">
@@ -24,8 +20,8 @@ function CategoryProduct({ products, loading, currentPage, itemsPage, onPageChan
           <div>Loading...</div>
         ) : loading ? (
           <div>Loading...</div>
-        ) : currentProducts.length ? (
-          currentProducts.map((item: Product) => (
+        ) : products?.length ? (
+          products.map((item: Product) => (
             <div key={item.id}>
               <ProductCard product={item} onClick={() => {}} />
             </div>
@@ -38,7 +34,7 @@ function CategoryProduct({ products, loading, currentPage, itemsPage, onPageChan
       </div>
 
       <div>
-        <Pagination totalPosts={totalProducts} onPageChange={onPageChange} itemsPage={itemsPage} currentPage={currentPage} />
+        <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={currentPage} />
       </div>
     </>
   );

@@ -1,17 +1,13 @@
-import { Product } from "@/hooks/useCategoryInfo";
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
 
 interface Props {
-  itemsPage: number;
-  totalPosts: number;
+  totalPages: number;
   onPageChange: (pageNumber: number) => void;
   currentPage: number;
 }
 
-function Pagination({ itemsPage, currentPage, onPageChange, totalPosts }: Props) {
-  const totalPages = Math.ceil(totalPosts / itemsPage);
-
+function Pagination({ totalPages, currentPage, onPageChange }: Props) {
   const onPageClick = (pageNumber: number) => {
     onPageChange(pageNumber);
   };
