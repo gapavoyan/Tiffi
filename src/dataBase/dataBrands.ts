@@ -1,7 +1,9 @@
+import { Gender } from "@/hooks/useHeaderInfo";
+
 export interface T_Brand {
   id: number;
   title: string;
-  gender: string;
+  gender: Gender;
 }
 
 export const dataBrands: T_Brand[] = [

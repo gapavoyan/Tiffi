@@ -17,7 +17,8 @@ function Header() {
     isOpen,
     isMobile,
     onCloseMobileModal,
-    onSubCategoryItemClick
+    onSubCategoryItemClick,
+    onBrandsItemClick
   } = useHeaderInfo();
 
   return (
@@ -45,7 +46,12 @@ function Header() {
           </AccordionContent>
         </div>
         <div className="max-m:hidden bg-white">
-          <DesktopHeader isOpen={isOpen} submenuData={submenuData} onSubCategoryItemClick={onSubCategoryItemClick} />
+          <DesktopHeader
+            isOpen={isOpen}
+            submenuData={submenuData}
+            onSubCategoryItemClick={onSubCategoryItemClick}
+            onBrandsItemClick={onBrandsItemClick}
+          />
         </div>
         <div className="hidden max-m:block h-full">
           <div>

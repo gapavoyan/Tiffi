@@ -1,5 +1,5 @@
 import React from "react";
-import SliderSubCategory from "@/components/slider/slider/slider-subCategory";
+import SliderSubCategory from "@/components/slider/slider-subcategory-button/slider-subCategory";
 import CategoryProduct from "@/components/category-product/category-product";
 import { dataCategory } from "@/dataBase/data-category";
 import useCategoryInfo from "@/hooks/useCategoryInfo";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 function CategoryComponent({ data }: Props) {
-  const { products, loading, parentId, gender, activeSubcategoryId, onChangeSubcategory, currentPage, totalPages, onPageChange } =
+  const { products, loading, parentId, gender, activeId, onChangeSubcategory, currentPage, totalPages, onPageChange } =
     useCategoryInfo();
 
   return (
@@ -23,8 +23,8 @@ function CategoryComponent({ data }: Props) {
       </div>
       <div className="w-full px-[200px] max-lg:px-[250px] max-m:px-[100px] max-md:px-[50px]">
         <SliderSubCategory
-          activeSubcategoryId={activeSubcategoryId}
-          subcategories={data.subcategories}
+          activeId={activeId}
+          data={data.subcategories}
           onChangeSubcategory={onChangeSubcategory}
           parentId={parentId}
           gender={gender}
@@ -33,7 +33,7 @@ function CategoryComponent({ data }: Props) {
       <CategoryProduct
         products={products}
         loading={loading}
-        activeSubcategoryId={activeSubcategoryId}
+        activeSubcategoryId={activeId}
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={onPageChange}

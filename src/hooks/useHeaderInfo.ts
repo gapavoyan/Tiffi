@@ -70,7 +70,14 @@ export function useHeaderInfo() {
     }
     setActiveGender(null);
   }
-
+  //routing to brandsItem page
+  function onBrandsItemClick(id: number, gender: Gender) {
+    router.push(`/products/brands/${id}?gender=${gender}`);
+    if (isMobile) {
+      onDrawerToggle(); // Close the drawer only if mobile
+    }
+    setActiveGender(null);
+  }
   return {
     onSubmenuOpen,
     submenuData,
@@ -81,6 +88,7 @@ export function useHeaderInfo() {
     isMobile,
     onCloseMobileModal,
     setActiveGender,
-    onSubCategoryItemClick
+    onSubCategoryItemClick,
+    onBrandsItemClick
   };
 }

@@ -5,13 +5,13 @@ import { Category, Gender } from "@/hooks/useHeaderInfo";
 import { useState } from "react";
 import datasubMenu from "../../dataBase/dataSubMenu";
 import { dataBrands } from "../../dataBase/dataBrands";
-
 interface Props {
   submenuData: Category[] | null;
   isOpen: boolean;
   onSubCategoryItemClick: (id: number, parent_id: number | null, gender: Gender) => void;
+  onBrandsItemClick: (id: number, gender: Gender) => void;
 }
-export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemClick }: Props) {
+export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemClick, onBrandsItemClick }: Props) {
   const [activeArrow, setActiveArrow] = useState<number | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [hoveredSubcategories, setHoveredSubcategories] = useState<Category[]>([]);
@@ -81,6 +81,7 @@ export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemCl
                   .filter(brand => brand.gender === brandGender)
                   .map(brand => (
                     <button
+                      onClick={() => onBrandsItemClick(brand.id, brand.gender)}
                       className="px-8 py-3 w-max h-max border border-solid border-customBlack hover:bg-customBlack hover:text-white font-railway"
                       key={`brands-header${brand.id}`}
                     >

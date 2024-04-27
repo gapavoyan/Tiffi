@@ -32,7 +32,6 @@ function CategoryProduct({ products, loading, currentPage, totalPages, onPageCha
           </div>
         )}
       </div>
-
       <div>
         <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={currentPage} />
       </div>
