@@ -25,7 +25,7 @@ const dataHeader = [
   {
     id: 6,
     title: "Контакты",
-    link: ""
+    link: "/contacts"
   }
 ];
 export default dataHeader;

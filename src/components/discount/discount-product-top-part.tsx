@@ -20,10 +20,10 @@ function DiscountProductsPart() {
         </div>
       </div>
       <div className="grid  grid-cols-[auto,1fr] max-sm:grid-cols-1">
-        <div className=" px-6 py-4 max-lg:py-2 h-max   bg-black flex justify-center items-center">
-          <p className="text-white h-max text-[50px] max-lg:text-[36px]">10-60%</p>
+        <div className=" px-6 py-4 max-lg:py-2     bg-black flex justify-center items-center">
+          <p className="text-white h-max  text-[50px] max-lg:text-[36px]">10-60%</p>
         </div>
-        <div className="px-10 max-sm:px-0">
+        <div className="px-10 py-6  max-sm:px-0">
           <p className=" text-sm">
             Наша весенняя коллекция 2023 - это сочетание современных трендов и классических элементов, которые подходят для любого
             возраста и стиля. Оставайся на вершине моды и выбирай лучшее с нами!
