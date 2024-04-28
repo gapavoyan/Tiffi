@@ -13,7 +13,7 @@ function GenderNewProducts({ title, data }: Props) {
       <div className="grid grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-6 mt-[80px] max-sm:mt-10 w-full">
         {data.map(item => (
           <div key={`new-product${item.id}`}>
-            <ProductCard product={item} onClick={() => {}} />
+            <ProductCard product={item} />
           </div>
         ))}
       </div>

@@ -39,7 +39,7 @@ function GenderSlider({ data }: Props) {
       >
         {data.map(item => (
           <SwiperSlide key={`product-slider${item.id}`}>
-            <ProductCard product={item} onClick={() => {}} />
+            <ProductCard product={item} />
           </SwiperSlide>
         ))}
       </Swiper>

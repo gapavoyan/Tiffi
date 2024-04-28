@@ -23,7 +23,7 @@ function CategoryProduct({ products, loading, currentPage, totalPages, onPageCha
         ) : products?.length ? (
           products.map(item => (
             <div key={`category-product${item.id}`}>
-              <ProductCard product={item} onClick={() => {}} />
+              <ProductCard product={item} />
             </div>
           ))
         ) : (
