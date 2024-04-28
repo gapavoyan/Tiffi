@@ -15,7 +15,7 @@ const dataHeader = [
   {
     id: 4,
     title: "Новинки",
-    link: ""
+    link: "/new-products"
   },
   {
     id: 5,

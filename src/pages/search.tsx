@@ -9,7 +9,7 @@ function Search() {
     <div className="px-[252px]  gap-10 max-sm:gap-6 mt-10  max-sm:mt-6 mb-10  max-lg:px-[142px] max-md:px-[73px] max-sm:px-[16px] flex flex-col items-center">
       <div className="w-full flex flex-col gap-4">
         <SearchInput />
-        <h2 className="font-railway">Результаты поиска</h2>
+        <h2 className="font-lora">Результаты поиска</h2>
       </div>
       <CategoryProduct
         products={products}
