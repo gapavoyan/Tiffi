@@ -20,7 +20,7 @@ const dataHeader = [
   {
     id: 5,
     title: "Скидки",
-    link: ""
+    link: "/discount"
   },
   {
     id: 6,

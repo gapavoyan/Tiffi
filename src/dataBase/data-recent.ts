@@ -6,7 +6,7 @@ export const dataRecent: Product[] = [
     title: "Сумка CARLO SALVATELLI ",
     description:
       "Сумка CARLO SALVATELLI из натуральной крупнозернистой  кожи.\nSS24.\nСтрана производитель:Италия.\n Материал:натуральная кожа. \nВнутренняя отделка:натуральная кожа/текстиль.                              Размер:20/18/13,5 см.\nДлина ручки:16 см.\n",
-    discount: 0,
+    discount: 60,
     price: 46500,
     sizes: "",
     type: "single",
@@ -20,7 +20,7 @@ export const dataRecent: Product[] = [
     title: "Сумка CARLO SALVATELLI",
     description:
       "Сумка CARLO SALVATELLI из натуральной крупнозернистой  кожи.\nSS24.\nСтрана производитель:Италия.\n Материал:натуральная кожа. \nВнутренняя отделка:натуральная кожа/текстиль.                              Размер:30/18/7 см.\n",
-    discount: 0,
+    discount: 20,
     price: 52000,
     sizes: "",
     type: "single",
@@ -34,7 +34,7 @@ export const dataRecent: Product[] = [
     title: "Сумка CARLO SALVATELLI",
     description:
       "Сумка CARLO SALVATELLI из натуральной крупнозернистой  кожи.\nSS24.\nСтрана производитель:Италия.\n Материал:натуральная кожа. \nВнутренняя отделка:натуральная кожа/текстиль.                              Размер:31,5/25/16 см.\nДлина ручек:14 см.",
-    discount: 0,
+    discount: 30,
     price: 54000,
     sizes: "",
     type: "single",
