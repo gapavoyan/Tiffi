@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../navbar/navbar";
-import Search from "../search/search";
+import Search from "../search/searchInput";
 import DrawerButton from "../drawer/drawer-button";
 import AccordionContent from "../drawer/accordion";
 import { useHeaderInfo } from "@/hooks/useHeaderInfo";
@@ -60,6 +60,7 @@ function Header() {
                 submenuData={submenuData}
                 onClose={onCloseMobileModal}
                 onSubCategoryItemClick={onSubCategoryItemClick}
+                onBrandsItemClick={onBrandsItemClick}
               />
             )}
           </div>

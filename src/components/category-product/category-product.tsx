@@ -6,7 +6,7 @@ import { Product } from "@/hooks/useCategoryInfo";
 interface Props {
   products: Product[] | null;
   loading: boolean;
-  activeSubcategoryId: number | null;
+  activeSubcategoryId?: number | null;
   totalPages: number;
   currentPage: number;
   onPageChange: (pageNumber: number) => void;

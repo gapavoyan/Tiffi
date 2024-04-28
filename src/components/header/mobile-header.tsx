@@ -9,9 +9,10 @@ interface Props {
   submenuData: Category[];
   onClose: () => void;
   onSubCategoryItemClick: (id: number, parent_id: number | null, gender: Gender) => void;
+  onBrandsItemClick: (id: number, gender: Gender) => void;
 }
 
-export default function MobileHeader({ submenuData, onClose, onSubCategoryItemClick }: Props) {
+export default function MobileHeader({ submenuData, onClose, onSubCategoryItemClick, onBrandsItemClick }: Props) {
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<null | number>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const onTitleClick = (id: number) => {
@@ -77,7 +78,7 @@ export default function MobileHeader({ submenuData, onClose, onSubCategoryItemCl
                         <div className="w-full flex">
                           {el.id === -1 ? (
                             <div className="flex flex-wrap">
-                              <BrandsButton subcategory={el.subcategories} />
+                              <BrandsButton subcategory={el.subcategories} onBrandsItemClick={onBrandsItemClick} />
                             </div>
                           ) : (
                             <div>

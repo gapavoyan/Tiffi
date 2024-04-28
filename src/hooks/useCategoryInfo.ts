@@ -18,11 +18,10 @@ export interface Product {
   date: string | null;
   img: string;
 }
-const ITEMS_PER_PAGE = 3;
+const ITEMS_PER_PAGE = 5;
 function useCategoryInfo() {
   const router = useRouter();
-  const { parent_id: category_id, gender: gender, id: subcategory_id } = router.query;
-  const { id: brandId } = router.query;
+  const { parent_id: category_id, gender: gender, id: subcategory_id, id: brandId, query } = router.query;
   const [activeId, setActiveSubcategoryId] = useState<number>(+subcategory_id!);
   const cachedInfo = useRef<Record<number, Record<number, Product[]>>>({});
   const [products, setProducts] = useState<Product[] | null>(null);
@@ -57,7 +56,7 @@ function useCategoryInfo() {
             .filter(p =>
               activeId === +category_id! && activeBrandId === +brandId!
                 ? p
-                : p.category_id === activeId || p.brand_id === activeBrandId
+                : p.category_id === activeId || p.brand_id === activeBrandId || p.title === query
             )
             .slice(firstPostIndex, lastPostIndex);
           setProducts(dataInCurrentPage);
@@ -71,7 +70,7 @@ function useCategoryInfo() {
         const filterData = dataProducts.filter(p =>
           activeId === +category_id! && activeBrandId === +brandId!
             ? p
-            : p.category_id === activeId || p.brand_id === activeBrandId
+            : p.category_id === activeId || p.brand_id === activeBrandId || p.title === query
         );
         const productsPages = Math.ceil(filterData.length / ITEMS_PER_PAGE);
         const currentProducts = filterData?.slice(firstPostIndex, lastPostIndex) || [];
@@ -81,7 +80,7 @@ function useCategoryInfo() {
         setLoading(false);
       }, 1000);
     }
-  }, [activeId, currentPage, category_id, activeBrandId, brandId]);
+  }, [activeId, currentPage, category_id, activeBrandId, brandId, query]);
 
   const onChangeSubcategory = (id: number) => setActiveSubcategoryId(id);
 
