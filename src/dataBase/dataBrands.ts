@@ -106,5 +106,10 @@ export const dataBrands: T_Brand[] = [
     id: 17,
     title: "BARRETT",
     gender: "man"
+  },
+  {
+    id: 38,
+    title: "Doriani",
+    gender: "man"
   }
 ];

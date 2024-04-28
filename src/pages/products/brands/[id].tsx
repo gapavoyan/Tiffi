@@ -3,8 +3,7 @@ import React from "react";
 import useCategoryInfo from "@/hooks/useCategoryInfo";
 import CategoryProduct from "@/components/category-product/category-product";
 function Brands() {
-  const { dataBrands, currentPage, totalPages, onPageChange, loading, productsByBrandId, activeBrandId, gender } =
-    useCategoryInfo();
+  const { dataBrands, currentPage, totalPages, onPageChange, loading, products, activeBrandId, gender } = useCategoryInfo();
 
   return (
     <div className="px-[252px] gap-10 max-sm:gap-6 mt-10  max-sm:mt-6 mb-10  max-lg:px-[142px] max-md:px-[73px] max-sm:px-[16px] flex flex-col items-center">
@@ -15,7 +14,7 @@ function Brands() {
         <SliderSubCategory data={dataBrands} activeId={activeBrandId} gender={gender} />
       </div>
       <CategoryProduct
-        products={productsByBrandId}
+        products={products}
         loading={loading}
         activeSubcategoryId={activeBrandId}
         currentPage={currentPage}
