@@ -1,5 +1,5 @@
 import { Gender } from "@/hooks/useHeaderInfo";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { dataProducts } from "@/dataBase/data-product";
 import { dataCategory } from "@/dataBase/data-category";
