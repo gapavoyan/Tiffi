@@ -34,7 +34,7 @@ function SliderCollection() {
       >
         {genderData.map(item => (
           <SwiperSlide key={`gender-slider${item.id}`}>
-            <ProductCard product={item} onClick={() => {}} />
+            <ProductCard product={item} />
           </SwiperSlide>
         ))}
       </Swiper>

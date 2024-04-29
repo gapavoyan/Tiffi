@@ -1,16 +1,20 @@
 import React from "react";
 import Image from "next/image";
 import { Product } from "@/dataBase/data-categories";
+import { useRouter } from "next/router";
 
 interface Props {
   product: Product;
-  onClick: () => void;
 }
 
-function ProductCard({ product, onClick }: Props) {
-  const { img, price, title, discount } = product;
+function ProductCard({ product }: Props) {
+  const router = useRouter();
+  const { img, price, title, discount, id } = product;
+  function onProductClick(id: number) {
+    router.push(`/product/${id}`);
+  }
   return (
-    <div className="relative flex flex-col items-start gap-6 w-full cursor-pointer" onClick={onClick}>
+    <div className="relative flex flex-col items-start gap-6 w-full cursor-pointer" onClick={() => onProductClick(id)}>
       <div className="w-full  relative aspect-[4/4]">
         <Image src={`https://api.tiffi.store/${img}`} fill alt="collectionImage" objectFit="cover" />
       </div>
