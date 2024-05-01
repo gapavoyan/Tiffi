@@ -11,6 +11,18 @@
   src: url("/public/fonts/Raleway-Italic-VariableFont_wght.ttf");
 }
 
+/* style scroll */
+body::-webkit-scrollbar {
+  width: 0;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: black;
+}
+
 .mobile-header-open {
   height: 100px !important;
 }
@@ -66,4 +78,8 @@
 
 .slider-category .swiper-slide {
   width: max-content !important;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  background-color: white;
 }

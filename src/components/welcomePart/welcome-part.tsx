@@ -15,7 +15,7 @@ function WelcomePart() {
             Наша весенняя коллекция 2023 - это сочетание современных трендов и классических элементов, которые подходят для любого
             возраста и стиля. Оставайся на вершине моды и выбирай лучшее с нами!
           </p>
-          <CollectionButton onClick={() => push("/")} />
+          <CollectionButton onClick={() => push("/new-products")} />
         </div>
       </div>
       <div className="w-[50%] max-md:w-full relative max-md:h-[400px]">
