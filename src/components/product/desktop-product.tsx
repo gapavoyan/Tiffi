@@ -3,11 +3,14 @@ import SliderMaterialProduct from "../slider/slider-product-material/desktop-pro
 import { useMediaQuery } from "@/hooks/use-media-query";
 import Image from "next/image";
 import { ProductMaterial } from "@/hooks/useProductInfo";
+import DesktopZoom from "./desktop-zoom";
 interface Props {
   dataProductMaterial: ProductMaterial[];
 }
 function DesktopProduct({ dataProductMaterial }: Props) {
   const [activeId, setActiveSlideId] = useState<number>(dataProductMaterial[0].id);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [selectedImageId, setSelectedImageId] = useState<null | number>(null);
   const isDesktop = useMediaQuery("(max-width : 1416px)");
   function handleClickOnItem(index: number) {
     setActiveSlideId(index);
@@ -21,27 +24,42 @@ function DesktopProduct({ dataProductMaterial }: Props) {
       item.scrollTo(options);
     }
   }
+  function handleModalOpen(index: number) {
+    setModalOpen(true);
+    setSelectedImageId(index);
+  }
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   return (
-    <div className="flex w-[50%] max-mij:w-[60%] gap-4 max-md:hidden">
-      <div className="w-[20%]">
-        <SliderMaterialProduct dataProductMaterial={dataProductMaterial} onClick={handleClickOnItem} activeId={activeId} />
-      </div>
-      <div className="w-[600px] h-[700px] max-m:h-[550px] overflow-auto custom-scrollbar" id="main-slider">
-        {dataProductMaterial.map(item => (
-          <div key={`product-item${item.id}`} id={`product-item${item.id}`} className="w-full h-full">
-            <Image
-              src={`https://api.tiffi.store/${item.img}`}
-              width={200}
-              height={200}
+    <>
+      <div className="flex w-[50%] max-mij:w-[60%] gap-4 max-md:hidden">
+        <div className="w-[20%]">
+          <SliderMaterialProduct dataProductMaterial={dataProductMaterial} onClick={handleClickOnItem} activeId={activeId} />
+        </div>
+        <div className="w-[600px] h-[700px] max-m:h-[550px] overflow-auto custom-scrollbar" id="main-slider">
+          {dataProductMaterial.map(item => (
+            <div
+              key={`product-item${item.id}`}
+              id={`product-item${item.id}`}
               className="w-full h-full"
-              alt="item-img"
-              objectFit="cover"
-            />
-          </div>
-        ))}
+              onClick={() => handleModalOpen(item.id)}
+            >
+              <Image
+                src={`https://api.tiffi.store/${item.img}`}
+                width={200}
+                height={200}
+                className="w-full h-full"
+                alt="item-img"
+                objectFit="cover"
+              />
+            </div>
+          ))}
+          {modalOpen && <DesktopZoom onClose={handleCloseModal} />}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
