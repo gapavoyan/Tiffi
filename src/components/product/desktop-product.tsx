@@ -10,7 +10,7 @@ interface Props {
 function DesktopProduct({ dataProductMaterial }: Props) {
   const [activeId, setActiveSlideId] = useState<number>(dataProductMaterial[0].id);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [selectedImageId, setSelectedImageId] = useState<null | number>(null);
+  const [selectedImageId, setSelectedImageId] = useState<number>(0);
   const isDesktop = useMediaQuery("(max-width : 1416px)");
   function handleClickOnItem(index: number) {
     setActiveSlideId(index);
@@ -38,13 +38,13 @@ function DesktopProduct({ dataProductMaterial }: Props) {
         <div className="w-[20%]">
           <SliderMaterialProduct dataProductMaterial={dataProductMaterial} onClick={handleClickOnItem} activeId={activeId} />
         </div>
-        <div className="w-[600px] h-[700px] max-m:h-[550px] overflow-auto custom-scrollbar" id="main-slider">
-          {dataProductMaterial.map(item => (
+        <div className="w-[600px] h-[600px] max-m:h-[500px] overflow-auto custom-scrollbar" id="main-slider">
+          {dataProductMaterial.map((item, index) => (
             <div
               key={`product-item${item.id}`}
               id={`product-item${item.id}`}
               className="w-full h-full"
-              onClick={() => handleModalOpen(item.id)}
+              onClick={() => handleModalOpen(index)}
             >
               <Image
                 src={`https://api.tiffi.store/${item.img}`}
@@ -56,7 +56,13 @@ function DesktopProduct({ dataProductMaterial }: Props) {
               />
             </div>
           ))}
-          {modalOpen && <DesktopZoom onClose={handleCloseModal} />}
+          {modalOpen && (
+            <DesktopZoom
+              onClose={handleCloseModal}
+              selectedImageId={selectedImageId}
+              imageUrls={dataProductMaterial.map(item => `https://api.tiffi.store/${item.img}`)}
+            />
+          )}
         </div>
       </div>
     </>

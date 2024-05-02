@@ -21,7 +21,7 @@ export default function SliderMaterialProduct({ dataProductMaterial, onClick, ac
   }
   return (
     <>
-      <div className="flex flex-col gap-4 items-center w-full h-[600px] max-m:h-[500px]">
+      <div className="flex flex-col gap-4 items-center w-full h-[500px] max-m:h-[400px]">
         {dataProductMaterial.length > 3 && (
           <button onClick={slideTop}>
             <Image src="/icons/top.svg" width={7} height={12} alt="top-image" />
