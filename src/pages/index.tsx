@@ -14,8 +14,8 @@ export default function Home() {
       <Selection />
       <NewCollection />
       <div className="flex flex-col gap-[24px] mb-6">
-        <GenderWrapper title="для Женщин" data={genderData} onNavigate={() => push("/")} />
-        <GenderWrapper title="для Мужчин" data={genderData} onNavigate={() => push("/")} />
+        <GenderWrapper title="для Женщин" data={genderData} onNavigate={() => push("/products/woman")} />
+        <GenderWrapper title="для Мужчин" data={genderData} onNavigate={() => push("/products/man")} />
       </div>
     </div>
   );
