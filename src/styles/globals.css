@@ -83,3 +83,7 @@ body::-webkit-scrollbar {
 .swiper-pagination .swiper-pagination-bullet {
   background-color: white;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

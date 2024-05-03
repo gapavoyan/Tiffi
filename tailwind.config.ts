@@ -33,6 +33,9 @@ const config: Config = {
       },
       height: {
         "max-content": "max-content"
+      },
+      scale: {
+        "2": "2.5"
       }
     }
   },

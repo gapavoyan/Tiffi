@@ -22,6 +22,7 @@
     "prettier-plugin-tailwindcss": "^0.5.11",
     "react": "^18",
     "react-dom": "^18",
+    "react-medium-image-zoom": "^5.2.0",
     "swiper": "^11.1.0"
   },
   "devDependencies": {

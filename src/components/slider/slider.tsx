@@ -6,7 +6,7 @@ import "swiper/css";
 import { Category, Gender } from "@/hooks/useHeaderInfo";
 import Image from "next/image";
 
-type Swiper = null | any;
+export type Swiper = null | any;
 interface Props {
   hoveredSubcategories: Category[];
   onSubCategoryItemClick: (id: number, parent_id: number | null, gender: Gender) => void;

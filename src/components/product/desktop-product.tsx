@@ -3,14 +3,17 @@ import SliderMaterialProduct from "../slider/slider-product-material/desktop-pro
 import { useMediaQuery } from "@/hooks/use-media-query";
 import Image from "next/image";
 import { ProductMaterial } from "@/hooks/useProductInfo";
-import DesktopZoom from "./desktop-zoom";
+import DesktopZoom from "./produxt-zoom";
+import ProductZoom from "./produxt-zoom";
 interface Props {
   dataProductMaterial: ProductMaterial[];
+  handleModalOpen: (index: number) => void;
+  handleModalClose: () => void;
+  modalOpen: boolean;
+  selectedImageId: number;
 }
-function DesktopProduct({ dataProductMaterial }: Props) {
+function DesktopProduct({ dataProductMaterial, handleModalOpen, handleModalClose, modalOpen, selectedImageId }: Props) {
   const [activeId, setActiveSlideId] = useState<number>(dataProductMaterial[0].id);
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [selectedImageId, setSelectedImageId] = useState<number>(0);
   const isDesktop = useMediaQuery("(max-width : 1416px)");
   function handleClickOnItem(index: number) {
     setActiveSlideId(index);
@@ -24,14 +27,6 @@ function DesktopProduct({ dataProductMaterial }: Props) {
       item.scrollTo(options);
     }
   }
-  function handleModalOpen(index: number) {
-    setModalOpen(true);
-    setSelectedImageId(index);
-  }
-  const handleCloseModal = () => {
-    setModalOpen(false);
-  };
-
   return (
     <>
       <div className="flex w-[50%] max-mij:w-[60%] gap-4 max-md:hidden">
@@ -56,15 +51,15 @@ function DesktopProduct({ dataProductMaterial }: Props) {
               />
             </div>
           ))}
-          {modalOpen && (
-            <DesktopZoom
-              onClose={handleCloseModal}
-              selectedImageId={selectedImageId}
-              imageUrls={dataProductMaterial.map(item => `https://api.tiffi.store/${item.img}`)}
-            />
-          )}
         </div>
       </div>
+      {modalOpen && (
+        <ProductZoom
+          onClose={handleModalClose}
+          selectedImageId={selectedImageId}
+          imageUrls={dataProductMaterial.map(item => `https://api.tiffi.store/${item.img}`)}
+        />
+      )}
     </>
   );
 }
