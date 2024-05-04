@@ -4,12 +4,17 @@ import GenderWrapper from "@/components/gender-wrapper/gender-wrapper";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
+import Head from "next/head";
 const GenderPage = () => {
   const push = useRouter().push;
   const gender = useParams()?.gender;
   const isGenderEqualsMan = gender === "man";
   return (
     <>
+      <Head>
+        <link href="/icons/favicon.svg" rel="icon" />
+        <title>TIFFI</title>
+      </Head>
       <div className="px-[252px] max-xl:px-[144px] max-m:px-0 pt-[40px] flex flex-col gap-[40px] ">
         <div className="flex justify-center">
           <h1 className="text-lg max-xl:text-[44px] max-m:text-[36px] max-sm:text-[24px] font-railway">
