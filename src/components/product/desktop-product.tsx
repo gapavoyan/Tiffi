@@ -3,7 +3,6 @@ import SliderMaterialProduct from "../slider/slider-product-material/desktop-pro
 import { useMediaQuery } from "@/hooks/use-media-query";
 import Image from "next/image";
 import { ProductMaterial } from "@/hooks/useProductInfo";
-import DesktopZoom from "./produxt-zoom";
 import ProductZoom from "./produxt-zoom";
 interface Props {
   dataProductMaterial: ProductMaterial[];

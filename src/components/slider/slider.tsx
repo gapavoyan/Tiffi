@@ -36,7 +36,7 @@ export default function Slider({ hoveredSubcategories, onSubCategoryItemClick }:
         ))}
       </Swiper>
       {hoveredSubcategories.length > 3 && (
-        <div className="flex justify-end gap-4 mb-2">
+        <div className="flex justify-end gap-4 mb-2 max-m:hidden">
           <button onClick={slidePrev}>
             <Image src="/icons/left-arrow.svg" width={40} height={40} alt="left-arrow" />
           </button>

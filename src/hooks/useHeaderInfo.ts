@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useToggle } from "./use-toggle";
 import datasubMenu from "@/dataBase/dataSubMenu";
 import { useMediaQuery } from "./use-media-query";
@@ -27,9 +27,15 @@ export function useHeaderInfo() {
   const [submenuData, setSubmenuData] = useState<Category[] | null>(null);
   const cachedInfo = useRef<CacheRef>({ man: null, woman: null });
   const router = useRouter();
-
   const onSubmenuOpen = (gender: Gender) => {
-    setActiveGender(activeGender === gender ? null : gender);
+    if (activeGender === gender) {
+      document.body.style.overflow = "auto";
+      setActiveGender(null);
+      return;
+    }
+    document.body.style.overflow = "hidden";
+    setActiveGender(gender);
+
     if (cachedInfo.current[gender]) {
       setSubmenuData(cachedInfo.current[gender]);
     } else {
@@ -42,7 +48,6 @@ export function useHeaderInfo() {
   };
   const onDrawerToggle = () => {
     const milliseconds = 0.1 * 1.5 * 1000;
-    // document.body.style.overflow = !isDrawerMenuOpen ? "hidden" : "auto";
     if (activeGender) setActiveGender(null);
     setTimeout(() => {
       onToggleDrawer();
@@ -61,6 +66,16 @@ export function useHeaderInfo() {
       onCloseMobileModal();
     }
   });
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setActiveGender(null);
+      document.body.style.overflow = "auto";
+    };
+    router.events.on("routeChangeStart", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+    };
+  }, []);
 
   //routing to category page
   function onSubCategoryItemClick(id: number, parent_id: number | null, gender: Gender) {
