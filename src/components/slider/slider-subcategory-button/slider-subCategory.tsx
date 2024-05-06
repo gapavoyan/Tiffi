@@ -2,14 +2,13 @@ import React, { useMemo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Button from "@/components/buttons/subcategoriesFilter-button";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { T_Brand } from "@/dataBase/dataBrands";
 import { Gender } from "@/hooks/useHeaderInfo";
 
 interface Props {
   activeId?: number | null;
   onChangeSubcategory?: (subcategory: number) => void;
-  onChangeBrandId?: () => void;
   data?: T_Brand[];
   parentId?: number;
   gender?: Gender;
@@ -17,14 +16,12 @@ interface Props {
 
 export default function SliderSubCategory({ activeId, parentId, onChangeSubcategory, data, gender }: Props) {
   const router = useRouter();
-
   const filteredBrands = useMemo(() => {
     if (!gender) return data;
     return data?.filter(brand => brand.gender === gender);
   }, [data, gender]);
 
   const showAllButton = useMemo(() => !!parentId, [parentId]);
-
   const onSubCategoryItemClick = (id: number) => {
     if (onChangeSubcategory) onChangeSubcategory(id);
     if (parentId && gender) router.push(`/category/${parentId}/subcategories/${id}?gender=${gender}`);
@@ -32,7 +29,7 @@ export default function SliderSubCategory({ activeId, parentId, onChangeSubcateg
   };
 
   return (
-    <Swiper slidesPerView={"auto"} spaceBetween={10} className="mySwiper slider-category">
+    <Swiper navigation={true} slidesPerView={"auto"} spaceBetween={10} className="mySwiper slider-category">
       {showAllButton && (
         <SwiperSlide className="swiper-slide">
           <Button onClick={() => onSubCategoryItemClick(parentId!)} isActive={activeId === parentId}>
