@@ -20,7 +20,6 @@ function CategoryComponent({ data }: Props) {
   return (
     <>
       <Head>
-        <link href="/icons/favicon.svg" rel="icon" />
         <title>TIFFI</title>
       </Head>
 

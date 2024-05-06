@@ -10,7 +10,6 @@ function Product() {
   return (
     <>
       <Head>
-        <link href="/icons/favicon.svg" rel="icon" />
         <title>TIFFI</title>
       </Head>
       <div className="px-[252px] max-lg:px-[142px] max-m:px-[73px] max-sm:px-4 flex flex-col gap-10 my-10">

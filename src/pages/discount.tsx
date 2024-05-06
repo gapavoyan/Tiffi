@@ -11,7 +11,6 @@ function DiscountProduct() {
   return (
     <>
       <Head>
-        <link href="/icons/favicon.svg" rel="icon" />
         <title>TIFFI</title>
       </Head>
       <DiscountProductsPart />

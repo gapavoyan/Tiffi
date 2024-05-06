@@ -6,7 +6,6 @@ function contacts() {
   return (
     <div>
       <Head>
-        <link href="/icons/favicon.svg" rel="icon" />
         <title>TIFFI</title>
       </Head>
       <ContactsAndInfo />

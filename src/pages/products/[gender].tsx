@@ -12,7 +12,6 @@ const GenderPage = () => {
   return (
     <>
       <Head>
-        <link href="/icons/favicon.svg" rel="icon" />
         <title>TIFFI</title>
       </Head>
       <div className="px-[252px] max-xl:px-[144px] max-m:px-0 pt-[40px] flex flex-col gap-[40px] ">

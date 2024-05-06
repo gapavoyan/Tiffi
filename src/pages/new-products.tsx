@@ -10,7 +10,6 @@ function NewProducts() {
   return (
     <div>
       <Head>
-        <link href="/icons/favicon.svg" rel="icon" />
         <title>TIFFI</title>
       </Head>
       <NewProduct />

@@ -12,7 +12,6 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <link href="/icons/favicon.svg" rel="icon" />
         <title>TIFFI</title>
       </Head>
       <WelcomePart />
