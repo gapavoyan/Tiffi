@@ -42,7 +42,7 @@ function ProductZoom({ onClose, imageUrls, selectedImageId }: Props) {
         ref={imageContainerRef}
         className="hide-scrollbar h-full w-[950px] max-md:w-screen max-md:h-screen   cursor-move overflow-scroll"
       >
-        <Image src={imageUrls[index]} className="w-full transform max-m:scale-150 max-md:scale-2" alt="product-image" />
+        <img src={imageUrls[index]} className="w-full transform max-m:scale-150 max-md:scale-2" alt="product-image" />
       </div>
       <button onClick={nextSlide} className="max-md:hidden">
         <Image src="/icons/right-arrow.svg" width={40} height={40} alt="right-arrow" />
