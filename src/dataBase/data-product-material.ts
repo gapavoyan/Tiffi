@@ -1,4 +1,4 @@
-import { ProductMaterial } from "@/hooks/useProductInfo";
+import type { ProductMaterial } from "@/hooks/useProductInfo";
 export const dataProductMaterial: ProductMaterial[] = [
   {
     id: 679,

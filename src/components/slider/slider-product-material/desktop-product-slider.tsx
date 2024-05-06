@@ -1,4 +1,4 @@
-import { ProductMaterial } from "@/hooks/useProductInfo";
+import type { ProductMaterial } from "@/hooks/useProductInfo";
 import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/scrollbar";

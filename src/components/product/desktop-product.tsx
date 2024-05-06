@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SliderMaterialProduct from "../slider/slider-product-material/desktop-product-slider";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import Image from "next/image";
-import { ProductMaterial } from "@/hooks/useProductInfo";
+import type { ProductMaterial } from "@/hooks/useProductInfo";
 import ProductZoom from "./produxt-zoom";
 interface Props {
   dataProductMaterial: ProductMaterial[];

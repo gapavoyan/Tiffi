@@ -1,6 +1,6 @@
 import React from "react";
 import ProductCard from "../product-card/product-card";
-import { Product } from "@/dataBase/data-categories";
+import type { Product } from "@/dataBase/data-categories";
 import CollectionButton from "../buttons/collectionButton";
 interface Props {
   title: string;

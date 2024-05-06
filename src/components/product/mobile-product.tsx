@@ -3,7 +3,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { Pagination } from "swiper/modules";
-import { ProductMaterial } from "@/hooks/useProductInfo";
+import type { ProductMaterial } from "@/hooks/useProductInfo";
 import Image from "next/image";
 import ProductZoom from "./produxt-zoom";
 interface Props {
