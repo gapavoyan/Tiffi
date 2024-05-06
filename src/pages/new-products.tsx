@@ -14,7 +14,7 @@ function NewProducts() {
       </Head>
       <NewProduct />
       <div className="flex flex-col gap-[120px] max-lg:gap-[80px] my-[120px] max-lg:my-[80px] max-md:my-[64px]">
-        <GenderNewProducts title="для Женщин" data={dataRecent} onNavigate={() => push("/products/man")} />
+        <GenderNewProducts title="для Женщин" data={dataRecent} onNavigate={() => push("/products/woman")} />
         <GenderNewProducts title="для Мужчин" data={dataRecent} onNavigate={() => push("/products/man")} />
       </div>
     </div>

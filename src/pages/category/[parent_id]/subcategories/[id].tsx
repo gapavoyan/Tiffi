@@ -27,7 +27,7 @@ function CategoryComponent({ data }: Props) {
         <div>
           <h2 className="text-lg max-md:text-[36px] max-sm:text-[24px] font-railway">{data.title}</h2>
         </div>
-        <div className="w-full px-[200px] max-lg:px-[250px] max-m:px-[100px] max-md:px-[50px]">
+        <div className="w-full">
           <SliderSubCategory
             activeId={activeId}
             data={data.subcategories}

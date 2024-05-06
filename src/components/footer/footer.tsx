@@ -8,7 +8,7 @@ function Footer() {
         <div className="flex justify-center items-center gap-[48px]">
           <div className="h-[1px] bg-white w-full"></div>
           <div>
-            <Image src="/icons/logoWhite.svg" width={300} height={60} alt="logoTiffi" />
+            <Image src="/icons/logoWhite.svg" width={300} height={60} alt="logo-Tiffi" />
           </div>
           <div className="h-[1px] bg-white w-full"></div>
         </div>
@@ -45,33 +45,37 @@ function Footer() {
             </div>
             <div>
               <ul className="text-white">
-                <li>Новинки</li>
-                <li>Скидки</li>
-                <li>Контакты</li>
+                <li>
+                  <Link href="/new-products">Новинки</Link>
+                </li>
+                <li>
+                  <Link href="/discount">Скидки</Link>
+                </li>
+                <li>
+                  <Link href="/contacts">Контакты</Link>
+                </li>
               </ul>
             </div>
           </div>
           <div className="flex flex-col gap-4">
             <p className="text-white ">Мы в социальных сетях</p>
             <div className="flex gap-8 ">
-              <div className="px-3 py-3 border-white border-2 rounded-full cursor-pointer">
+              <div className="px-3 py-3 relative border-white border-2 rounded-full cursor-pointer">
                 <Link href="https://www.instagram.com/tiffi_nvrsk/?igshid=NTc4MTIwNjQ2YQ%3D%3D" target="blank">
                   <Image src="/icons/instagram.svg" width={30} height={30} className="" alt="Instagram Icon" />
                 </Link>
               </div>
-              <div>
-                <div className="px-3 py-3 border-white border-2 rounded-full cursor-pointer">
-                  <Link href="https://www.facebook.com/italshoesnvr" target="blank">
-                    <Image src="/icons/facebook.svg" width={30} height={30} className="" alt="Facebook Icon" />
-                  </Link>
-                </div>
+
+              <div className="px-3 py-3 border-white border-2 rounded-full cursor-pointer">
+                <Link href="https://www.facebook.com/italshoesnvr" target="blank">
+                  <Image src="/icons/facebook.svg" width={30} height={30} className="" alt="Facebook Icon" />
+                </Link>
               </div>
-              <div>
-                <div className="px-3 py-3 border-white border-2 rounded-full cursor-pointer">
-                  <Link href="https://t.me/tiffinvrsk" target="blank">
-                    <Image src="/icons/send.svg" width={30} height={30} className="" alt="Telegram Icon" />
-                  </Link>
-                </div>
+
+              <div className="px-3 py-3 border-white border-2 rounded-full cursor-pointer">
+                <Link href="https://t.me/tiffinvrsk" target="blank">
+                  <Image src="/icons/send.svg" width={30} height={30} className="" alt="Telegram Icon" />
+                </Link>
               </div>
             </div>
           </div>
