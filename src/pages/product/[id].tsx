@@ -6,6 +6,7 @@ import Head from "next/head";
 function Product() {
   const { filteredProduct, dataProductMaterial, handleModalClose, handleModalOpen, modalOpen, selectedImageId } =
     useProductInfo();
+
   return (
     <>
       <Head>

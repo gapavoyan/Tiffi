@@ -3,6 +3,7 @@ import React from "react";
 import useCategoryInfo from "@/hooks/useCategoryInfo";
 import CategoryProduct from "@/components/category-product/category-product";
 import Head from "next/head";
+
 function Brands() {
   const { dataBrands, currentPage, totalPages, onPageChange, loading, products, activeBrandId, gender } = useCategoryInfo();
 

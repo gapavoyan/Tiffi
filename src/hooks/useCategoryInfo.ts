@@ -18,28 +18,31 @@ export interface Product {
   date: string | null;
   img: string;
 }
+
 const ITEMS_PER_PAGE = 5;
+
 function useCategoryInfo() {
-  const router = useRouter();
-  const { parent_id: category_id, gender: gender, id: subcategory_id, id: brandId, query } = router.query;
+  const { parent_id: category_id, gender: gender, id: subcategory_id, id: brandId, query } = useRouter().query;
+
   const [activeId, setActiveSubcategoryId] = useState<number>(+subcategory_id!);
-  const cachedInfo = useRef<Record<number, Record<number, Product[]>>>({});
-  const [products, setProducts] = useState<Product[] | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [products, setProducts] = useState<Product[] | null>(null);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState(false);
   const [activeBrandId, setActiveBrandId] = useState<number | null>(null);
+
+  const cachedInfo = useRef<Record<number, Record<number, Product[]>>>({});
+
+  const onChangeSubcategory = (id: number) => setActiveSubcategoryId(id);
+  const onPageChange = (page: number) => setCurrentPage(page);
+
   useEffect(() => {
     if (brandId) setActiveBrandId(+brandId);
   }, [brandId]);
 
-  const onPageChange = (page: number) => setCurrentPage(page);
-
   useEffect(() => {
     setCurrentPage(1);
   }, [activeId, activeBrandId]);
-
-  //category-product
 
   //cached products
   useEffect(() => {
@@ -80,9 +83,7 @@ function useCategoryInfo() {
         setLoading(false);
       }, 1000);
     }
-  }, [activeId, currentPage, category_id, activeBrandId, brandId, query]);
-
-  const onChangeSubcategory = (id: number) => setActiveSubcategoryId(id);
+  }, [activeId, currentPage, category_id, activeBrandId, query, brandId]);
 
   return {
     subcategories: dataCategory.subcategories,
@@ -97,7 +98,6 @@ function useCategoryInfo() {
     totalPages,
     onPageChange,
     dataBrands,
-
     activeBrandId
   };
 }
