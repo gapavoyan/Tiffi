@@ -6,7 +6,6 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <link href="/icons/favicon.svg" rel="icon" />
-
       <body>
         <Main />
         <NextScript />

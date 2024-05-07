@@ -23,14 +23,13 @@ export default function Slider({ hoveredSubcategories, onSubCategoryItemClick }:
     <>
       <Swiper slidesPerView={3} ref={swiperRef} modules={[Pagination]} className="mySwiper divHeaderSlider">
         {hoveredSubcategories?.map(el => (
-          <SwiperSlide key={`subcategory-slider${el.id}`}>
+          <SwiperSlide
+            key={`subcategory-slider${el.id}`}
+            onClick={() => onSubCategoryItemClick(el.id, el.parent_id!, el.gender)}
+            className="cursor-pointer"
+          >
             <div>
-              <button
-                className="text-white max-m:text-sm"
-                onClick={() => onSubCategoryItemClick(el.id, el.parent_id!, el.gender)}
-              >
-                {el.title}
-              </button>
+              <button className="text-white max-m:text-sm">{el.title}</button>
             </div>
           </SwiperSlide>
         ))}
