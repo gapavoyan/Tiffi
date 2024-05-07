@@ -13,6 +13,12 @@ function SearchInput() {
       }
     }
   }
+  function onSearchWithClick() {
+    if (inputRef.current?.value) {
+      router.push(`/search?query=${inputRef.current.value}`);
+      inputRef.current.value = "";
+    }
+  }
   return (
     <div className="w-full">
       <div className="relative w-full ">
@@ -24,7 +30,9 @@ function SearchInput() {
           onKeyDown={onSearchWithEnter}
           style={{ width: "100%" }}
         />
-        <i className="absolute top-3 right-4 text-customBlack fas fa-search"></i>
+        <button onClick={onSearchWithClick}>
+          <i className="absolute top-3 right-4 text-customBlack fas fa-search"></i>
+        </button>
       </div>
     </div>
   );

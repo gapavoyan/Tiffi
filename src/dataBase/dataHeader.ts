@@ -6,11 +6,13 @@ const dataHeader = [
   },
   {
     id: 2,
-    title: "для Женщин"
+    title: "для Женщин",
+    gender: "woman"
   },
   {
     id: 3,
-    title: "для Мужчин"
+    title: "для Мужчин",
+    gender: "man"
   },
   {
     id: 4,

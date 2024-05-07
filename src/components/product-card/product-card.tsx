@@ -6,12 +6,13 @@ import { useRouter } from "next/router";
 interface Props {
   product: Product;
 }
+
 function ProductCard({ product }: Props) {
   const router = useRouter();
+  const { img, price, title, discount, id } = product;
   function onProductClick(id: number) {
     router.push(`/product/${id}`);
   }
-  const { img, price, title, discount, id } = product;
   return (
     <div className="relative flex flex-col items-start gap-6 w-full cursor-pointer" onClick={() => onProductClick(id)}>
       <div className="w-full  relative aspect-[4/4]">

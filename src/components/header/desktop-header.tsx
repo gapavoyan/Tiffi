@@ -5,6 +5,7 @@ import { Category, Gender } from "@/hooks/useHeaderInfo";
 import { useState } from "react";
 import datasubMenu from "../../dataBase/dataSubMenu";
 import { dataBrands } from "../../dataBase/dataBrands";
+import Button from "../buttons/subcategoriesFilter-button";
 interface Props {
   submenuData: Category[] | null;
   isOpen: boolean;
@@ -69,24 +70,20 @@ export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemCl
                 <Image src="/icons/Vector.svg" width={10} height={10} alt="arrow-image" className={showBrands ? "" : "hidden"} />
               </div>
             </div>
-            <div className={`w-full flex-col gap-4 overflow-hidden ${selectedId !== null && !showBrands ? "flex" : "hidden"}`}>
+            <div className={`w-full flex-col gap-4 overflow-hidden  ${selectedId !== null && !showBrands ? "flex" : "hidden"}`}>
               <Slider hoveredSubcategories={hoveredSubcategories} onSubCategoryItemClick={onSubCategoryItemClick} />
             </div>
             <div
-              className={`w-full flex-wrap mt-[20px] content-start gap-4  ${showBrands ? "flex" : "hidden"}`}
+              className={`w-full flex-wrap mt-[20px] custom-scrollbar content-start gap-4  ${showBrands ? "flex" : "hidden"}`}
               style={{ maxHeight: "300px", overflowY: "auto" }}
             >
               {showBrands &&
                 dataBrands
                   .filter(brand => brand.gender === brandGender)
                   .map(brand => (
-                    <button
-                      onClick={() => onBrandsItemClick(brand.id, brand.gender)}
-                      className="px-8 py-3 w-max h-max border border-solid border-customBlack hover:bg-customBlack hover:text-white font-railway"
-                      key={`brands-header${brand.id}`}
-                    >
+                    <Button onClick={() => onBrandsItemClick(brand.id, brand.gender)} key={`brands-header${brand.id}`}>
                       {brand.title}
-                    </button>
+                    </Button>
                   ))}
             </div>
           </div>

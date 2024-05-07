@@ -4,6 +4,7 @@ import CategoryProduct from "@/components/category-product/category-product";
 import { dataCategory } from "@/dataBase/data-category";
 import useCategoryInfo from "@/hooks/useCategoryInfo";
 import { Category } from "@/hooks/useHeaderInfo";
+import Head from "next/head";
 
 interface Props {
   data: {
@@ -17,28 +18,34 @@ function CategoryComponent({ data }: Props) {
     useCategoryInfo();
 
   return (
-    <div className="px-[252px] gap-10 max-sm:gap-6 mt-10  max-sm:mt-6 mb-10  max-lg:px-[142px] max-md:px-[73px] max-sm:px-[16px] flex flex-col items-center">
-      <div>
-        <h2 className="text-lg max-md:text-[36px] max-sm:text-[24px] font-railway">{data.title}</h2>
-      </div>
-      <div className="w-full px-[200px] max-lg:px-[250px] max-m:px-[100px] max-md:px-[50px]">
-        <SliderSubCategory
-          activeId={activeId}
-          data={data.subcategories}
-          onChangeSubcategory={onChangeSubcategory}
-          parentId={parentId}
-          gender={gender}
+    <>
+      <Head>
+        <title>TIFFI</title>
+      </Head>
+
+      <div className="px-[252px] gap-10 max-sm:gap-6 mt-10  max-sm:mt-6 mb-10  max-lg:px-[142px] max-md:px-[73px] max-sm:px-[16px] flex flex-col items-center">
+        <div>
+          <h2 className="text-lg max-md:text-[36px] max-sm:text-[24px] font-railway">{data.title}</h2>
+        </div>
+        <div className="w-full">
+          <SliderSubCategory
+            activeId={activeId}
+            data={data.subcategories}
+            onChangeSubcategory={onChangeSubcategory}
+            parentId={parentId}
+            gender={gender}
+          />
+        </div>
+        <CategoryProduct
+          products={products}
+          loading={loading}
+          activeSubcategoryId={activeId}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
         />
       </div>
-      <CategoryProduct
-        products={products}
-        loading={loading}
-        activeSubcategoryId={activeId}
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={onPageChange}
-      />
-    </div>
+    </>
   );
 }
 export function getServerSideProps() {
