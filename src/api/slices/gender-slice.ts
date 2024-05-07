@@ -15,6 +15,9 @@ export default class GenderSlice extends ApiSlice {
   static async GetDiscountProducts(gender: Gender) {
     return this.request<{ items: Product }>(`/products/discounts?gender=${gender}`);
   }
+  static async GetNewProducts(gender: Gender) {
+    return this.request<{ items: Product }>(`/products/recent?gender=${gender}`);
+  }
   //   static async GetProductsByGender(gender: Gender) {
   //     return this.request<{ items: Product[] }>(`/products/by-gender?gender=${gender}`);
   //   }

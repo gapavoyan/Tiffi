@@ -4,7 +4,7 @@ import React from "react";
 function DiscountProductsPart() {
   return (
     <div className=" bg-white px-[252px] mt-[40px] max-mij:px-[200px]  max-lg:px-[142px] max-m:px-[100px] max-md:px-[70px] max-sm:px-[16px] flex flex-col  gap-10 max-sm:gap-6 max-sm:mt-6">
-      <div className="flex flex-col  items-center">
+      <div className="flex flex-col gap-6  items-center">
         <h1 className="text-[50px] max-mij:text-[44px]  max-md:text-[36px] max-sm:text-[24px] font-lora">Скидки</h1>
         <div className="flex gap-4 w-full max-sm:flex-col">
           <div className="w-[50%] max-sm:w-full">

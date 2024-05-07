@@ -21,8 +21,8 @@ function DiscountProduct({ men, women }: Props) {
       </Head>
       <DiscountProductsPart />
       <div className="flex flex-col gap-[120px] max-lg:gap-[80px] my-[120px] max-lg:my-[80px] max-md:my-[64px]">
-        <GenderNewProducts title="для Женщин" data={men} onNavigate={() => push("/products/woman")} />
-        <GenderNewProducts title="для Мужчин" data={women} onNavigate={() => push("/products/man")} />
+        <GenderNewProducts title="для Женщин" data={women} onNavigate={() => push("/products/man")} />
+        <GenderNewProducts title="для Мужчин" data={men} onNavigate={() => push("/products/woman")} />
       </div>
     </>
   );
