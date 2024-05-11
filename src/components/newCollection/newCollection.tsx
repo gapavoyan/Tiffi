@@ -1,5 +1,4 @@
 import React from "react";
-import { dataNewCollection } from "../../dataBase/data-newcollection";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import CollectionButton from "../buttons/collectionButton";
