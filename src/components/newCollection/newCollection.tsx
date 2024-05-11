@@ -4,8 +4,11 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import CollectionButton from "../buttons/collectionButton";
 import { Url } from "next/dist/shared/lib/router/router";
-
-function NewCollection() {
+import { Product } from "@/hooks/useCategoryInfo";
+interface Props {
+  newCollection: Product[];
+}
+function NewCollection({ newCollection }: Props) {
   const router = useRouter();
   const push = (route: Url) => router.push(route);
 
@@ -15,13 +18,19 @@ function NewCollection() {
         <h1 className="text-[50px] max-mij:text-[44px]  max-md:text-[36px] max-sm:text-[24px] font-railway">Новая коллекция</h1>
       </div>
       <div className="flex justify-between gap-4 max-smImage:justify-center">
-        <div key={dataNewCollection[0].id} className="max-m:hidden">
+        <div key={newCollection[0].id} className="max-m:hidden">
           <div className="flex flex-col items-start">
             <div className="relative w-[23vw] max-xl:w-[20vw] h-[600px] max-xl:h-[500px]">
-              <Image src={dataNewCollection[0].img} fill alt="sliderImage" objectFit="cover" />
+              <Image
+                src={`https://api.tiffi.store/${newCollection[0].img}`}
+                fill
+                alt="sliderImage"
+                className="w-full"
+                objectFit="cover"
+              />
             </div>
-            <span className="text-customBlack max-md:text-sm font-railway">{dataNewCollection[0].description}</span>
-            <span className="text-customGreen font-railway">{dataNewCollection[0].price}</span>
+            <span className="text-customBlack max-md:text-sm font-railway">{newCollection[0].title}</span>
+            <span className="text-customGreen font-railway">{newCollection[0].price}</span>
           </div>
         </div>
         <div className=" flex flex-col items-start w-[800px] max-xl:h-[700px]  max-xl:w-[440px] max-m:w-[450px] max-md:w-[300px] max-sm:w-[350px] ">
@@ -34,13 +43,13 @@ function NewCollection() {
             поможет выразить себя.
           </p>
         </div>
-        <div key={dataNewCollection[1].id}>
+        <div key={newCollection[1].id}>
           <div className="flex flex-col items-start max-sm:hidden">
             <div className="relative w-[23vw] max-xl:w-[20vw] max-m:w-[35vw] h-[600px] max-xl:h-[500px] max-md:h-[350px] ">
-              <Image src={dataNewCollection[1].img} fill alt="liderImage" objectFit="cover" />
+              <Image src={`https://api.tiffi.store/${newCollection[1].img}`} fill alt="liderImage" objectFit="cover" />
             </div>
-            <span className="text-customBlack max-md:text-sm font-railway">{dataNewCollection[1].description}</span>
-            <span className="text-customGreen font-railway">{dataNewCollection[1].price}</span>
+            <span className="text-customBlack max-md:text-sm font-railway">{newCollection[1].title}</span>
+            <span className="text-customGreen font-railway">{newCollection[1].price}</span>
           </div>
         </div>
       </div>

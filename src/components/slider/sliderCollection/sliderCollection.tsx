@@ -1,9 +1,11 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { genderData } from "@/dataBase/data-gender";
 import ProductCard from "@/components/product-card/product-card";
-
-function SliderCollection() {
+import { Product } from "@/hooks/useCategoryInfo";
+interface Props {
+  data: Product[];
+}
+function SliderCollection({ data }: Props) {
   return (
     <div className="collection-swipeDiv">
       <Swiper
@@ -32,7 +34,7 @@ function SliderCollection() {
         }}
         className="mySwiper divSwipeSlide"
       >
-        {genderData.map(item => (
+        {data.map(item => (
           <SwiperSlide key={`gender-slider${item.id}`}>
             <ProductCard product={item} />
           </SwiperSlide>

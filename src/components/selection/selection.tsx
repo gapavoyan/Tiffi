@@ -1,6 +1,10 @@
 import React from "react";
 import SliderCollection from "../slider/sliderCollection/sliderCollection";
-function Selection() {
+import { Product } from "@/hooks/useCategoryInfo";
+interface Props {
+  compilation: Product[];
+}
+function Selection({ compilation }: Props) {
   return (
     <div className="py-[120px] pl-[372px] max-mij:pl-[142px] max-md:pl-[73px] max-sm:pl-[16px] flex flex-col  gap-[64px]">
       <div className="pr-[252px] max-mij:pr-[178px4] max-md:pr-[73px] max-sm:pr-[16px]  flex justify-between items-center">
@@ -11,7 +15,7 @@ function Selection() {
         </div>
       </div>
       <div className="bg-white">
-        <SliderCollection />
+        <SliderCollection data={compilation} />
       </div>
     </div>
   );
