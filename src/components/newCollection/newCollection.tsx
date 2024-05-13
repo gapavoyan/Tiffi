@@ -53,7 +53,7 @@ function NewCollection({ newCollection }: Props) {
         </div>
       </div>
       <div className="flex justify-end max-sm:pr-[25px]">
-        <CollectionButton onClick={() => push("/")} />
+        <CollectionButton onClick={() => push("/new-products")} />
       </div>
     </div>
   );

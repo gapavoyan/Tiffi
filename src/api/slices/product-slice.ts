@@ -18,4 +18,7 @@ export default class ProductSlice extends ApiSlice {
   static async GetProductCompilation() {
     return this.request<{ items: Product }>(`/products/compilation`);
   }
+  static async GetSearchProduct(query: string) {
+    return this.request<{ items: Product[]; count: number }>(`/products/search?page=1&rowsPerPage=6&query=${query}`);
+  }
 }

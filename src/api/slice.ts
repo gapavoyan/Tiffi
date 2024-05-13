@@ -46,6 +46,7 @@ export default class ApiSlice {
     if (this.defaultAuth || options?.auth) {
       headers.Authorization = `Bearer ${token}`; // for most of requests;
     }
+
     // for most of requests;
     if (options?.headers) headers = { ...headers, ...options.headers };
     try {

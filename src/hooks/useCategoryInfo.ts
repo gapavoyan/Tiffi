@@ -19,7 +19,7 @@ export interface Product {
   img: string;
 }
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 6;
 
 function useCategoryInfo() {
   const { parent_id: category_id, gender: gender, id: subcategory_id, id: brandId, query } = useRouter().query;
