@@ -1,7 +1,6 @@
 import Api from "@/api";
 import GenderNewProducts from "@/components/new-products/gender-new-products";
 import NewProduct from "@/components/new-products/new-product-top-part";
-import { dataRecent } from "@/dataBase/data-recent";
 import { Product } from "@/hooks/useCategoryInfo";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
