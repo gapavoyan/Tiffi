@@ -21,14 +21,16 @@ export default class GenderSlice extends ApiSlice {
   static async GetProductsByGender(gender: Gender) {
     return this.request<{ items: Product }>(`/products/recent?gender=${gender}`);
   }
-
+  static async GetCategoriesByGender(gender: string) {
+    return this.request<{ items: Category[] }>(`/categories/tree?gender=${gender}`);
+  }
+  static async GetProductsByCategory(category_id: number) {
+    return this.request<{ items: Product[] }>(`/products/limited?category_id=${category_id}`);
+  }
   //   static async GetProductsByGender(gender: Gender) {
   //     return this.request<{ items: Product[] }>(`/products/by-gender?gender=${gender}`);
   //   }
   //   static async GetProductsByCategory(category_id: number) {
   //     return this.request<{ items: Product[] }>(`/products/limited?category_id=${category_id}`);
-  //   }
-  //   static async GetCategoriesByGender(gender: string) {
-  //     return this.request<{ items: Category[] }>(`/categories/tree?gender=${gender}`);
   //   }
 }

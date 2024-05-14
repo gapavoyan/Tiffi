@@ -13,6 +13,7 @@ export interface Category {
   gender: Gender;
   img: null | string;
   subcategories: Category[];
+  data?: Category[];
 }
 
 export interface CacheRef {

@@ -10,6 +10,7 @@ interface Props {
 function ProductCard({ product }: Props) {
   const router = useRouter();
   const { img, price, title, discount, id } = product;
+
   function onProductClick(id: number) {
     router.push(`/product/${id}`);
   }
