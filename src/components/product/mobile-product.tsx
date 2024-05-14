@@ -3,9 +3,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { Pagination } from "swiper/modules";
-import type { ProductMaterial } from "@/hooks/useProductInfo";
 import Image from "next/image";
 import ProductZoom from "./produxt-zoom";
+import { ProductMaterial } from "@/hooks/useProductInfo";
 interface Props {
   dataProductMaterial: ProductMaterial[];
   handleModalOpen: (index: number) => void;

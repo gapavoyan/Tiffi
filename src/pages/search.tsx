@@ -12,9 +12,7 @@ interface Props {
 }
 
 function Search({ products, pagesCount }: Props) {
-  const { onPageChange, totalPages, currentPage, loading } = useCategoryInfo();
-
-  console.log(pagesCount);
+  const { onPageChange, currentPage, loading } = useCategoryInfo();
 
   return (
     <div className="px-[252px]  gap-10 max-sm:gap-6 mt-10  max-sm:mt-6 mb-10  max-lg:px-[142px] max-md:px-[73px] max-sm:px-[16px] flex flex-col items-center">

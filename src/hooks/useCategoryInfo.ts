@@ -59,7 +59,7 @@ function useCategoryInfo() {
             .filter(p =>
               activeId === +category_id! && activeBrandId === +brandId!
                 ? p
-                : p.category_id === activeId || p.brand_id === activeBrandId || p.title === query
+                : p.category_id === activeId || p.brand_id === activeBrandId
             )
             .slice(firstPostIndex, lastPostIndex);
           setProducts(dataInCurrentPage);
@@ -73,7 +73,7 @@ function useCategoryInfo() {
         const filterData = dataProducts.filter(p =>
           activeId === +category_id! && activeBrandId === +brandId!
             ? p
-            : p.category_id === activeId || p.brand_id === activeBrandId || p.title === query
+            : p.category_id === activeId || p.brand_id === activeBrandId
         );
         const productsPages = Math.ceil(filterData.length / ITEMS_PER_PAGE);
         const currentProducts = filterData?.slice(firstPostIndex, lastPostIndex) || [];
