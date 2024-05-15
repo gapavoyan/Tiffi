@@ -31,10 +31,4 @@ export default class GenderSlice extends ApiSlice {
   static async GetBrandsByGender(gender: Gender) {
     return this.request<{ items: T_Brand[] }>(`/brands?gender=${gender}`);
   }
-  //   static async GetProductsByGender(gender: Gender) {
-  //     return this.request<{ items: Product[] }>(`/products/by-gender?gender=${gender}`);
-  //   }
-  //   static async GetProductsByCategory(category_id: number) {
-  //     return this.request<{ items: Product[] }>(`/products/limited?category_id=${category_id}`);
-  //   }
 }

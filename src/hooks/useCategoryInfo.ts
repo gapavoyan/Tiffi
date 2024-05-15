@@ -23,15 +23,13 @@ export interface Product {
 const ITEMS_PER_PAGE = 6;
 
 function useCategoryInfo() {
-  const { parent_id: category_id, gender: gender, id: subcategory_id, id: brandId, query } = useRouter().query;
-
+  const { parent_id: category_id, gender: gender, id: subcategory_id, id: brandId } = useRouter().query;
   const [activeId, setActiveSubcategoryId] = useState<number>(+subcategory_id!);
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState<Product[] | null>(null);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState(false);
   const [activeBrandId, setActiveBrandId] = useState<number | null>(null);
-
   const cachedInfo = useRef<Record<number, Record<number, Product[]>>>({});
 
   const onChangeSubcategory = (id: number) => setActiveSubcategoryId(id);
@@ -84,7 +82,7 @@ function useCategoryInfo() {
         setLoading(false);
       }, 1000);
     }
-  }, [activeId, currentPage, category_id, activeBrandId, query, brandId]);
+  }, [activeId, currentPage, category_id, activeBrandId, brandId]);
 
   return {
     subcategories: dataCategory.subcategories,

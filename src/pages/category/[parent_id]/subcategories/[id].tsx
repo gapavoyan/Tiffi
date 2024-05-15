@@ -1,19 +1,27 @@
 import React from "react";
 import SliderSubCategory from "@/components/slider/slider-subcategory-button/slider-subCategory";
 import CategoryProduct from "@/components/category-product/category-product";
-import { dataCategory } from "@/dataBase/data-category";
 import useCategoryInfo from "@/hooks/useCategoryInfo";
-import { Category } from "@/hooks/useHeaderInfo";
+import { Category, Gender } from "@/hooks/useHeaderInfo";
 import Head from "next/head";
+import Api from "@/api";
+import { GetServerSideProps } from "next";
+import { CategoryItem } from "@/api/slices/category-slice";
 
+interface Params {
+  gender: Gender;
+  parent_id: number;
+  id: number;
+}
 interface Props {
   data: {
     title: string;
     subcategories: Category[];
   };
+  subcategories: Category[];
 }
 
-function CategoryComponent({ data }: Props) {
+function CategoryComponent({ data, subcategories }: Props) {
   const { products, loading, parentId, gender, activeId, onChangeSubcategory, currentPage, totalPages, onPageChange } =
     useCategoryInfo();
 
@@ -30,7 +38,7 @@ function CategoryComponent({ data }: Props) {
         <div className="w-full">
           <SliderSubCategory
             activeId={activeId}
-            data={data.subcategories}
+            data={subcategories}
             onChangeSubcategory={onChangeSubcategory}
             parentId={parentId}
             gender={gender}
@@ -48,11 +56,20 @@ function CategoryComponent({ data }: Props) {
     </>
   );
 }
-export function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { parent_id } = query;
+
+  const [response, subcategoriesResponse] = await Promise.all([
+    Api.category.GetCategoriesById(+parent_id!),
+    Api.category.GetSubcategoriesParentId(+parent_id!)
+  ]);
+
   return {
     props: {
-      data: dataCategory
+      data: response.data.item,
+      subcategories: subcategoriesResponse.data.items
     }
   };
-}
+};
+
 export default CategoryComponent;

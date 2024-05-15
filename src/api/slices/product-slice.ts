@@ -26,4 +26,7 @@ export default class ProductSlice extends ApiSlice {
   static async GetProductMaterial(product_id: number) {
     return this.request<{ items: Product }>(`/products/${product_id}`);
   }
+  static async GetCategoryProduct(product_id: number) {
+    return this.request<{ items: Product }>(`/products/${product_id}`);
+  }
 }

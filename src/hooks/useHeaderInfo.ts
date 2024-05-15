@@ -92,7 +92,7 @@ export function useHeaderInfo() {
     return () => {
       router.events.off("routeChangeStart", handleRouteChange);
     };
-  }, []);
+  }, [router.events]);
 
   //routing to category page
   function onSubCategoryItemClick(id: number, parent_id: number | null, gender: Gender) {
