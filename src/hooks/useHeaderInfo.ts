@@ -1,10 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useToggle } from "./use-toggle";
-import datasubMenu from "@/dataBase/dataSubMenu";
 import { useMediaQuery } from "./use-media-query";
 import useWindowResize from "./useWindowResize";
 import { useRouter } from "next/router";
+import Api from "@/api";
 export type Gender = "man" | "woman";
+export interface T_Brand {
+  id: number;
+  title: string;
+  gender: Gender;
+}
 
 export interface Category {
   id: number;
@@ -26,9 +31,19 @@ export function useHeaderInfo() {
   const [loading, setLoading] = useState(false);
   const [activeGender, setActiveGender] = useState<Gender | null>(null);
   const [submenuData, setSubmenuData] = useState<Category[] | null>(null);
+  const [brandsData, setBrandsData] = useState<T_Brand[]>([]);
   const cachedInfo = useRef<CacheRef>({ man: null, woman: null });
   const router = useRouter();
-  const onSubmenuOpen = (gender: Gender) => {
+
+  const onSubmenuOpen = async (gender: Gender) => {
+    const categoriesPromise = Api.gender.GetCategoriesByGender(gender);
+    const brandsPromise = Api.gender.GetBrandsByGender(gender);
+
+    const [categoriesResponse, brandsResponse] = await Promise.all([categoriesPromise, brandsPromise]);
+
+    const { data: categoriesData } = categoriesResponse;
+    const { data: brandsData } = brandsResponse;
+    setBrandsData(brandsData?.items ?? []);
     if (activeGender === gender) {
       document.body.style.overflow = "auto";
       setActiveGender(null);
@@ -41,8 +56,9 @@ export function useHeaderInfo() {
       setSubmenuData(cachedInfo.current[gender]);
     } else {
       setLoading(true);
-      const submenuData = datasubMenu.filter(item => item.gender === gender);
-      setSubmenuData(submenuData);
+
+      // const submenuData = datasubMenu.filter(item => item.gender === gender);
+      setSubmenuData(categoriesData.items);
       cachedInfo.current[gender] = submenuData;
       setLoading(false);
     }
@@ -94,6 +110,7 @@ export function useHeaderInfo() {
     }
     setActiveGender(null);
   }
+
   return {
     onSubmenuOpen,
     submenuData,
@@ -105,6 +122,7 @@ export function useHeaderInfo() {
     onCloseMobileModal,
     setActiveGender,
     onSubCategoryItemClick,
-    onBrandsItemClick
+    onBrandsItemClick,
+    brandsData
   };
 }

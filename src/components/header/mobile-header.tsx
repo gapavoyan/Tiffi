@@ -3,16 +3,17 @@ import Image from "next/image";
 import Slider from "../slider/slider";
 import { Category, Gender } from "@/hooks/useHeaderInfo";
 import AccordionContent from "../drawer/accordion";
-import { dataBrands } from "../../dataBase/dataBrands";
+import { T_Brand } from "@/hooks/useHeaderInfo";
 import BrandsButton from "../brands/brandsButton";
 interface Props {
   submenuData: Category[];
   onClose: () => void;
   onSubCategoryItemClick: (id: number, parent_id: number | null, gender: Gender) => void;
   onBrandsItemClick: (id: number, gender: Gender) => void;
+  brandsData: T_Brand[];
 }
 
-export default function MobileHeader({ submenuData, onClose, onSubCategoryItemClick, onBrandsItemClick }: Props) {
+export default function MobileHeader({ submenuData, onClose, onSubCategoryItemClick, onBrandsItemClick, brandsData }: Props) {
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<null | number>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const onTitleClick = (id: number) => {
@@ -25,7 +26,7 @@ export default function MobileHeader({ submenuData, onClose, onSubCategoryItemCl
     gender: submenuData[0].gender,
     img: null,
     parent_id: null,
-    subcategories: dataBrands
+    subcategories: brandsData
       .filter(brand => brand.gender === submenuData[0].gender)
       .map(item => ({
         id: item.id,

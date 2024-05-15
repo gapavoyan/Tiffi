@@ -3,16 +3,18 @@ import AccordionContent from "../drawer/accordion";
 import Slider from "../slider/slider";
 import { Category, Gender } from "@/hooks/useHeaderInfo";
 import { useState } from "react";
-import datasubMenu from "../../dataBase/dataSubMenu";
-import { dataBrands } from "../../dataBase/dataBrands";
+import { T_Brand } from "@/hooks/useHeaderInfo";
+
 import Button from "../buttons/subcategoriesFilter-button";
+
 interface Props {
   submenuData: Category[] | null;
   isOpen: boolean;
   onSubCategoryItemClick: (id: number, parent_id: number | null, gender: Gender) => void;
   onBrandsItemClick: (id: number, gender: Gender) => void;
+  brandsData: T_Brand[];
 }
-export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemClick, onBrandsItemClick }: Props) {
+export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemClick, onBrandsItemClick, brandsData }: Props) {
   const [activeArrow, setActiveArrow] = useState<number | null>(null);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [hoveredSubcategories, setHoveredSubcategories] = useState<Category[]>([]);
@@ -24,7 +26,7 @@ export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemCl
     setSelectedId(id);
     const hoveredEl = submenuData?.find(el => el.id === id);
     if (hoveredEl) {
-      const hoveredSubcategoriesData = datasubMenu.find(item => item.id === hoveredEl.id)?.subcategories || [];
+      const hoveredSubcategoriesData = submenuData!.find(item => item.id === hoveredEl.id)?.subcategories || [];
       setHoveredSubcategories(hoveredSubcategoriesData);
     }
     setShowBrands(false);
@@ -78,7 +80,7 @@ export default function DesktopHeader({ isOpen, submenuData, onSubCategoryItemCl
               style={{ maxHeight: "300px", overflowY: "auto" }}
             >
               {showBrands &&
-                dataBrands
+                brandsData
                   .filter(brand => brand.gender === brandGender)
                   .map(brand => (
                     <Button onClick={() => onBrandsItemClick(brand.id, brand.gender)} key={`brands-header${brand.id}`}>

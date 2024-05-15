@@ -39,6 +39,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   try {
     const products = await Api.product.GetSearchProduct(searchItem as string);
+
     return {
       props: {
         products: products.data.items,

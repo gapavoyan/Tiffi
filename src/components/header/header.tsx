@@ -8,6 +8,7 @@ import AccordionContent from "../drawer/accordion";
 import { useHeaderInfo } from "@/hooks/useHeaderInfo";
 import DesktopHeader from "./desktop-header";
 import MobileHeader from "./mobile-header";
+
 function Header() {
   const {
     onSubmenuOpen,
@@ -18,7 +19,8 @@ function Header() {
     isMobile,
     onCloseMobileModal,
     onSubCategoryItemClick,
-    onBrandsItemClick
+    onBrandsItemClick,
+    brandsData
   } = useHeaderInfo();
 
   return (
@@ -51,12 +53,14 @@ function Header() {
             submenuData={submenuData}
             onSubCategoryItemClick={onSubCategoryItemClick}
             onBrandsItemClick={onBrandsItemClick}
+            brandsData={brandsData}
           />
         </div>
         <div className="hidden max-m:block h-full">
           <div>
             {isOpen && isMobile && submenuData && (
               <MobileHeader
+                brandsData={brandsData}
                 submenuData={submenuData}
                 onClose={onCloseMobileModal}
                 onSubCategoryItemClick={onSubCategoryItemClick}

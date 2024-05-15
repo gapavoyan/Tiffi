@@ -1,6 +1,7 @@
 import { Gender } from "@/hooks/useHeaderInfo";
 import ApiSlice from "../slice";
 import { Product } from "@/hooks/useCategoryInfo";
+import { T_Brand } from "@/hooks/useHeaderInfo";
 
 export interface Category {
   id: number;
@@ -21,11 +22,14 @@ export default class GenderSlice extends ApiSlice {
   static async GetProductsByGender(gender: Gender) {
     return this.request<{ items: Product }>(`/products/recent?gender=${gender}`);
   }
-  static async GetCategoriesByGender(gender: string) {
+  static async GetCategoriesByGender(gender: Gender) {
     return this.request<{ items: Category[] }>(`/categories/tree?gender=${gender}`);
   }
   static async GetProductsByCategory(category_id: number) {
     return this.request<{ items: Product[] }>(`/products/limited?category_id=${category_id}`);
+  }
+  static async GetBrandsByGender(gender: Gender) {
+    return this.request<{ items: T_Brand[] }>(`/brands?gender=${gender}`);
   }
   //   static async GetProductsByGender(gender: Gender) {
   //     return this.request<{ items: Product[] }>(`/products/by-gender?gender=${gender}`);

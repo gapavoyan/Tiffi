@@ -6,6 +6,7 @@ import { dataCategory } from "@/dataBase/data-category";
 import { dataBrands } from "@/dataBase/dataBrands";
 
 export interface Product {
+  data: any;
   id: number;
   title: string;
   description: string;

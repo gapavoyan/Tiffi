@@ -37,7 +37,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
     Api.gender.GetProductsByGender("woman"),
     Api.gender.GetNewProducts("man"),
     Api.product.GetProductNewCollection(),
-    Api.product.GetProductCompilation()
+    Api.product.GetProductCompilation(),
+    Api.gender.GetCategoriesByGender("man")
   ])
     .then(([{ data: women }, { data: men }, { data: newCollection }, { data: compilation }]) => {
       return {

@@ -31,8 +31,7 @@ type UseApi<T> = {
 };
 
 export default class ApiSlice {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion,
-  static baseURL = process.env.HOST!;
+  static baseURL = process.env.NEXT_PUBLIC_API;
   static defaultAuth = true;
   static async request<T = null>(
     url = "",

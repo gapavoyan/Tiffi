@@ -4,6 +4,7 @@ import Footer from "./footer/footer";
 interface LayoutProps {
   children: ReactNode;
 }
+
 function Layouts({ children }: LayoutProps) {
   return (
     <>
