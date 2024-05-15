@@ -17,7 +17,7 @@ function ProductCard({ product }: Props) {
   return (
     <div className="relative flex flex-col items-start gap-6 w-full cursor-pointer" onClick={() => onProductClick(id)}>
       <div className="w-full  relative aspect-[4/4]">
-        <Image src={`https://api.tiffi.store/${img}`} fill alt="collectionImage" objectFit="cover" />
+        <Image src={`https://api.tiffi.store/${img}`} fill sizes="100" alt="collectionImage" className="object-cover" />
       </div>
       <div className="flex flex-col items-start">
         <span className="text-customBlack max-md:text-sm font-railway">{title}</span>

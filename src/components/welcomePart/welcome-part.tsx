@@ -19,7 +19,7 @@ function WelcomePart() {
         </div>
       </div>
       <div className="w-[50%] max-md:w-full relative max-md:h-[400px]">
-        <Image src="/images/welcome-part.png" fill alt="Image-welcome-part" objectFit="cover" />
+        <Image src="/images/welcome-part.png" fill sizes="100" alt="Image-welcome-part" className="object-cover" />
       </div>
     </div>
   );

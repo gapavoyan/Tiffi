@@ -14,7 +14,7 @@ function DiscountProductsPart() {
           </div>
           <div className="w-[50%] max-sm:w-full flex flex-col gap-10">
             <div className="w-full  relative h-[400px] max-sm:h-[200px] ">
-              <Image src="/images/discount2.png" fill alt="Image-welcome-part" objectFit="cover" />
+              <Image src="/images/discount2.png" fill sizes="100" alt="Image-welcome-part" className="object-cover" />
             </div>
           </div>
         </div>

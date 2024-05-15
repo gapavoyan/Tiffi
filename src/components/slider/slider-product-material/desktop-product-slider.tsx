@@ -39,7 +39,7 @@ export default function SliderMaterialProduct({ dataProductMaterial, onClick, ac
           {dataProductMaterial.map(item => (
             <SwiperSlide key={item.id} className="cursor-pointer">
               <div className=" w-[200px] h-[180px]" onClick={() => onClick(item.id)}>
-                <Image src={`https://api.tiffi.store/${item.img}`} fill alt="" objectFit="cover" />
+                <Image src={`https://api.tiffi.store/${item.img}`} fill sizes="100" alt="itemImg" className="object-cover" />
                 {activeId === item.id && <div className="absolute top-0 z-30 h-full w-full bg-[#1B1B1B99]" />}
               </div>
             </SwiperSlide>

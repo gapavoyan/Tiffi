@@ -44,9 +44,8 @@ function DesktopProduct({ dataProductMaterial, handleModalOpen, handleModalClose
                 src={`https://api.tiffi.store/${item.img}`}
                 width={200}
                 height={200}
-                className="w-full h-full"
+                className="w-full h-full object-cover"
                 alt="item-img"
-                objectFit="cover"
               />
             </div>
           ))}
