@@ -4,7 +4,7 @@ import SwiperCore from "swiper";
 import "swiper/css";
 import Button from "@/components/buttons/subcategoriesFilter-button";
 import { useRouter } from "next/router";
-import { T_Brand } from "@/dataBase/dataBrands";
+import type { T_Brand } from "@/hooks/useHeaderInfo";
 import { Gender } from "@/hooks/useHeaderInfo";
 import { Navigation } from "swiper/modules";
 

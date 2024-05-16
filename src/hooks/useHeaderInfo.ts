@@ -5,6 +5,7 @@ import useWindowResize from "./useWindowResize";
 import { useRouter } from "next/router";
 import Api from "@/api";
 export type Gender = "man" | "woman";
+
 export interface T_Brand {
   id: number;
   title: string;
@@ -43,6 +44,7 @@ export function useHeaderInfo() {
 
     const { data: categoriesData } = categoriesResponse;
     const { data: brandsData } = brandsResponse;
+
     setBrandsData(brandsData?.items ?? []);
     if (activeGender === gender) {
       document.body.style.overflow = "auto";
@@ -56,8 +58,6 @@ export function useHeaderInfo() {
       setSubmenuData(cachedInfo.current[gender]);
     } else {
       setLoading(true);
-
-      // const submenuData = datasubMenu.filter(item => item.gender === gender);
       setSubmenuData(categoriesData.items);
       cachedInfo.current[gender] = submenuData;
       setLoading(false);

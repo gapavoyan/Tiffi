@@ -1,9 +1,10 @@
-import { Gender } from "@/hooks/useHeaderInfo";
+import { Gender, T_Brand } from "@/hooks/useHeaderInfo";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { dataProducts } from "@/dataBase/data-product";
 import { dataCategory } from "@/dataBase/data-category";
-import { dataBrands } from "@/dataBase/dataBrands";
+
+import Api from "@/api";
 
 export interface Product {
   data: any;
@@ -24,6 +25,7 @@ const ITEMS_PER_PAGE = 6;
 
 function useCategoryInfo() {
   const { parent_id: category_id, gender: gender, id: subcategory_id, id: brandId } = useRouter().query;
+
   const [activeId, setActiveSubcategoryId] = useState<number>(+subcategory_id!);
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState<Product[] | null>(null);
@@ -34,7 +36,6 @@ function useCategoryInfo() {
 
   const onChangeSubcategory = (id: number) => setActiveSubcategoryId(id);
   const onPageChange = (page: number) => setCurrentPage(page);
-
   useEffect(() => {
     if (brandId) setActiveBrandId(+brandId);
   }, [brandId]);
@@ -96,7 +97,6 @@ function useCategoryInfo() {
     currentPage,
     totalPages,
     onPageChange,
-    dataBrands,
     activeBrandId
   };
 }

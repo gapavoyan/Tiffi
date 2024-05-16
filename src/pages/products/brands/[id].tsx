@@ -3,9 +3,14 @@ import React from "react";
 import useCategoryInfo from "@/hooks/useCategoryInfo";
 import CategoryProduct from "@/components/category-product/category-product";
 import Head from "next/head";
-
-function Brands() {
-  const { dataBrands, currentPage, totalPages, onPageChange, loading, products, activeBrandId, gender } = useCategoryInfo();
+import { GetServerSideProps } from "next";
+import Api from "@/api";
+import { Gender, T_Brand } from "@/hooks/useHeaderInfo";
+interface Props {
+  dataBrands: T_Brand[];
+}
+function Brands({ dataBrands }: Props) {
+  const { currentPage, totalPages, onPageChange, loading, products, activeBrandId, gender } = useCategoryInfo();
 
   return (
     <>
@@ -31,4 +36,14 @@ function Brands() {
     </>
   );
 }
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { gender }: { gender?: Gender } = query;
+  const response = Api.gender.GetBrandsByGender(gender!);
+  const dataBrands = (await response).data.items;
+  return {
+    props: {
+      dataBrands: dataBrands
+    }
+  };
+};
 export default Brands;
