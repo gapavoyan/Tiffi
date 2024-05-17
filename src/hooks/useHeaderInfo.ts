@@ -37,15 +37,6 @@ export function useHeaderInfo() {
   const router = useRouter();
 
   const onSubmenuOpen = async (gender: Gender) => {
-    const categoriesPromise = Api.gender.GetCategoriesByGender(gender);
-    const brandsPromise = Api.gender.GetBrandsByGender(gender);
-
-    const [categoriesResponse, brandsResponse] = await Promise.all([categoriesPromise, brandsPromise]);
-
-    const { data: categoriesData } = categoriesResponse;
-    const { data: brandsData } = brandsResponse;
-
-    setBrandsData(brandsData?.items ?? []);
     if (activeGender === gender) {
       document.body.style.overflow = "auto";
       setActiveGender(null);
@@ -58,6 +49,14 @@ export function useHeaderInfo() {
       setSubmenuData(cachedInfo.current[gender]);
     } else {
       setLoading(true);
+      const categoriesPromise = Api.gender.GetCategoriesByGender(gender);
+      const brandsPromise = Api.gender.GetBrandsByGender(gender);
+      const [categoriesResponse, brandsResponse] = await Promise.all([categoriesPromise, brandsPromise]);
+
+      const { data: categoriesData } = categoriesResponse;
+      const { data: brandsData } = brandsResponse;
+
+      setBrandsData(brandsData?.items ?? []);
       setSubmenuData(categoriesData.items);
       cachedInfo.current[gender] = submenuData;
       setLoading(false);

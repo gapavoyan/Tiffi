@@ -13,6 +13,7 @@ function Header() {
   const {
     onSubmenuOpen,
     onDrawerToggle,
+    loading,
     isDrawerMenuOpen,
     submenuData,
     isOpen,
@@ -49,6 +50,7 @@ function Header() {
         </div>
         <div className="max-m:hidden bg-white">
           <DesktopHeader
+            loading={loading}
             isOpen={isOpen}
             submenuData={submenuData}
             onSubCategoryItemClick={onSubCategoryItemClick}
@@ -60,6 +62,7 @@ function Header() {
           <div>
             {isOpen && isMobile && submenuData && (
               <MobileHeader
+                loading={loading}
                 brandsData={brandsData}
                 submenuData={submenuData}
                 onClose={onCloseMobileModal}

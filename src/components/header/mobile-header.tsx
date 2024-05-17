@@ -5,15 +5,24 @@ import { Category, Gender } from "@/hooks/useHeaderInfo";
 import AccordionContent from "../drawer/accordion";
 import { T_Brand } from "@/hooks/useHeaderInfo";
 import BrandsButton from "../brands/brandsButton";
+import Loading from "../loading/loading";
 interface Props {
   submenuData: Category[];
   onClose: () => void;
   onSubCategoryItemClick: (id: number, parent_id: number | null, gender: Gender) => void;
   onBrandsItemClick: (id: number, gender: Gender) => void;
   brandsData: T_Brand[];
+  loading: boolean;
 }
 
-export default function MobileHeader({ submenuData, onClose, onSubCategoryItemClick, onBrandsItemClick, brandsData }: Props) {
+export default function MobileHeader({
+  submenuData,
+  onClose,
+  onSubCategoryItemClick,
+  onBrandsItemClick,
+  brandsData,
+  loading
+}: Props) {
   const [activeSubcategoryId, setActiveSubcategoryId] = useState<null | number>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const onTitleClick = (id: number) => {
@@ -51,55 +60,61 @@ export default function MobileHeader({ submenuData, onClose, onSubCategoryItemCl
               maxHeight: scrollRef.current?.scrollHeight
             }}
           >
-            <div>
-              <button onClick={onClose}>
-                <Image src="/icons/modalArrow.svg" width={25} height={25} alt="Close" />
-              </button>
-            </div>
-            <div>
-              {fullSubmenuData?.map(el => (
-                <div
-                  key={`full-submenuData${el.id}`}
-                  className="flex gap-8 w-full overflow-auto"
-                  onClick={() => onTitleClick(el.id)}
-                >
-                  <div className="w-full overflow-auto">
-                    <div className="flex justify-between overflow-auto my-2 border-b border-customBlack py-4 px-4 w-[90vw]">
-                      <p className="font-railway">{el.title}</p>
-                      <Image
-                        src="/icons/arrow_down.svg"
-                        width={10}
-                        height={10}
-                        alt="arrow-down"
-                        className={`${activeSubcategoryId === el.id && el.subcategories && el.subcategories.length > 0 ? "" : "hidden"} mr-4`}
-                      />
-                    </div>
-                    <div>
-                      <AccordionContent isOpen={activeSubcategoryId === el.id}>
-                        <div className="w-full flex">
-                          {el.id === -1 ? (
-                            <div className="flex flex-wrap">
-                              <BrandsButton subcategory={el.subcategories} onBrandsItemClick={onBrandsItemClick} />
-                            </div>
-                          ) : (
-                            <div>
-                              {el?.subcategories.length > 0 && (
-                                <div className="w-[90vw] h-[200px]">
-                                  <Slider
-                                    hoveredSubcategories={el.subcategories}
-                                    onSubCategoryItemClick={onSubCategoryItemClick}
-                                  ></Slider>
+            {loading ? (
+              <Loading />
+            ) : (
+              <div>
+                <div>
+                  <button onClick={onClose}>
+                    <Image src="/icons/modalArrow.svg" width={25} height={25} alt="Close" />
+                  </button>
+                </div>
+                <div>
+                  {fullSubmenuData?.map(el => (
+                    <div
+                      key={`full-submenuData${el.id}`}
+                      className="flex gap-8 w-full overflow-auto"
+                      onClick={() => onTitleClick(el.id)}
+                    >
+                      <div className="w-full overflow-auto">
+                        <div className="flex justify-between overflow-auto my-2 border-b border-customBlack py-4 px-4 w-[90vw]">
+                          <p className="font-railway">{el.title}</p>
+                          <Image
+                            src="/icons/arrow_down.svg"
+                            width={10}
+                            height={10}
+                            alt="arrow-down"
+                            className={`${activeSubcategoryId === el.id && el.subcategories && el.subcategories.length > 0 ? "" : "hidden"} mr-4`}
+                          />
+                        </div>
+                        <div>
+                          <AccordionContent isOpen={activeSubcategoryId === el.id}>
+                            <div className="w-full flex">
+                              {el.id === -1 ? (
+                                <div className="flex flex-wrap">
+                                  <BrandsButton subcategory={el.subcategories} onBrandsItemClick={onBrandsItemClick} />
+                                </div>
+                              ) : (
+                                <div>
+                                  {el?.subcategories.length > 0 && (
+                                    <div className="w-[90vw] h-[200px]">
+                                      <Slider
+                                        hoveredSubcategories={el.subcategories}
+                                        onSubCategoryItemClick={onSubCategoryItemClick}
+                                      ></Slider>
+                                    </div>
+                                  )}
                                 </div>
                               )}
                             </div>
-                          )}
+                          </AccordionContent>
                         </div>
-                      </AccordionContent>
+                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
