@@ -48,12 +48,12 @@ export default function DesktopHeader({
 
   return (
     <div className="px-[252px]">
-      <div className="w-full">
-        <AccordionContent isOpen={isOpen}>
-          <div className="flex gap-8">
-            {loading ? (
-              <Loading />
-            ) : (
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="w-full">
+          <AccordionContent isOpen={isOpen}>
+            <div className="flex gap-8">
               <div>
                 {submenuData?.map(el => (
                   <div
@@ -90,27 +90,27 @@ export default function DesktopHeader({
                   />
                 </div>
               </div>
-            )}
 
-            <div className={`w-full flex-col gap-4 overflow-hidden  ${selectedId !== null && !showBrands ? "flex" : "hidden"}`}>
-              <Slider hoveredSubcategories={hoveredSubcategories} onSubCategoryItemClick={onSubCategoryItemClick} />
+              <div className={`w-full flex-col gap-4 overflow-hidden  ${selectedId !== null && !showBrands ? "flex" : "hidden"}`}>
+                <Slider hoveredSubcategories={hoveredSubcategories} onSubCategoryItemClick={onSubCategoryItemClick} />
+              </div>
+              <div
+                className={`w-full flex-wrap mt-[20px] custom-scrollbar content-start gap-4  ${showBrands ? "flex" : "hidden"}`}
+                style={{ maxHeight: "300px", overflowY: "auto" }}
+              >
+                {showBrands &&
+                  brandsData
+                    .filter(brand => brand.gender === brandGender)
+                    .map(brand => (
+                      <Button onClick={() => onBrandsItemClick(brand.id, brand.gender)} key={`brands-header${brand.id}`}>
+                        {brand.title}
+                      </Button>
+                    ))}
+              </div>
             </div>
-            <div
-              className={`w-full flex-wrap mt-[20px] custom-scrollbar content-start gap-4  ${showBrands ? "flex" : "hidden"}`}
-              style={{ maxHeight: "300px", overflowY: "auto" }}
-            >
-              {showBrands &&
-                brandsData
-                  .filter(brand => brand.gender === brandGender)
-                  .map(brand => (
-                    <Button onClick={() => onBrandsItemClick(brand.id, brand.gender)} key={`brands-header${brand.id}`}>
-                      {brand.title}
-                    </Button>
-                  ))}
-            </div>
-          </div>
-        </AccordionContent>
-      </div>
+          </AccordionContent>
+        </div>
+      )}
     </div>
   );
 }
