@@ -1,10 +1,11 @@
 import React from "react";
 import CategoryProduct from "@/components/category-product/category-product";
-import useCategoryInfo, { Product } from "@/hooks/useCategoryInfo";
+import useCategoryInfo from "@/hooks/useCategoryInfo";
 import SearchInput from "@/components/search/searchInput";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Api from "@/api";
+import Product from "./product/[id]";
 
 interface Props {
   products: Product[];
@@ -36,23 +37,14 @@ function Search({ products, pagesCount }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { query: searchItem } = query;
+  const products = await Api.product.GetSearchProduct(searchItem as string);
 
-  try {
-    const products = await Api.product.GetSearchProduct(searchItem as string);
-
-    return {
-      props: {
-        products: products.data.items,
-        pagesCount: Math.ceil(products.data.count)
-      }
-    };
-  } catch (error) {
-    return {
-      props: {
-        error: "An error occurred while fetching data."
-      }
-    };
-  }
+  return {
+    props: {
+      products: products.data.items,
+      pagesCount: Math.ceil(products.data.count)
+    }
+  };
 };
 
 export default Search;

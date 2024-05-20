@@ -1,11 +1,11 @@
 import Api from "@/api";
 import DiscountProductsPart from "@/components/discount/discount-product-top-part";
 import GenderNewProducts from "@/components/new-products/gender-new-products";
-import { Product } from "@/hooks/useCategoryInfo";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
+import Product from "./product/[id]";
 interface Props {
   error?: string;
   women: Product[];

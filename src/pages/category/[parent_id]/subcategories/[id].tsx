@@ -2,17 +2,11 @@ import React from "react";
 import SliderSubCategory from "@/components/slider/slider-subcategory-button/slider-subCategory";
 import CategoryProduct from "@/components/category-product/category-product";
 import useCategoryInfo from "@/hooks/useCategoryInfo";
-import { Category, Gender } from "@/hooks/useHeaderInfo";
+import { Category } from "@/hooks/useHeaderInfo";
 import Head from "next/head";
 import Api from "@/api";
 import { GetServerSideProps } from "next";
-import { CategoryItem } from "@/api/slices/category-slice";
 
-interface Params {
-  gender: Gender;
-  parent_id: number;
-  id: number;
-}
 interface Props {
   data: {
     title: string;

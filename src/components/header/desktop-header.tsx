@@ -48,11 +48,11 @@ export default function DesktopHeader({
 
   return (
     <div className="px-[252px]">
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className="w-full">
-          <AccordionContent isOpen={isOpen}>
+      <div className="w-full">
+        <AccordionContent isOpen={isOpen}>
+          {loading ? (
+            <Loading />
+          ) : (
             <div className="flex gap-8">
               <div>
                 {submenuData?.map(el => (
@@ -108,9 +108,9 @@ export default function DesktopHeader({
                     ))}
               </div>
             </div>
-          </AccordionContent>
-        </div>
-      )}
+          )}
+        </AccordionContent>
+      </div>
     </div>
   );
 }

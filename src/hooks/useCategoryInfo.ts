@@ -1,9 +1,8 @@
-import { Gender, T_Brand } from "@/hooks/useHeaderInfo";
+import { Gender } from "@/hooks/useHeaderInfo";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { dataProducts } from "@/dataBase/data-product";
 import { dataCategory } from "@/dataBase/data-category";
-
 import Api from "@/api";
 
 export interface Product {
@@ -33,7 +32,6 @@ function useCategoryInfo() {
   const [loading, setLoading] = useState(false);
   const [activeBrandId, setActiveBrandId] = useState<number | null>(null);
   const cachedInfo = useRef<Record<number, Record<number, Product[]>>>({});
-
   const onChangeSubcategory = (id: number) => setActiveSubcategoryId(id);
   const onPageChange = (page: number) => setCurrentPage(page);
   useEffect(() => {
@@ -45,45 +43,48 @@ function useCategoryInfo() {
   }, [activeId, activeBrandId]);
 
   //cached products
+
   useEffect(() => {
     const lastPostIndex = currentPage * ITEMS_PER_PAGE;
     const firstPostIndex = lastPostIndex - ITEMS_PER_PAGE;
-    if (activeId && activeBrandId! in cachedInfo.current) {
-      if (currentPage in cachedInfo.current[activeId && activeBrandId!]) {
-        const data = cachedInfo.current[activeId && activeBrandId!][currentPage];
-        setProducts(data);
-      } else {
-        setLoading(true);
-        setTimeout(() => {
-          const dataInCurrentPage = dataProducts
-            .filter(p =>
-              activeId === +category_id! && activeBrandId === +brandId!
-                ? p
-                : p.category_id === activeId || p.brand_id === activeBrandId
-            )
-            .slice(firstPostIndex, lastPostIndex);
-          setProducts(dataInCurrentPage);
-          cachedInfo.current[activeId && activeBrandId!][currentPage] = dataInCurrentPage;
-          setLoading(false);
-        }, 1000);
-      }
-    } else {
-      setLoading(true);
-      setTimeout(() => {
-        const filterData = dataProducts.filter(p =>
-          activeId === +category_id! && activeBrandId === +brandId!
-            ? p
-            : p.category_id === activeId || p.brand_id === activeBrandId
-        );
-        const productsPages = Math.ceil(filterData.length / ITEMS_PER_PAGE);
-        const currentProducts = filterData?.slice(firstPostIndex, lastPostIndex) || [];
-        setTotalPages(productsPages);
-        setProducts(currentProducts);
-        cachedInfo.current[activeId && activeBrandId!] = { 1: currentProducts };
-        setLoading(false);
-      }, 1000);
+
+    setLoading(true);
+
+    if (activeBrandId && cachedInfo.current[activeBrandId]?.[currentPage]) {
+      setProducts(cachedInfo.current[activeBrandId][currentPage]);
+      setLoading(false);
+      return;
     }
-  }, [activeId, currentPage, category_id, activeBrandId, brandId]);
+
+    Api.product
+      .GetBrandProduct(+brandId)
+      .then(({ data }) => {
+        const items = data.items;
+
+        const productsPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+        setTotalPages(productsPages);
+
+        const currentProducts = items.slice(firstPostIndex, lastPostIndex);
+        setProducts(currentProducts);
+
+        if (!cachedInfo.current[activeBrandId]) {
+          cachedInfo.current[activeBrandId] = {};
+        }
+        cachedInfo.current[activeBrandId][currentPage] = currentProducts;
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [activeBrandId, currentPage, brandId]);
+
+  useEffect(() => {
+    (async () => {
+      if (brandId) {
+        const { data, meta } = await Api.product.GetBrandProduct(+brandId!);
+      }
+      // console.log(data, 123);
+    })();
+  }, [brandId, currentPage]);
 
   return {
     subcategories: dataCategory.subcategories,

@@ -1,6 +1,7 @@
 import { Gender } from "@/hooks/useHeaderInfo";
 import ApiSlice from "../slice";
-import { Product } from "@/hooks/useCategoryInfo";
+import {} from "@/hooks/useCategoryInfo";
+import { Product } from "@/dataBase/data-categories";
 
 export interface Category {
   id: number;
@@ -18,7 +19,9 @@ export default class ProductSlice extends ApiSlice {
     return this.request<{ items: Product }>(`/products/compilation`);
   }
   static async GetSearchProduct(query: string) {
-    return this.request<{ items: Product[]; count: number }>(`/products/search?page=1&rowsPerPage=6&query=${query}`);
+    return this.request<{
+      items: Product[];
+    }>(`/products/search?page=1&rowsPerPage=6&query=${query}`);
   }
   static async GetProductInfo(product_id: number) {
     return this.request<{ item: Product }>(`/products/info/${product_id}`);
@@ -26,7 +29,10 @@ export default class ProductSlice extends ApiSlice {
   static async GetProductMaterial(product_id: number) {
     return this.request<{ items: Product }>(`/products/${product_id}`);
   }
-  static async GetCategoryProduct(product_id: number) {
-    return this.request<{ items: Product }>(`/products/${product_id}`);
+  static async GetCategoryProduct(category_id: number) {
+    return this.request<{ items: Product }>(`/products/all?page=1&rowsPerPage=1&category_id=${category_id}`);
+  }
+  static async GetBrandProduct(brand_id: number) {
+    return this.request<{ items: Product[] }>(`/products/brands/${brand_id}?page=1&rowsPerPage=1`);
   }
 }

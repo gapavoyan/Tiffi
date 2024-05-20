@@ -1,7 +1,7 @@
 import { Gender } from "@/hooks/useHeaderInfo";
 import ApiSlice from "../slice";
-import { Product } from "@/hooks/useCategoryInfo";
 import { T_Brand } from "@/hooks/useHeaderInfo";
+import { Product } from "@/dataBase/data-categories";
 
 export interface Category {
   id: number;

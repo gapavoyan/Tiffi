@@ -1,11 +1,12 @@
 import React from "react";
 import ProductCard from "../product-card/product-card";
 import Pagination from "../pagination/pagination";
-import { Product } from "@/hooks/useCategoryInfo";
+import { Product } from "@/dataBase/data-categories";
+import Loading from "../loading/loading";
 
 interface Props {
   products: Product[] | null;
-  loading: boolean;
+  loading?: boolean;
   activeSubcategoryId?: number | null;
   totalPages: number;
   currentPage: number;
@@ -17,9 +18,9 @@ function CategoryProduct({ products, loading, currentPage, totalPages, onPageCha
     <>
       <div className="grid grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-6 mt-[80px] max-sm:mt-10 w-full">
         {loading ? (
-          <div>Loading...</div>
+          <Loading />
         ) : loading ? (
-          <div>Loading...</div>
+          <Loading />
         ) : products?.length ? (
           products.map(item => (
             <div key={`category-product${item.id}`}>
