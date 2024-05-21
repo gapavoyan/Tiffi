@@ -17,6 +17,7 @@ function Pagination({ totalPages, currentPage, onPageChange }: Props) {
   function onNextButtonClick() {
     onPageChange(currentPage + 1);
   }
+
   return (
     <div>
       {totalPages > 1 && (

@@ -1,12 +1,6 @@
+import { Product } from "@/hooks/useCategoryInfo";
 import { Gender } from "@/hooks/useHeaderInfo";
-export interface Product {
-  id: number;
-  title: string;
-  description: string;
-  discount: number;
-  price: number | string;
-  img: string;
-}
+
 interface Props {
   id: number;
   title: string;

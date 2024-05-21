@@ -1,7 +1,7 @@
 import React from "react";
 import ProductCard from "../product-card/product-card";
 import Pagination from "../pagination/pagination";
-import { Product } from "@/dataBase/data-categories";
+import { Product } from "@/hooks/useCategoryInfo";
 import Loading from "../loading/loading";
 
 interface Props {

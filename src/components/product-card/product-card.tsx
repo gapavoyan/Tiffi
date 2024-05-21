@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Product } from "@/dataBase/data-categories";
+import { Product } from "@/hooks/useCategoryInfo";
 import { useRouter } from "next/router";
 
 interface Props {

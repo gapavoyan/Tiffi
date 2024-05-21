@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CategoryProduct from "@/components/category-product/category-product";
 import useCategoryInfo from "@/hooks/useCategoryInfo";
 import SearchInput from "@/components/search/searchInput";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Api from "@/api";
-import Product from "./product/[id]";
+import { Product } from "@/hooks/useCategoryInfo";
 
 interface Props {
-  products: Product[];
+  products: Product[] | null;
   pagesCount: number;
 }
 
@@ -37,12 +37,13 @@ function Search({ products, pagesCount }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { query: searchItem } = query;
+
   const products = await Api.product.GetSearchProduct(searchItem as string);
 
   return {
     props: {
       products: products.data.items,
-      pagesCount: Math.ceil(products.data.count)
+      pagesCount: Math.ceil(products.data.count as number)
     }
   };
 };

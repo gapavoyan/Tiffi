@@ -1,16 +1,16 @@
 import SliderSubCategory from "@/components/slider/slider-subcategory-button/slider-subCategory";
 import React from "react";
-import useCategoryInfo from "@/hooks/useCategoryInfo";
 import CategoryProduct from "@/components/category-product/category-product";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Api from "@/api";
 import { Gender, T_Brand } from "@/hooks/useHeaderInfo";
+import useBrandInfo from "@/hooks/useBrandInfo";
 interface Props {
   dataBrands: T_Brand[];
 }
 function Brands({ dataBrands }: Props) {
-  const { currentPage, totalPages, onPageChange, loading, products, activeBrandId, gender } = useCategoryInfo();
+  const { currentPage, totalPages, onPageChange, loading, products, activeBrandId, gender } = useBrandInfo();
 
   return (
     <>

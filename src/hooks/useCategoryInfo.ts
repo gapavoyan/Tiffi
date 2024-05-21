@@ -4,8 +4,11 @@ import { useRouter } from "next/router";
 import { dataProducts } from "@/dataBase/data-product";
 import { dataCategory } from "@/dataBase/data-category";
 import Api from "@/api";
+import { log } from "console";
 
 export interface Product {
+  slice(firstPostIndex: number, lastPostIndex: number): unknown;
+  length: number;
   data: any;
   id: number;
   title: string;
@@ -20,71 +23,74 @@ export interface Product {
   img: string;
 }
 
+type Cache = Record<number, Record<number, Product[]>>;
+
 const ITEMS_PER_PAGE = 6;
 
 function useCategoryInfo() {
-  const { parent_id: category_id, gender: gender, id: subcategory_id, id: brandId } = useRouter().query;
+  const { parent_id: category_id, gender: gender, id: sub_id } = useRouter().query;
 
-  const [activeId, setActiveSubcategoryId] = useState<number>(+subcategory_id!);
+  const subcategory_id = +(sub_id as string);
+
+  const [activeId, setActiveSubcategoryId] = useState<number>(subcategory_id);
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState<Product[] | null>(null);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState(false);
-  const [activeBrandId, setActiveBrandId] = useState<number | null>(null);
-  const cachedInfo = useRef<Record<number, Record<number, Product[]>>>({});
+  const cachedInfo = useRef<Cache>({});
+
   const onChangeSubcategory = (id: number) => setActiveSubcategoryId(id);
+
   const onPageChange = (page: number) => setCurrentPage(page);
-  useEffect(() => {
-    if (brandId) setActiveBrandId(+brandId);
-  }, [brandId]);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [activeId, activeBrandId]);
+  }, [activeId]);
 
-  //cached products
+  useEffect(() => {
+    setActiveSubcategoryId(subcategory_id);
+  }, [subcategory_id]);
 
   useEffect(() => {
     const lastPostIndex = currentPage * ITEMS_PER_PAGE;
     const firstPostIndex = lastPostIndex - ITEMS_PER_PAGE;
 
-    setLoading(true);
+    const fetchData = async () => {
+      setLoading(true);
 
-    if (activeBrandId && cachedInfo.current[activeBrandId]?.[currentPage]) {
-      setProducts(cachedInfo.current[activeBrandId][currentPage]);
-      setLoading(false);
-      return;
-    }
+      if (subcategory_id && cachedInfo.current[subcategory_id]?.[currentPage]) {
+        setProducts(cachedInfo.current[subcategory_id][currentPage]);
+        setLoading(false);
+        return;
+      }
 
-    Api.product
-      .GetBrandProduct(+brandId)
-      .then(({ data }) => {
-        const items = data.items;
+      if (subcategory_id) {
+        let res;
+        if (+subcategory_id !== +category_id!) {
+          res = await Api.product.GetProductBySubcategory(subcategory_id);
+        } else {
+          res = await Api.product.GetAllCategoryProduct(+category_id!);
+        }
 
-        const productsPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+        const categoryProducts = res.data.items;
+
+        const productsPages = Math.ceil(categoryProducts.length / ITEMS_PER_PAGE);
         setTotalPages(productsPages);
 
-        const currentProducts = items.slice(firstPostIndex, lastPostIndex);
+        const currentProducts = categoryProducts.slice(firstPostIndex, lastPostIndex);
         setProducts(currentProducts);
 
-        if (!cachedInfo.current[activeBrandId]) {
-          cachedInfo.current[activeBrandId] = {};
+        // Cached data
+        if (!cachedInfo.current[subcategory_id!]) {
+          cachedInfo.current[subcategory_id] = {};
         }
-        cachedInfo.current[activeBrandId][currentPage] = currentProducts;
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [activeBrandId, currentPage, brandId]);
-
-  useEffect(() => {
-    (async () => {
-      if (brandId) {
-        const { data, meta } = await Api.product.GetBrandProduct(+brandId!);
+        cachedInfo.current[subcategory_id][currentPage] = currentProducts;
       }
-      // console.log(data, 123);
-    })();
-  }, [brandId, currentPage]);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [activeId, currentPage, subcategory_id]);
 
   return {
     subcategories: dataCategory.subcategories,
@@ -97,8 +103,7 @@ function useCategoryInfo() {
     //for pagination
     currentPage,
     totalPages,
-    onPageChange,
-    activeBrandId
+    onPageChange
   };
 }
 
