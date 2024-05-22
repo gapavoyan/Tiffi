@@ -11,15 +11,14 @@ interface Props {
   totalPages: number;
   currentPage: number;
   onPageChange: (pageNumber: number) => void;
+  shouldChangeUrl: boolean;
 }
 
-function CategoryProduct({ products, loading, currentPage, totalPages, onPageChange }: Props) {
+function CategoryProduct({ products, loading, currentPage, totalPages, onPageChange, shouldChangeUrl }: Props) {
   return (
     <>
       <div className="grid grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-6 mt-[80px] max-sm:mt-10 w-full">
         {loading ? (
-          <Loading />
-        ) : loading ? (
           <Loading />
         ) : products?.length ? (
           products.map(item => (
@@ -34,7 +33,12 @@ function CategoryProduct({ products, loading, currentPage, totalPages, onPageCha
         )}
       </div>
       <div>
-        <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={currentPage} />
+        <Pagination
+          totalPages={totalPages}
+          shouldChangeUrl={shouldChangeUrl}
+          onPageChange={onPageChange}
+          currentPage={currentPage}
+        />
       </div>
     </>
   );

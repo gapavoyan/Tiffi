@@ -4,10 +4,10 @@ import CategoryProduct from "@/components/category-product/category-product";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import Api from "@/api";
-import { Gender, T_Brand } from "@/hooks/useHeaderInfo";
+import { Gender, I_Brand } from "@/hooks/useHeaderInfo";
 import useBrandInfo from "@/hooks/useBrandInfo";
 interface Props {
-  dataBrands: T_Brand[];
+  dataBrands: I_Brand[];
 }
 function Brands({ dataBrands }: Props) {
   const { currentPage, totalPages, onPageChange, loading, products, activeBrandId, gender } = useBrandInfo();
@@ -25,6 +25,7 @@ function Brands({ dataBrands }: Props) {
           <SliderSubCategory data={dataBrands} activeId={activeBrandId} gender={gender} />
         </div>
         <CategoryProduct
+          shouldChangeUrl={false}
           products={products}
           loading={loading}
           activeSubcategoryId={activeBrandId}

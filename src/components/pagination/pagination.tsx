@@ -1,23 +1,38 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 interface Props {
   totalPages: number;
   onPageChange: (pageNumber: number) => void;
   currentPage: number;
+  shouldChangeUrl: boolean;
 }
 
-function Pagination({ totalPages, currentPage, onPageChange }: Props) {
+function Pagination({ totalPages, currentPage, onPageChange, shouldChangeUrl }: Props) {
+  const router = useRouter();
+  const { query } = router;
+
   const onPageClick = (pageNumber: number) => {
     onPageChange(pageNumber);
+
+    if (shouldChangeUrl) {
+      router.push({
+        pathname: router.pathname,
+        query: { ...query, page: pageNumber }
+      });
+    }
   };
+
   function onPrevButtonClick() {
-    onPageChange(currentPage - 1);
-  }
-  function onNextButtonClick() {
-    onPageChange(currentPage + 1);
+    const newPage = currentPage - 1;
+    onPageChange(newPage);
   }
 
+  function onNextButtonClick() {
+    const newPage = currentPage + 1;
+    onPageChange(newPage);
+  }
   return (
     <div>
       {totalPages > 1 && (
@@ -34,7 +49,7 @@ function Pagination({ totalPages, currentPage, onPageChange }: Props) {
               {index + 1}
             </button>
           ))}
-          <button onClick={onNextButtonClick} disabled={currentPage == totalPages}>
+          <button onClick={onNextButtonClick} disabled={currentPage === totalPages}>
             <Image src="/icons/pagination-next.svg" width={20} height={20} alt="next-arrow" />
           </button>
         </div>

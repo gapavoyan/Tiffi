@@ -4,9 +4,10 @@ import { useMediaQuery } from "./use-media-query";
 import useWindowResize from "./useWindowResize";
 import { useRouter } from "next/router";
 import Api from "@/api";
+
 export type Gender = "man" | "woman";
 
-export interface T_Brand {
+export interface I_Brand {
   id: number;
   title: string;
   gender: Gender;
@@ -22,19 +23,20 @@ export interface Category {
   data?: Category[];
 }
 
-export interface CacheRef {
+export interface ICacheRef {
   man: Category[] | null;
   woman: Category[] | null;
 }
+
 export function useHeaderInfo() {
+  const router = useRouter();
   const isMobile = useMediaQuery("(max-width : 1200px)");
   const [isDrawerMenuOpen, onToggleDrawer] = useToggle();
   const [loading, setLoading] = useState(false);
   const [activeGender, setActiveGender] = useState<Gender | null>(null);
   const [submenuData, setSubmenuData] = useState<Category[] | null>(null);
-  const [brandsData, setBrandsData] = useState<T_Brand[]>([]);
-  const cachedInfo = useRef<CacheRef>({ man: null, woman: null });
-  const router = useRouter();
+  const [brandsData, setBrandsData] = useState<I_Brand[]>([]);
+  const cachedInfo = useRef<ICacheRef>({ man: null, woman: null });
 
   const onSubmenuOpen = async (gender: Gender) => {
     if (activeGender === gender) {

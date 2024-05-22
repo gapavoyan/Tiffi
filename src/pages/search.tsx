@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CategoryProduct from "@/components/category-product/category-product";
 import useCategoryInfo from "@/hooks/useCategoryInfo";
 import SearchInput from "@/components/search/searchInput";
@@ -25,6 +25,7 @@ function Search({ products, pagesCount }: Props) {
         <h2 className="font-lora">Результаты поиска</h2>
       </div>
       <CategoryProduct
+        shouldChangeUrl
         products={products}
         loading={loading}
         onPageChange={onPageChange}
@@ -37,8 +38,9 @@ function Search({ products, pagesCount }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { query: searchItem } = query;
+  const page = query.page;
 
-  const products = await Api.product.GetSearchProduct(searchItem as string);
+  const products = await Api.product.GetSearchProduct(searchItem as string, +page!);
 
   return {
     props: {

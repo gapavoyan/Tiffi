@@ -11,6 +11,7 @@ interface Props {
   women: Product[];
   men: Product[];
 }
+
 function NewProducts({ men, women }: Props) {
   const push = useRouter().push;
   return (

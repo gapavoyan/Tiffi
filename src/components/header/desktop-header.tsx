@@ -3,7 +3,7 @@ import AccordionContent from "../drawer/accordion";
 import Slider from "../slider/slider";
 import { Category, Gender } from "@/hooks/useHeaderInfo";
 import { useState } from "react";
-import { T_Brand } from "@/hooks/useHeaderInfo";
+import { I_Brand } from "@/hooks/useHeaderInfo";
 
 import Button from "../buttons/subcategoriesFilter-button";
 import Loading from "../loading/loading";
@@ -13,7 +13,7 @@ interface Props {
   isOpen: boolean;
   onSubCategoryItemClick: (id: number, parent_id: number | null, gender: Gender) => void;
   onBrandsItemClick: (id: number, gender: Gender) => void;
-  brandsData: T_Brand[];
+  brandsData: I_Brand[];
   loading: boolean;
 }
 export default function DesktopHeader({

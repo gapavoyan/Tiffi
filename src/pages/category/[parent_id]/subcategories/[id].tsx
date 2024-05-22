@@ -39,6 +39,7 @@ function CategoryComponent({ data, subcategories }: Props) {
           />
         </div>
         <CategoryProduct
+          shouldChangeUrl={false}
           products={products}
           loading={loading}
           activeSubcategoryId={activeId}

@@ -1,6 +1,6 @@
 import { Gender } from "@/hooks/useHeaderInfo";
 import ApiSlice from "../slice";
-import { T_Brand } from "@/hooks/useHeaderInfo";
+import { I_Brand } from "@/hooks/useHeaderInfo";
 import { Product } from "@/dataBase/data-categories";
 
 export interface Category {
@@ -29,6 +29,6 @@ export default class GenderSlice extends ApiSlice {
     return this.request<{ items: Product[] }>(`/products/limited?category_id=${category_id}`);
   }
   static async GetBrandsByGender(gender: Gender) {
-    return this.request<{ items: T_Brand[] }>(`/brands?gender=${gender}`);
+    return this.request<{ items: I_Brand[] }>(`/brands?gender=${gender}`);
   }
 }

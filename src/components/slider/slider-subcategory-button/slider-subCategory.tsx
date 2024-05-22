@@ -4,7 +4,7 @@ import SwiperCore from "swiper";
 import "swiper/css";
 import Button from "@/components/buttons/subcategoriesFilter-button";
 import { useRouter } from "next/router";
-import type { T_Brand } from "@/hooks/useHeaderInfo";
+import type { I_Brand } from "@/hooks/useHeaderInfo";
 import { Gender } from "@/hooks/useHeaderInfo";
 import { Navigation } from "swiper/modules";
 
@@ -13,7 +13,7 @@ SwiperCore.use([Navigation]);
 interface Props {
   activeId?: number | null;
   onChangeSubcategory?: (subcategory: number) => void;
-  data?: T_Brand[];
+  data?: I_Brand[];
   parentId?: number;
   gender?: Gender;
 }

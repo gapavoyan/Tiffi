@@ -1,13 +1,10 @@
 import { Gender } from "@/hooks/useHeaderInfo";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import { dataProducts } from "@/dataBase/data-product";
 import { dataCategory } from "@/dataBase/data-category";
 import Api from "@/api";
-import { log } from "console";
 
 export interface Product {
-  slice(firstPostIndex: number, lastPostIndex: number): unknown;
   length: number;
   data: any;
   id: number;
@@ -90,7 +87,7 @@ function useCategoryInfo() {
     };
 
     fetchData();
-  }, [activeId, currentPage, subcategory_id]);
+  }, [activeId, currentPage, subcategory_id, category_id]);
 
   return {
     subcategories: dataCategory.subcategories,

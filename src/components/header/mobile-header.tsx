@@ -3,7 +3,7 @@ import Image from "next/image";
 import Slider from "../slider/slider";
 import { Category, Gender } from "@/hooks/useHeaderInfo";
 import AccordionContent from "../drawer/accordion";
-import { T_Brand } from "@/hooks/useHeaderInfo";
+import { I_Brand } from "@/hooks/useHeaderInfo";
 import BrandsButton from "../brands/brandsButton";
 import Loading from "../loading/loading";
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
   onClose: () => void;
   onSubCategoryItemClick: (id: number, parent_id: number | null, gender: Gender) => void;
   onBrandsItemClick: (id: number, gender: Gender) => void;
-  brandsData: T_Brand[];
+  brandsData: I_Brand[];
   loading: boolean;
 }
 
