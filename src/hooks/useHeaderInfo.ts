@@ -60,7 +60,7 @@ export function useHeaderInfo() {
 
       setBrandsData(brandsData?.items ?? []);
       setSubmenuData(categoriesData.items);
-      cachedInfo.current[gender] = submenuData;
+      cachedInfo.current[gender] = categoriesData.items; // Update caching here
       setLoading(false);
     }
   };
