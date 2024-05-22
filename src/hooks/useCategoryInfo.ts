@@ -1,7 +1,6 @@
 import { Gender } from "@/hooks/useHeaderInfo";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import { dataCategory } from "@/dataBase/data-category";
 import Api from "@/api";
 
 export interface Product {
@@ -90,7 +89,6 @@ function useCategoryInfo() {
   }, [activeId, currentPage, subcategory_id, category_id]);
 
   return {
-    subcategories: dataCategory.subcategories,
     activeId,
     products,
     loading,

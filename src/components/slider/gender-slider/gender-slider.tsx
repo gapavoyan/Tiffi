@@ -1,8 +1,9 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Product } from "@/dataBase/data-categories";
+
 import ProductCard from "@/components/product-card/product-card";
+import { Product } from "@/hooks/useCategoryInfo";
 
 interface Props {
   data: Product[];
