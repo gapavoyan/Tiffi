@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import dataHeader from "../../dataBase/dataHeader";
+import dataHeader from "@/dataBase/data-header";
 import { Gender } from "@/hooks/useHeaderInfo";
 import { useRouter } from "next/router";
 

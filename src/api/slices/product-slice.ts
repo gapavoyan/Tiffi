@@ -45,7 +45,7 @@ export default class ProductSlice extends ApiSlice {
   }
 
   static async GetBrandProduct(brand_id: number) {
-    return this.request<IResponseWithCount<Product[]>>(`/products/brands/${brand_id}?page=1&rowsPerPage=2`);
+    return this.request<IResponseWithCount<Product[]>>(`/products/brands/${brand_id}?page=1&rowsPerPage=6`);
   }
 
   static async GetProductBySubcategory(category_id: number) {

@@ -4,7 +4,6 @@ import Api from "@/api";
 import { Gender } from "./useHeaderInfo";
 
 export interface Product {
-  slice(firstPostIndex: number, lastPostIndex: number): unknown;
   length: number;
   data: any;
   id: number;
@@ -66,7 +65,7 @@ function useBrandInfo() {
       setTotalPages(productsPages);
 
       const currentProducts = categoryProducts.slice(firstPostIndex, lastPostIndex);
-      setProducts(currentProducts);
+      setProducts(currentProducts as Product[]);
 
       // Cached data
       if (!cachedInfo.current[brandId!]) {
