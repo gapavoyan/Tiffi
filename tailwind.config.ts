@@ -28,8 +28,8 @@ const config: Config = {
         xl: "80px"
       },
       fontFamily: {
-        lora: "Lora",
-        railway: "railway"
+        lora: ["Lora", "serif"],
+        railway: ["Raleway", "sans-serif"]
       },
       height: {
         "max-content": "max-content"
